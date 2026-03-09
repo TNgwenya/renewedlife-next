@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import MobileNav from '../components/MobileNav';
 import { churchInfo, navLinks, socialLinks } from '../lib/siteContent';
 
 const inter = Inter({
@@ -50,7 +51,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link key={href} href={href}>{label}</Link>
               ))}
             </nav>
-            <Link href="/plan-your-visit" className="button button-sm">Plan Your Visit</Link>
+            <div className="header-actions">
+              <Link href="/plan-your-visit" className="button button-sm header-primary-cta">Plan Your Visit</Link>
+              <MobileNav
+                navLinks={navLinks}
+                phoneHref={churchInfo.phoneHref}
+                phoneDisplay={churchInfo.phoneDisplay}
+                whatsappHref={churchInfo.whatsappHref}
+              />
+            </div>
           </div>
         </header>
         {children}

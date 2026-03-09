@@ -31,16 +31,53 @@ const initialState: FormState = {
   prayerRequest: '',
 };
 
+type FormErrors = Partial<Record<keyof FormState, string>>;
+
+function validateForm(formState: FormState): FormErrors {
+  const errors: FormErrors = {};
+
+  if (!formState.firstName.trim()) {
+    errors.firstName = 'Please share your first name.';
+  }
+
+  if (!formState.lastName.trim()) {
+    errors.lastName = 'Please share your last name.';
+  }
+
+  if (!formState.mobile.trim()) {
+    errors.mobile = 'Please share a mobile number.';
+  }
+
+  if (!formState.email.trim()) {
+    errors.email = 'Please share your email address.';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
+    errors.email = 'Enter a valid email address.';
+  }
+
+  return errors;
+}
+
 export default function VisitorInterestForm({ email, whatsappHref }: Props) {
   const [formState, setFormState] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
 
   function updateField<Key extends keyof FormState>(field: Key, value: FormState[Key]) {
     setFormState((current) => ({ ...current, [field]: value }));
+    setErrors((current) => ({ ...current, [field]: undefined }));
+    setSubmitted(false);
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const nextErrors = validateForm(formState);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setSubmitted(false);
+      return;
+    }
 
     const subject = `Plan Your Visit enquiry - ${formState.firstName || 'Guest'} ${formState.lastName || ''}`.trim();
     const body = [
@@ -57,15 +94,16 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
       `Prayer request: ${formState.prayerRequest || 'None provided'}`,
     ].join('\n');
 
+    setErrors({});
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   }
 
   return (
     <>
-      <form className="visit-form" onSubmit={handleSubmit}>
+      <form className="visit-form" onSubmit={handleSubmit} noValidate>
         <div className="form-grid form-grid-two">
-          <label>
+          <label className={errors.firstName ? 'field-invalid' : undefined}>
             First name
             <input
               type="text"
@@ -73,10 +111,14 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
               placeholder="First name"
               value={formState.firstName}
               onChange={(event) => updateField('firstName', event.target.value)}
+              autoComplete="given-name"
+              aria-invalid={Boolean(errors.firstName)}
+              aria-describedby={errors.firstName ? 'visit-first-name-error' : undefined}
               required
             />
+            {errors.firstName ? <span id="visit-first-name-error" className="field-error">{errors.firstName}</span> : null}
           </label>
-          <label>
+          <label className={errors.lastName ? 'field-invalid' : undefined}>
             Last name
             <input
               type="text"
@@ -84,13 +126,17 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
               placeholder="Last name"
               value={formState.lastName}
               onChange={(event) => updateField('lastName', event.target.value)}
+              autoComplete="family-name"
+              aria-invalid={Boolean(errors.lastName)}
+              aria-describedby={errors.lastName ? 'visit-last-name-error' : undefined}
               required
             />
+            {errors.lastName ? <span id="visit-last-name-error" className="field-error">{errors.lastName}</span> : null}
           </label>
         </div>
 
         <div className="form-grid form-grid-two">
-          <label>
+          <label className={errors.mobile ? 'field-invalid' : undefined}>
             Mobile number
             <input
               type="tel"
@@ -98,10 +144,14 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
               placeholder="+27"
               value={formState.mobile}
               onChange={(event) => updateField('mobile', event.target.value)}
+              autoComplete="tel"
+              aria-invalid={Boolean(errors.mobile)}
+              aria-describedby={errors.mobile ? 'visit-mobile-error' : undefined}
               required
             />
+            {errors.mobile ? <span id="visit-mobile-error" className="field-error">{errors.mobile}</span> : null}
           </label>
-          <label>
+          <label className={errors.email ? 'field-invalid' : undefined}>
             Email address
             <input
               type="email"
@@ -109,8 +159,12 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
               placeholder="you@example.com"
               value={formState.email}
               onChange={(event) => updateField('email', event.target.value)}
+              autoComplete="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? 'visit-email-error' : undefined}
               required
             />
+            {errors.email ? <span id="visit-email-error" className="field-error">{errors.email}</span> : null}
           </label>
         </div>
 
@@ -173,9 +227,19 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
           />
         </label>
 
-        <p className="form-helper">
-          This currently opens your email app with a completed visitor message while live form automation is finalized.
-        </p>
+        <div className="form-helper-block">
+          <p className="form-helper">
+            This currently opens your email app with a completed visitor message while live form automation is finalized.
+          </p>
+          <div className="form-inline-links">
+            <a className="text-link" href={`mailto:${email}`}>
+              Email the team directly
+            </a>
+            <a className="text-link" href={whatsappHref} target="_blank" rel="noreferrer">
+              Or reach us on WhatsApp
+            </a>
+          </div>
+        </div>
 
         <button type="submit" className="button">Send visitor enquiry</button>
       </form>
@@ -187,9 +251,14 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
           <p>
             If your email draft opened, send it and our team will follow up. Need help right away?
           </p>
-          <a href={whatsappHref} className="button button-ghost" target="_blank" rel="noreferrer">
-            Chat with us on WhatsApp
-          </a>
+          <div className="submission-actions">
+            <a href={`mailto:${email}`} className="button button-secondary">
+              Open email again
+            </a>
+            <a href={whatsappHref} className="button button-ghost" target="_blank" rel="noreferrer">
+              Chat with us on WhatsApp
+            </a>
+          </div>
         </div>
       ) : null}
     </>
