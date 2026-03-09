@@ -1,0 +1,57 @@
+You are taking over the implementation of the Renewed Life International website rebuild.
+
+Read all files in this handoff pack first.
+
+Your mission is to complete the new church website for renewedlifeint.com using the current prototype as the starting point.
+
+Project context:
+- The current website has already been benchmarked against top church websites.
+- The main mirrored model is Meta Church.
+- Supporting inspiration includes Life.Church, Elevation Church, Hillsong Church, and Mariners Church.
+- The project is already in early build stage because a first Next.js prototype exists.
+
+Your job:
+1. Understand what has been completed.
+2. Preserve the strategic findings.
+3. Upgrade the current prototype into a polished, production-ready, mobile-first website.
+
+Important design intent:
+- warm
+- modern
+- welcoming
+- premium
+- visitor-first
+- clean
+- maintainable
+
+Required outcomes:
+- strong homepage hero and CTA hierarchy
+- excellent Plan Your Visit page
+- clear navigation
+- clear service time/location visibility
+- polished About, Ministries, Sermons, Give, and Contact pages
+- reusable design system
+- responsive and launch-ready frontend
+
+Constraints:
+- do not imitate another church's branding directly
+- borrow structure and UX principles, not exact visual identity
+- prioritize clarity and conversion over complexity
+- write code that is clean, reusable, and production-oriented
+- do not stop at placeholder quality if a polished result can be implemented
+
+Implementation order:
+1. audit current codebase
+2. refine information architecture
+3. implement design system
+4. rebuild homepage
+5. build Plan Your Visit page
+6. strengthen all secondary pages
+7. add integration placeholders
+8. complete responsive QA
+9. prepare final launch-ready output
+
+Definition of done:
+The website should feel like a modern church website that a first-time visitor can trust immediately and use easily on mobile.
+
+When making decisions, align them with the benchmark findings in this handoff pack.
