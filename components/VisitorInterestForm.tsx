@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 type Props = {
   email: string;
+  formEndpoint: string;
+  whatsappBaseHref: string;
   whatsappHref: string;
 };
 
@@ -57,18 +59,26 @@ function validateForm(formState: FormState): FormErrors {
   return errors;
 }
 
-export default function VisitorInterestForm({ email, whatsappHref }: Props) {
+export default function VisitorInterestForm({ email, formEndpoint, whatsappBaseHref, whatsappHref }: Props) {
   const [formState, setFormState] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submittedName, setSubmittedName] = useState('');
+
+  function buildWhatsappHref(message: string) {
+    return `${whatsappBaseHref}?text=${encodeURIComponent(message)}`;
+  }
 
   function updateField<Key extends keyof FormState>(field: Key, value: FormState[Key]) {
     setFormState((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
     setSubmitted(false);
+    setSubmitError('');
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const nextErrors = validateForm(formState);
@@ -79,29 +89,63 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
       return;
     }
 
-    const subject = `Plan Your Visit enquiry - ${formState.firstName || 'Guest'} ${formState.lastName || ''}`.trim();
-    const body = [
-      'Renewed Life Plan Your Visit enquiry',
-      '',
-      `First name: ${formState.firstName}`,
-      `Last name: ${formState.lastName}`,
-      `Mobile number: ${formState.mobile}`,
-      `Email: ${formState.email}`,
-      `Number of people attending: ${formState.attendanceSize}`,
-      `First time visiting: ${formState.firstTime}`,
-      `How they heard about us: ${formState.heardAbout}`,
-      `Would like someone to contact them: ${formState.contactBack}`,
-      `Prayer request: ${formState.prayerRequest || 'None provided'}`,
-    ].join('\n');
-
     setErrors({});
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    setSubmitError('');
+    setIsSubmitting(true);
+
+    try {
+      const submittedForm = { ...formState };
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: new FormData(event.currentTarget),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to submit the visitor form right now.');
+      }
+
+      setSubmitted(true);
+      setSubmittedName(`${submittedForm.firstName} ${submittedForm.lastName}`.trim() || 'a guest');
+      setFormState(initialState);
+    } catch {
+      setSubmitError('We could not send your visitor details just now. Please try again or reach out directly by email or WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  const whatsappFollowupHref = buildWhatsappHref(
+    `Hi Renewed Life, I have just submitted the Plan Your Visit form. My name is ${submittedName || 'a guest'} and I am looking forward to visiting.`
+  );
+
+  if (submitted) {
+    return (
+      <div className="submission-note" aria-live="polite">
+        <p className="card-label">Visitor form sent</p>
+        <h3>Thank you for planning your visit.</h3>
+        <p>
+          Your details have been sent to the church inbox. We’re excited to welcome you to Renewed Life.
+        </p>
+        <div className="submission-actions">
+          <a href={whatsappFollowupHref} className="button button-secondary" target="_blank" rel="noreferrer">
+            Notify us on WhatsApp
+          </a>
+          <a href={whatsappHref} className="button button-ghost" target="_blank" rel="noreferrer">
+            Chat with us on WhatsApp
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return (
     <>
       <form className="visit-form" onSubmit={handleSubmit} noValidate>
+        <input type="hidden" name="formType" value="Plan Your Visit Form" />
+        <input type="hidden" name="_subject" value="Plan Your Visit enquiry from Renewed Life website" />
         <div className="form-grid form-grid-two">
           <label className={errors.firstName ? 'field-invalid' : undefined}>
             First name
@@ -229,7 +273,7 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
 
         <div className="form-helper-block">
           <p className="form-helper">
-            This currently opens your email app with a completed visitor message while live form automation is finalized.
+            This form sends directly to the church inbox so the team can follow up before your visit.
           </p>
           <div className="form-inline-links">
             <a className="text-link" href={`mailto:${email}`}>
@@ -241,26 +285,12 @@ export default function VisitorInterestForm({ email, whatsappHref }: Props) {
           </div>
         </div>
 
-        <button type="submit" className="button">Send visitor enquiry</button>
-      </form>
+        {submitError ? <p className="form-status form-status-error" role="alert">{submitError}</p> : null}
 
-      {submitted ? (
-        <div className="submission-note">
-          <p className="card-label">Next step</p>
-          <h3>Thank you for planning your visit. We’re excited to welcome you to Renewed Life.</h3>
-          <p>
-            If your email draft opened, send it and our team will follow up. Need help right away?
-          </p>
-          <div className="submission-actions">
-            <a href={`mailto:${email}`} className="button button-secondary">
-              Open email again
-            </a>
-            <a href={whatsappHref} className="button button-ghost" target="_blank" rel="noreferrer">
-              Chat with us on WhatsApp
-            </a>
-          </div>
-        </div>
-      ) : null}
+        <button type="submit" className="button" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send visitor enquiry'}
+        </button>
+      </form>
     </>
   );
 }

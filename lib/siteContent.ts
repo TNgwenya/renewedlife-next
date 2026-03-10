@@ -2,6 +2,8 @@ const facebookHref = 'https://www.facebook.com/renewedlifeint/';
 const instagramHref = 'https://www.instagram.com/renewedlifeint/';
 const youtubeHref = 'https://www.youtube.com/@renewedlifeinternational2138';
 
+export const formspreeEndpoint = 'https://formspree.io/f/mbdzdvpn';
+
 export const churchInfo = {
   name: "Renewed Life",
   legalName: "Renewed Life International",
@@ -22,7 +24,7 @@ export const churchInfo = {
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=Mampuru+Hall,+01621+Sobuza+Street,+Dube,+Soweto,+1800,+South+Africa",
   mapEmbedSrc:
-    'https://www.google.com/maps?q=Mampuru+Hall,+01621+Sobuza+Street,+Dube,+Soweto,+South+Africa&output=embed',
+    'https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sMampuru+Hall,+01621+Sobuza+Street,+Dube,+Soweto,+South+Africa',
   whatsappBaseHref: 'https://wa.me/27614364130',
   whatsappHref:
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%E2%80%99d%20like%20more%20information%20about%20visiting%20on%20Sunday.',
@@ -52,8 +54,42 @@ export const navLinks = [
   { label: "About", href: "/about" },
   { label: "Ministries", href: "/ministries" },
   { label: "Sermons", href: "/sermons" },
+  { label: "Events", href: "/events" },
   { label: "Give", href: "/give" },
   { label: "Contact", href: "/contact" },
+];
+
+export const upcomingEvents = [
+  {
+    title: 'Youth Connect',
+    date: '14 March 2026',
+    time: '18:00',
+    venue: 'Mampuru Hall',
+    description: 'A youth gathering for worship, prayer, and practical biblical encouragement.',
+    recurrence: 'Recurring monthly',
+    ctaLabel: 'WhatsApp to register',
+    ctaHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like to register for Youth Connect on 14 March 2026.')}`,
+  },
+  {
+    title: 'Passover Conference',
+    date: '1 April - 5 April 2026',
+    time: '18:00',
+    venue: 'Mampuru Hall',
+    description: 'The Lamb that takes away our sins.',
+    recurrence: 'Conference event',
+    ctaLabel: 'WhatsApp to register',
+    ctaHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like to register for the Passover Conference.')}`,
+  },
+  {
+    title: 'Night Prayer',
+    date: '20 March 2026',
+    time: '18:00 - 3:00 AM',
+    venue: 'Mampuru Hall',
+    description: 'A night of prayer and worship.',
+    recurrence: 'Special prayer gathering',
+    ctaLabel: 'WhatsApp to register',
+    ctaHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like to register for Night Prayer on 20 March 2026.')}`,
+  },
 ];
 
 export const homepageActions = [
@@ -164,23 +200,23 @@ export const ministries = [
 
 export const sermonLibrary = [
   {
-    title: 'Church Service | 1 March 2026 | Part 2',
+    title: 'A Good God and His Notorious Boys',
     speaker: 'Renewed Life International',
-    date: '1 March 2026',
-    series: 'Sunday Service',
+    date: 'Recent message',
+    series: 'Sunday Teaching',
     type: 'Sunday Service',
-    summary: 'A recent Sunday service upload from the church YouTube channel, useful as the lead featured message while the archive is being structured.',
-    href: youtubeHref,
+    summary: 'A featured message now linked to a specific YouTube sermon, giving visitors a clearer sense of the preaching voice and biblical emphasis of the church.',
+    href: 'https://www.youtube.com/watch?v=YpCqxgKHbSU',
     thumbnail: '/images/worship/worship-01.jpg',
   },
   {
-    title: 'Sunday Service',
+    title: 'Woman Your Faith Is Great',
     speaker: 'Renewed Life International',
-    date: 'Recent upload',
-    series: 'Weekend Gatherings',
+    date: 'Recent message',
+    series: 'Sunday Teaching',
     type: 'Sunday Service',
-    summary: 'Recent service content visible on the public channel, positioned for guests who want to experience the tone and teaching of the church online first.',
-    href: youtubeHref,
+    summary: 'A real sermon link that strengthens the archive and gives first-time visitors another message to explore beyond the featured teaching.',
+    href: 'https://www.youtube.com/watch?v=WLXo5J24cyE',
     thumbnail: '/images/worship/worship-02.jpg',
   },
   {
@@ -189,17 +225,17 @@ export const sermonLibrary = [
     date: 'Recent upload',
     series: 'Midweek Teaching',
     type: 'Bible Study',
-    summary: 'Recurring midweek Bible study content that helps members stay rooted in the Word and connected during the week.',
+    summary: 'Recurring midweek teaching content remains available through the church channel while more individual message links are being added.',
     href: youtubeHref,
     thumbnail: '/images/worship/worship-03.jpg',
   },
   {
-    title: '06 February 2026',
+    title: 'Recent Teaching Replay',
     speaker: 'Renewed Life International',
-    date: '6 February 2026',
+    date: 'Channel replay',
     series: 'Recent Teaching',
     type: 'Special Service',
-    summary: 'A dated recent upload that can anchor the early archive while future sermon naming becomes more consistent.',
+    summary: 'A general replay slot that keeps the archive useful while additional sermon-specific links are collected and added.',
     href: youtubeHref,
     thumbnail: '/images/worship/worship-04.jpg',
   },
@@ -355,6 +391,7 @@ export const ministryGallery = [
 export const videoClips = [
   {
     src: '/images/homepage/cong-praise-2.MOV',
+    type: 'video/quicktime',
     title: 'Homepage worship moment',
     summary: 'A short congregation praise clip that works well as a living first impression on the homepage.',
     poster: '/images/worship/cong-2.JPG',
@@ -362,6 +399,7 @@ export const videoClips = [
   },
   {
     src: '/images/worship/congr-praise-1.MOV',
+    type: 'video/quicktime',
     title: 'Worship atmosphere clip',
     summary: 'A short worship clip that can support sermons, media, and social promotion sections.',
     poster: '/images/worship/cong-front-2.jpg',
@@ -369,6 +407,7 @@ export const videoClips = [
   },
   {
     src: '/images/pastor/pastor-sermon-clip-1-preview.mp4',
+    type: 'video/mp4',
     title: 'Long-form sermon replay clip',
     summary: 'A compressed sermon preview clip that supports replay promotion without shipping an oversized media file in the repository.',
     poster: '/images/pastor/pastor-1.jpg',
@@ -376,6 +415,7 @@ export const videoClips = [
   },
   {
     src: '/images/pastor/pastor-sermon-clip-2.MOV',
+    type: 'video/quicktime',
     title: 'Preaching clip',
     summary: 'A sermon or leadership clip suited to the sermons page and future short-form media promotion.',
     poster: '/images/pastor/pastor-1.jpg',
@@ -427,26 +467,41 @@ export const beliefs = [
 
 export const givingWays = [
   {
-    title: 'Give online',
-    description: 'The recommended primary setup is a secure PayFast-style giving gateway with card and instant EFT support so members and partners can give simply online.',
-    support: 'Primary recommended method',
-    actionLabel: 'Online giving link coming soon',
+    title: 'Give via EFT',
+    description: 'EFT is the active giving method for now, giving members and partners a direct and trusted way to support the ministry.',
+    support: 'Live now',
+    actionLabel: 'Bank transfer available',
   },
   {
-    title: 'Give via EFT',
-    description: 'EFT should remain available as a trusted South African giving method, with banking details and reference guidance clearly provided once finalized.',
-    support: 'Strong backup or primary method',
-    actionLabel: 'Bank transfer details to be added',
+    title: 'Give online',
+    description: 'A simple online giving option can be added next once the church confirms its preferred secure payment platform.',
+    support: 'Coming soon',
+    actionLabel: 'Online giving option coming soon',
   },
   {
     title: 'Give via SnapScan / Zapper',
-    description: 'QR-based giving is a practical convenience layer for members who prefer fast mobile giving during or after services.',
-    support: 'Optional convenience method',
-    actionLabel: 'SnapScan / Zapper option to be added',
+    description: 'QR-based giving can be added later as a convenience option for members who prefer quick mobile payments.',
+    support: 'Future convenience option',
+    actionLabel: 'SnapScan / Zapper coming soon',
   },
 ];
 
 export const givingCategories = ['Tithe', 'Offering', 'Special Seed / Building Fund'];
+
+export const eftGivingDetails = [
+  {
+    label: 'Bank',
+    value: 'FNB',
+  },
+  {
+    label: 'Account holder',
+    value: 'Renewed Life Int',
+  },
+  {
+    label: 'Account number',
+    value: '63074972639',
+  },
+];
 
 export const contactActions = [
   {

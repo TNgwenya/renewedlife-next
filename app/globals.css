@@ -107,6 +107,12 @@ select:focus-visible {
   transform: translateY(-1px);
   box-shadow: 0 12px 28px rgba(200, 162, 77, 0.24);
 }
+.button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+  box-shadow: none;
+}
 .button-sm { padding: 0.7rem 1rem; }
 .button-secondary {
   background: transparent; color: var(--white); border: 1px solid var(--line);
@@ -613,6 +619,17 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0.5rem 0 1r
   color: var(--muted);
   font-size: 0.94rem;
 }
+
+.form-status {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.form-status-error {
+  color: #be185d;
+}
+
 .submission-note {
   margin-top: 1.25rem;
   padding: 1.25rem;
@@ -656,7 +673,8 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0.5rem 0 1r
 }
 
 .section-dark .field-error,
-.section-dark .submission-feedback {
+.section-dark .submission-feedback,
+.section-dark .form-status-error {
   color: #fecdd3;
 }
 

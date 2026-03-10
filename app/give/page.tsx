@@ -1,7 +1,7 @@
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
-import { churchInfo, givingCategories, givingWays } from '../../lib/siteContent';
+import { churchInfo, eftGivingDetails, givingCategories, givingWays } from '../../lib/siteContent';
 
 export default function GivePage() {
   return (
@@ -11,7 +11,7 @@ export default function GivePage() {
         title="Generosity is worship, partnership, and mission"
         description="We give because God has been faithful to us. Generosity helps support ministry, care for people, and advance the work of the Gospel through the local church."
         asideTitle="Giving information"
-        asideBody="Phase 1 giving is being kept simple: one clear secure giving path, optional banking details, and direct help from the church office while the final platform link is confirmed."
+        asideBody="Giving is live in a simple phase-one format: EFT is available now, with direct support from the church office while online and QR-based options are still being finalized."
       />
 
       <Section
@@ -29,7 +29,7 @@ export default function GivePage() {
           <div className="panel elevated-panel">
             <h3>Trust and clarity</h3>
             <p>
-              We want the final giving setup to stay simple and trustworthy, with one secure primary method and clear support for anyone who needs help.
+              We are keeping giving simple and trustworthy: one active EFT option now, with clear next-step support for anyone who needs help completing a transfer.
             </p>
           </div>
         </div>
@@ -43,23 +43,33 @@ export default function GivePage() {
               <h3>{way.title}</h3>
               <p>{way.description}</p>
               <span className="status-pill">{way.actionLabel}</span>
-              <a href={churchInfo.emailHref} className="text-link">Request giving details</a>
+              <a href={churchInfo.emailHref} className="text-link">Contact the church for giving help</a>
             </article>
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="Recommended setup"
-        title="A giving structure that fits South African habits"
-        subtitle="The clearest phase-one giving setup for Renewed Life is one secure online gateway, EFT details, and an optional QR-based convenience layer."
+        eyebrow="EFT details"
+        title="Bank transfer details for giving"
+        subtitle="Use these confirmed EFT details for phase-one giving. If you need branch code guidance, confirmation, or help with your transfer, contact the church office directly."
       >
         <div className="two-col">
           <article className="panel elevated-panel">
-            <h3>Primary online method</h3>
+            <p className="card-label">Active method</p>
+            <h3>Give via FNB EFT</h3>
+            <div className="meta-list">
+              {eftGivingDetails.map((detail) => (
+                <span key={detail.label}><strong>{detail.label}:</strong> {detail.value}</span>
+              ))}
+            </div>
             <p>
-              The recommended website-first giving option is a PayFast-style secure checkout with card payments and instant EFT support.
+              If you need any extra transfer guidance, reference confirmation, or proof-of-payment assistance, contact the church and the team will help you.
             </p>
+            <div className="inline-actions">
+              <a href={churchInfo.emailHref} className="button">Email for giving support</a>
+              <a href={churchInfo.whatsappHref} className="text-link" target="_blank" rel="noreferrer">Message on WhatsApp</a>
+            </div>
           </article>
           <article className="panel elevated-panel">
             <h3>Giving categories</h3>
@@ -71,6 +81,9 @@ export default function GivePage() {
             <p>
               Keep the giving categories simple and consistent so members know exactly where to give.
             </p>
+            <p>
+              Online giving and QR-based giving can be layered in next without needing to redesign this page.
+            </p>
           </article>
         </div>
       </Section>
@@ -78,10 +91,10 @@ export default function GivePage() {
       <Section eyebrow="Giving support" title="Need giving details or assistance?">
         <div className="feature-grid">
           {[
-            `Email ${churchInfo.email} for giving information`,
+            `Email ${churchInfo.email} for transfer support`,
             `Call ${churchInfo.phoneDisplay} for direct assistance`,
-            'Ask for EFT banking details and reference instructions',
-            'Ask whether SnapScan or Zapper will be enabled for mobile giving',
+            'Ask for any additional EFT transfer guidance you need',
+            'Ask when online giving or SnapScan / Zapper will be activated',
           ].map((item) => (
             <article key={item} className="panel compact-panel">
               <p>{item}</p>
@@ -93,7 +106,7 @@ export default function GivePage() {
       <CtaBand
         eyebrow="Questions?"
         title="Need help before giving?"
-        description="If you need banking details, help with online giving, or want to ask a question about stewardship, contact the church directly."
+        description="If you need help with EFT giving, transfer confirmation, or a giving-related question, contact the church directly and the team will assist you."
         primaryLabel="Contact the church"
         primaryHref="/contact"
         secondaryLabel="Plan Your Visit"

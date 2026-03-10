@@ -182,7 +182,7 @@ export default function HomePage() {
                 preload="metadata"
                 poster={videoClips[0].poster}
               >
-                <source src={videoClips[0].src} type="video/quicktime" />
+                <source src={videoClips[0].src} type={videoClips[0].type} />
               </video>
             </div>
             <p className="card-label">{videoClips[0].useCase}</p>

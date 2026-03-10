@@ -2,7 +2,7 @@ import CtaBand from '../../components/CtaBand';
 import ContactForm from '../../components/ContactForm';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
-import { churchInfo, contactActions, socialLinks } from '../../lib/siteContent';
+import { churchInfo, contactActions, formspreeEndpoint, socialLinks } from '../../lib/siteContent';
 
 export default function ContactPage() {
   return (
@@ -108,9 +108,13 @@ export default function ContactPage() {
             <p className="card-label">Church inbox</p>
             <h3>Contact {churchInfo.shortName}</h3>
             <p>
-              Messages are directed to {churchInfo.email}. This keeps the page useful now while a fully automated form workflow is finalized.
+              Messages are sent directly to {churchInfo.email}, giving the church team a clean inbox submission to follow up from.
             </p>
-            <ContactForm email={churchInfo.email} />
+            <ContactForm
+              email={churchInfo.email}
+              formEndpoint={formspreeEndpoint}
+              whatsappBaseHref={churchInfo.whatsappBaseHref}
+            />
           </div>
         </div>
       </Section>

@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="brand-tag">{churchInfo.tagline}</div>
               </div>
             </Link>
-            <nav className="main-nav">
+            <nav className="main-nav" aria-label="Primary navigation">
               {navLinks.map(({ label, href }) => (
                 <Link key={href} href={href}>{label}</Link>
               ))}

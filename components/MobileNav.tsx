@@ -85,7 +85,7 @@ export default function MobileNav({ navLinks, phoneHref, phoneDisplay, whatsappH
       <div id="mobile-site-nav" className={`mobile-nav-panel${isOpen ? ' is-open' : ''}`} aria-hidden={!isOpen}>
         <div className="mobile-nav-panel-inner" ref={panelRef}>
           <p className="card-label">Menu</p>
-          <nav className="mobile-nav-links">
+          <nav className="mobile-nav-links" aria-label="Mobile navigation">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)}>
                 {link.label}

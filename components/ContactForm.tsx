@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 type Props = {
   email: string;
+  formEndpoint: string;
+  whatsappBaseHref: string;
 };
 
 type FormState = {
@@ -48,29 +50,26 @@ function validateForm(formState: FormState): FormErrors {
   return errors;
 }
 
-export default function ContactForm({ email }: Props) {
+export default function ContactForm({ email, formEndpoint, whatsappBaseHref }: Props) {
   const [formState, setFormState] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [copyNotice, setCopyNotice] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submittedName, setSubmittedName] = useState('');
+
+  function buildWhatsappHref(message: string) {
+    return `${whatsappBaseHref}?text=${encodeURIComponent(message)}`;
+  }
 
   function updateField<Key extends keyof FormState>(field: Key, value: FormState[Key]) {
     setFormState((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
     setSubmitted(false);
-    setCopyNotice('');
+    setSubmitError('');
   }
 
-  async function copyEmailAddress() {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopyNotice('Church email copied.');
-    } catch {
-      setCopyNotice(`Email us directly at ${email}.`);
-    }
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const nextErrors = validateForm(formState);
@@ -81,28 +80,63 @@ export default function ContactForm({ email }: Props) {
       return;
     }
 
-    const subject = formState.subject || `Website enquiry from ${formState.name || 'Guest'}`;
-    const body = [
-      'Renewed Life website contact enquiry',
-      '',
-      `Name: ${formState.name}`,
-      `Email: ${formState.email}`,
-      `Phone: ${formState.phone}`,
-      `Subject: ${subject}`,
-      '',
-      'Message:',
-      formState.message,
-    ].join('\n');
-
     setErrors({});
-    setCopyNotice('');
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    setSubmitError('');
+    setIsSubmitting(true);
+
+    try {
+      const submittedForm = { ...formState };
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: new FormData(event.currentTarget),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to submit the form right now.');
+      }
+
+      setSubmitted(true);
+      setSubmittedName(submittedForm.name || 'a guest');
+      setFormState(initialState);
+    } catch {
+      setSubmitError('We could not send your message just now. Please try again or contact the church directly by email or WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  const whatsappFollowupHref = buildWhatsappHref(
+    `Hi Renewed Life, I have just submitted the website contact form. My name is ${submittedName || 'a guest'}.`
+  );
+
+  if (submitted) {
+    return (
+      <div className="submission-note" aria-live="polite">
+        <p className="card-label">Message sent</p>
+        <h3>Thank you for reaching out.</h3>
+        <p>
+          Your message has been sent to the church inbox. Someone from Renewed Life will follow up as soon as possible.
+        </p>
+        <div className="submission-actions">
+          <a className="button button-secondary" href={whatsappFollowupHref} target="_blank" rel="noreferrer">
+            Notify us on WhatsApp
+          </a>
+          <a className="button button-ghost" href={`mailto:${email}`}>
+            Email us directly
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return (
     <>
       <form className="visit-form" onSubmit={handleSubmit} noValidate>
+        <input type="hidden" name="formType" value="Website Contact Form" />
+        <input type="hidden" name="_subject" value={`Website contact enquiry from Renewed Life`} />
         <div className="form-grid form-grid-two">
           <label className={errors.name ? 'field-invalid' : undefined}>
             Name
@@ -181,34 +215,24 @@ export default function ContactForm({ email }: Props) {
 
         <div className="form-helper-block">
           <p className="form-helper">
-            This currently opens your email app with the completed message while live form routing is being finalized.
+            This form sends directly to the church inbox. If you prefer, you can still contact the church by email or WhatsApp.
           </p>
-          <a className="text-link" href={`mailto:${email}`}>
-            Prefer to email us directly?
-          </a>
-        </div>
-
-        <button type="submit" className="button">Send message</button>
-      </form>
-
-      {submitted ? (
-        <div className="submission-note">
-          <p className="card-label">Message prepared</p>
-          <h3>Thank you for reaching out.</h3>
-          <p>
-            If your email draft opened, send it and the team at Renewed Life will follow up as soon as possible.
-          </p>
-          <div className="submission-actions">
-            <a className="button button-secondary" href={`mailto:${email}`}>
-              Open email again
+          <div className="form-inline-links">
+            <a className="text-link" href={`mailto:${email}`}>
+              Email the church directly
             </a>
-            <button type="button" className="button button-ghost" onClick={copyEmailAddress}>
-              Copy church email
-            </button>
+            <a className="text-link" href={buildWhatsappHref('Hi Renewed Life, I would like to get in touch through the website contact page.')} target="_blank" rel="noreferrer">
+              Reach us on WhatsApp
+            </a>
           </div>
-          {copyNotice ? <p className="submission-feedback">{copyNotice}</p> : null}
         </div>
-      ) : null}
+
+        {submitError ? <p className="form-status form-status-error" role="alert">{submitError}</p> : null}
+
+        <button type="submit" className="button" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send message'}
+        </button>
+      </form>
     </>
   );
 }

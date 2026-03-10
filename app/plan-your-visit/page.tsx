@@ -3,7 +3,7 @@ import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
 import VisitorInterestForm from '../../components/VisitorInterestForm';
-import { churchInfo, videoClips, visitExpectations, visitorGallery } from '../../lib/siteContent';
+import { churchInfo, formspreeEndpoint, videoClips, visitExpectations, visitorGallery } from '../../lib/siteContent';
 
 export default function PlanYourVisitPage() {
   return (
@@ -118,7 +118,7 @@ export default function PlanYourVisitPage() {
                 preload="metadata"
                 poster={videoClips[1].poster}
               >
-                <source src={videoClips[1].src} type="video/quicktime" />
+                <source src={videoClips[1].src} type={videoClips[1].type} />
               </video>
             </div>
             <p className="card-label">{videoClips[1].useCase}</p>
@@ -178,9 +178,14 @@ export default function PlanYourVisitPage() {
             <p className="card-label">Guest response</p>
             <h3>Let us know you are coming</h3>
             <p>
-              Fill in a few details and the form will prepare a structured visitor email to {churchInfo.email}. A live automated form flow can be connected next without redesigning the page.
+              Fill in a few details and the form will send your visitor enquiry directly to {churchInfo.email}, making it easier for the church team to follow up before Sunday.
             </p>
-            <VisitorInterestForm email={churchInfo.email} whatsappHref={churchInfo.whatsappVisitFollowupHref} />
+            <VisitorInterestForm
+              email={churchInfo.email}
+              formEndpoint={formspreeEndpoint}
+              whatsappBaseHref={churchInfo.whatsappBaseHref}
+              whatsappHref={churchInfo.whatsappVisitFollowupHref}
+            />
             <p>
               Prefer a quicker response? <a href={churchInfo.whatsappHref} className="text-link" target="_blank" rel="noreferrer">Message us on WhatsApp</a>.
             </p>
