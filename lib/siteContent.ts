@@ -1,7 +1,29 @@
 const facebookHref = 'https://www.facebook.com/renewedlifeint/';
 const instagramHref = 'https://www.instagram.com/renewedlifeint/';
 const youtubeHref = 'https://www.youtube.com/@renewedlifeinternational2138';
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://renewedlifeint.com';
+
+function getValidSiteUrl() {
+  const fallbackUrl = 'https://renewedlifeint.com';
+  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (!rawSiteUrl) {
+    return fallbackUrl;
+  }
+
+  try {
+    const parsedUrl = new URL(rawSiteUrl);
+
+    if (parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:') {
+      return parsedUrl.toString().replace(/\/$/, '');
+    }
+  } catch {
+    return fallbackUrl;
+  }
+
+  return fallbackUrl;
+}
+
+const siteUrl = getValidSiteUrl();
 
 export const formspreeEndpoint =
   process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || 'https://formspree.io/f/mbdzdvpn';
