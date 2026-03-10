@@ -1,8 +1,10 @@
 const facebookHref = 'https://www.facebook.com/renewedlifeint/';
 const instagramHref = 'https://www.instagram.com/renewedlifeint/';
 const youtubeHref = 'https://www.youtube.com/@renewedlifeinternational2138';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://renewedlifeint.com';
 
-export const formspreeEndpoint = 'https://formspree.io/f/mbdzdvpn';
+export const formspreeEndpoint =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || 'https://formspree.io/f/mbdzdvpn';
 
 export const churchInfo = {
   name: "Renewed Life",
@@ -10,8 +12,8 @@ export const churchInfo = {
   shortName: "Renewed Life",
   tagline: "Believe. Belong. Become.",
   brandIdea:
-    "A church where people encounter God, find family, and grow into who God has called them to be.",
-  websiteHref: 'https://renewedlifeint.com',
+    "A local church where people encounter God, are rooted in the Word, and are welcomed into genuine spiritual family.",
+  websiteHref: siteUrl,
   city: "Dube, Soweto, Johannesburg",
   venue: "Mampuru Hall",
   addressLine1: "01621 Sobuza Street",
@@ -32,8 +34,8 @@ export const churchInfo = {
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%E2%80%99ve%20just%20planned%20my%20visit%20and%20I%E2%80%99m%20looking%20forward%20to%20joining%20you.',
   whatsappPrayerHref:
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%20would%20like%20prayer%20%2F%20pastoral%20support.',
-  givingPrimaryHref: '',
-  givingPrimaryLabel: 'Request giving details',
+  givingPrimaryHref: 'mailto:info@renewedlifeint.com',
+  givingPrimaryLabel: 'Email the church office',
   whatsappGivingHref:
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%20would%20like%20help%20with%20giving%20details.',
   livestreamHref: youtubeHref,
@@ -99,30 +101,34 @@ export const upcomingEvents = [
 export const homepageActions = [
   {
     title: "Plan your visit",
-    description: "Get service times, directions, and a simple walkthrough of what your first Sunday at Mampuru Hall will feel like.",
+    description: "Get service times, directions, and a simple guide to your first Sunday at Mampuru Hall.",
     href: "/plan-your-visit",
+    actionLabel: 'Plan my visit',
   },
   {
     title: "Watch a message",
-    description: "Catch up on a recent sermon and get a feel for the heart, teaching, and atmosphere of the church.",
+    description: "Watch a recent sermon and get a feel for the preaching, worship, and spiritual direction of the church.",
     href: "/sermons",
+    actionLabel: 'Watch a sermon',
   },
   {
     title: "Find your next step",
-    description: "Explore ministries, connect groups, and practical ways to grow in faith, family, and purpose.",
+    description: "Explore ministries, connect groups, and practical ways to become rooted in the life of the church.",
     href: "/ministries",
+    actionLabel: 'See ministries',
   },
   {
     title: "Connect with us",
-    description: "Reach out with questions, prayer needs, or to let us know you are coming this Sunday.",
+    description: "Reach out with questions, prayer needs, or to let us know you are joining us this Sunday.",
     href: "/contact",
+    actionLabel: 'Contact the church',
   },
 ];
 
 export const coreValues = [
   {
     title: "Believe",
-    description: "We lead people to trust Jesus, stand on the truth of Scripture, and live by the power of the Holy Spirit.",
+    description: "We lead people to trust Jesus, stand on Scripture, and live by the power of the Holy Spirit.",
   },
   {
     title: "Belong",
@@ -130,7 +136,7 @@ export const coreValues = [
   },
   {
     title: "Become",
-    description: "We want believers to grow into maturity, discover their God-ordained purpose, and live with courage and conviction.",
+    description: "We want believers to grow into maturity, discover their God-given purpose, and live with courage and conviction.",
   },
 ];
 
@@ -154,7 +160,7 @@ export const churchStoryMoments = [
     label: 'Today',
     title: 'Growing with purpose',
     description:
-      'Renewed Life continues to grow as a spiritual home where people encounter God, find family, and become who God has called them to be.',
+      'Renewed Life continues to grow as a church family marked by worship, prayer, biblical teaching, and a heart for people.',
   },
 ];
 
@@ -167,56 +173,56 @@ export const visionStatement =
 export const ministries = [
   {
     title: "Women’s Ministry",
-    description: "A vibrant ministry that encourages women to grow in faith, purpose, prayer, and godly community.",
+    description: "A space where women pray together, encourage one another, and grow as disciples of Jesus in everyday life.",
     audience: "Women of all ages",
     rhythm: "Fortnightly and during special gatherings",
     cta: "Join the Women’s Ministry",
   },
   {
     title: "Men’s Ministry",
-    description: "A ministry focused on building strong, godly men who lead with integrity in their homes, church, and community.",
+    description: "A ministry helping men grow in godly leadership, strong character, and faithful responsibility at home, in church, and in the community.",
     audience: "Men of all ages",
     rhythm: "Monthly Men’s Breakfast and special gatherings",
     cta: "Join the Men’s Ministry",
   },
   {
     title: "Youth Renewed",
-    description: "A dynamic youth ministry helping young people encounter God, grow in identity, and live boldly for Christ.",
+    description: "A youth community where young people worship, ask honest questions, build friendships, and learn to follow Christ boldly.",
     audience: "Teenagers and young adults",
     rhythm: "Monthly Youth Connect and youth-focused gatherings",
     cta: "Join Youth Renewed",
   },
   {
     title: "Children’s Ministry",
-    description: "A safe and joyful ministry where children learn God’s Word in a way that is engaging, biblical, and age-appropriate.",
+    description: "A safe and joyful environment where children learn the Bible, grow in prayer, and experience church in a way they can understand.",
     audience: "Children",
     rhythm: "During Sunday services and special children’s programs",
     cta: "Bring your child to Children’s Ministry",
   },
   {
     title: "Senior Citizens’ Ministry",
-    description: "A caring ministry that values, supports, and spiritually strengthens senior members of the church family.",
+    description: "A caring ministry where senior members are valued, strengthened in faith, and encouraged through fellowship and pastoral care.",
     audience: "Senior adults",
     rhythm: "Scheduled fellowship gatherings and special ministry moments",
     cta: "Connect with the Senior Citizens’ Ministry",
   },
   {
     title: "Evangelistic and Outreach Ministry",
-    description: "A ministry dedicated to reaching the community with the love of Christ through evangelism, practical support, and mission initiatives.",
+    description: "A ministry that carries the gospel into the community through evangelism, compassionate presence, prayer, and practical support.",
     audience: "The local community and outreach teams",
     rhythm: "Outreach events and scheduled evangelism activities",
     cta: "Serve in Outreach",
   },
   {
     title: "Music Ministry",
-    description: "A worship ministry committed to leading the church into the presence of God through excellence, sincerity, and Spirit-led worship.",
+    description: "A worship team committed to leading the church with sincerity, preparation, and a deep desire to honour God in song.",
     audience: "Singers, musicians, and the congregation through worship",
     rhythm: "Weekly services, rehearsals, and special events",
     cta: "Join the Worship Team",
   },
   {
     title: "Ushering Ministry",
-    description: "A hospitality-focused ministry that helps create a welcoming, orderly, and caring church environment for every guest and member.",
+    description: "A hospitality team that helps every guest and member feel welcomed, guided, and cared for from the moment they arrive.",
     audience: "The whole church, especially visitors",
     rhythm: "Weekly service coordination and special events",
     cta: "Serve with the Ushering Team",
@@ -230,7 +236,7 @@ export const sermonLibrary = [
     date: 'Recent message',
     series: 'Sunday Teaching',
     type: 'Sunday Service',
-    summary: 'A featured message now linked to a specific YouTube sermon, giving visitors a clearer sense of the preaching voice and biblical emphasis of the church.',
+    summary: 'A message on the goodness of God and the grace He shows even through flawed and unexpected people.',
     href: 'https://www.youtube.com/watch?v=YpCqxgKHbSU',
     thumbnail: '/images/worship/worship-01.jpg',
   },
@@ -240,7 +246,7 @@ export const sermonLibrary = [
     date: 'Recent message',
     series: 'Sunday Teaching',
     type: 'Sunday Service',
-    summary: 'A real sermon link that strengthens the archive and gives first-time visitors another message to explore beyond the featured teaching.',
+    summary: 'A sermon on bold and persevering faith, showing how trust in Jesus draws out His compassion and power.',
     href: 'https://www.youtube.com/watch?v=WLXo5J24cyE',
     thumbnail: '/images/worship/worship-02.jpg',
   },
@@ -250,7 +256,7 @@ export const sermonLibrary = [
     date: 'Recent upload',
     series: 'Midweek Teaching',
     type: 'Bible Study',
-    summary: 'Recurring midweek teaching content remains available through the church channel while more individual message links are being added.',
+    summary: 'Midweek teaching designed to help the church go deeper in Scripture, prayer, and day-by-day discipleship.',
     href: youtubeHref,
     thumbnail: '/images/worship/worship-03.jpg',
   },
@@ -260,7 +266,7 @@ export const sermonLibrary = [
     date: 'Channel replay',
     series: 'Recent Teaching',
     type: 'Special Service',
-    summary: 'A general replay slot that keeps the archive useful while additional sermon-specific links are collected and added.',
+    summary: 'A recent service replay for those who want to revisit a message, share it with someone, or catch up after missing a gathering.',
     href: youtubeHref,
     thumbnail: '/images/worship/worship-04.jpg',
   },
@@ -501,55 +507,24 @@ export const beliefs = [
 
 export const givingWays = [
   {
-    title: 'Online giving',
-    support: 'Recommended primary method',
+    title: 'Need EFT guidance?',
+    support: 'Direct support',
     description:
-      'Use one secure website-first giving option for the cleanest and most trusted experience.',
-    actionLabel: 'Open giving option',
-    actionHref: churchInfo.givingPrimaryHref || churchInfo.emailHref,
-  },
-  {
-    title: 'Bank transfer / EFT',
-    support: 'Helpful backup option',
-    description:
-      'For those who prefer direct transfer, provide banking details and clear payment references on request.',
-    actionLabel: 'Request EFT details',
-    actionHref: churchInfo.emailHref,
-  },
-  {
-    title: 'Mobile help',
-    support: 'Fast support',
-    description:
-      'Anyone who needs assistance with giving can reach out directly for guidance and support.',
-    actionLabel: 'WhatsApp support',
+      'If you need help confirming the details or knowing what reference to use, message the church and we will gladly help you.',
+    actionLabel: 'WhatsApp giving support',
     actionHref: churchInfo.whatsappGivingHref,
+  },
+  {
+    title: 'Prefer email support?',
+    support: 'Church office',
+    description:
+      'If you would prefer written guidance or follow-up from the church office, send us an email and we will assist you clearly.',
+    actionLabel: 'Email the church office',
+    actionHref: churchInfo.emailHref,
   },
 ];
 
 export const givingCategories = ['Tithe', 'Offering', 'Special Seed / Building Fund'];
-
-export const givingFaqs = [
-  {
-    question: 'What is the main giving option on the website?',
-    answer:
-      'The ideal setup is one clear primary online giving method, supported by simple help for anyone who needs assistance.',
-  },
-  {
-    question: 'Can I ask for EFT or banking details?',
-    answer:
-      'Yes. Members and visitors should be able to request EFT details and clear reference instructions directly from the church.',
-  },
-  {
-    question: 'What should I do if I need help giving?',
-    answer:
-      'Use the church email, phone number, or WhatsApp support option so someone can assist you quickly and clearly.',
-  },
-  {
-    question: 'How should giving categories be shown?',
-    answer:
-      'Keep them simple and consistent so people know exactly where to direct their giving without confusion.',
-  },
-];
 
 export const eftGivingDetails = [
   {
@@ -564,6 +539,10 @@ export const eftGivingDetails = [
     label: 'Account number',
     value: '63074972639',
   },
+  {
+    label: 'Reference',
+    value: 'Use your name or giving category, and contact us if you need guidance.',
+  },
 ];
 
 export const contactActions = [
@@ -571,26 +550,31 @@ export const contactActions = [
     title: "Send an email",
     value: churchInfo.email,
     href: churchInfo.emailHref,
+    description: 'Email the church for questions, prayer needs, or follow-up.',
   },
   {
     title: "Call the church",
     value: churchInfo.phoneDisplay,
     href: churchInfo.phoneHref,
+    description: 'Call if you would like to speak to someone directly.',
   },
   {
     title: "Message on WhatsApp",
     value: 'More information about visiting',
     href: churchInfo.whatsappHref,
+    description: 'Use WhatsApp for quick help before you visit or attend a service.',
   },
   {
     title: 'Prayer on WhatsApp',
     value: 'Prayer / pastoral support',
     href: churchInfo.whatsappPrayerHref,
+    description: 'Reach out for prayer, encouragement, or pastoral care.',
   },
   {
     title: "Open directions",
     value: `${churchInfo.venue}, ${churchInfo.city}`,
     href: churchInfo.mapHref,
+    description: 'Open directions and find the venue more easily.',
   },
 ];
 
@@ -614,18 +598,13 @@ export const leadershipHighlights = [
     title: "Pastor Thabang Ngwenya",
     imageSrc: '/images/pastor/pastor-1.jpg',
     description:
-      "Pastor Thabang Ngwenya is the lead pastor of Renewed Life International. He is passionate about preaching the Word of God, building disciples, and seeing lives transformed by the power of Jesus Christ. Since the church’s founding in 2018 and official launch in 2019, he has faithfully helped lead Renewed Life with a heart for spiritual growth, biblical teaching, and community impact.",
+      "Pastor Thabang Ngwenya serves as the lead pastor of Renewed Life International. His heart is to preach the Word faithfully, disciple people patiently, and see lives transformed by the power of Jesus Christ.",
   },
   {
     title: "Pastor Masetchaba “Zee” Ngwenya",
     imageSrc: '/images/pastor-zee.jpg',
     description:
-      "Pastor Masetchaba “Zee” Ngwenya serves alongside Pastor Thabang as a key leader at Renewed Life International. She is passionate about people, worship, prayer, and spiritual transformation. As part of the founding journey of the church, she has helped shape a ministry environment marked by faith, warmth, and a deep desire to see people grow in Christ.",
+      "Pastor Masetchaba “Zee” Ngwenya serves alongside Pastor Thabang with a deep love for people, worship, prayer, and spiritual growth. She has helped shape the warm and faith-filled culture that many people experience when they arrive at Renewed Life.",
   },
 ];
 
-export const pastorWelcome = {
-  title: "A welcome from our pastors",
-  description:
-    "Renewed Life was built with simple faith, deep dependence on God, and a desire to see people encounter Jesus, find family, and live with purpose. Whether you are visiting for the first time or looking for a church home, you are welcome here.",
-};

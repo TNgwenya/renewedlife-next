@@ -24,7 +24,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="We would love to hear from you"
-        description="Reach out with questions, prayer requests, pastoral support needs, or anything else you would like help with."
+        description="Reach out with questions, prayer requests, pastoral support needs, or if you simply want help taking the next step."
         asideTitle="Best quick option"
         asideBody="WhatsApp is the fastest way to reach the church team."
       >
@@ -53,13 +53,13 @@ export default function ContactPage() {
             <a
               key={action.title}
               href={action.href}
-              className="info-card info-card-link"
+              className="info-card info-card-link interactive-card"
               target={action.href.startsWith('http') ? '_blank' : undefined}
               rel={action.href.startsWith('http') ? 'noreferrer' : undefined}
             >
               <p className="card-label">{action.title}</p>
               <h3>{action.value}</h3>
-              <p>Use this contact option to connect directly with Renewed Life.</p>
+              <p>{action.description}</p>
               <span className="text-link">Open this contact option →</span>
             </a>
           ))}
@@ -87,9 +87,9 @@ export default function ContactPage() {
               href={churchInfo.mapHref}
               target="_blank"
               rel="noreferrer"
-              className="text-link"
+              className="button button-secondary button-sm"
             >
-              Open directions in Google Maps →
+              Open directions
             </a>
           </article>
 
@@ -146,6 +146,12 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+
+            <div className="section-actions">
+              <a href={churchInfo.whatsappHref} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+                Message the church
+              </a>
+            </div>
           </article>
         </div>
       </Section>

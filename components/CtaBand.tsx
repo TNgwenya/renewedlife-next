@@ -23,7 +23,7 @@ export default function CtaBand({
     <section className="section">
       <div className="container">
         <div className="cta-band">
-          <div>
+          <div className="cta-band-copy">
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
             <h2 className="section-title">{title}</h2>
             <p className="section-copy">{description}</p>

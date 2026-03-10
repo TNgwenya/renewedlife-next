@@ -175,7 +175,7 @@ export default function VisitorInterestForm({
         </label>
 
         <p className="form-helper form-span-full">
-          Your visitor enquiry will be sent directly to {email}.
+          Your visitor enquiry will be sent directly to {email}, and someone from the church will gladly follow up.
         </p>
 
         {error ? (
@@ -193,7 +193,7 @@ export default function VisitorInterestForm({
         <div className="submission-note" aria-live="polite">
           <p className="card-label">Next step</p>
           <h3>Thank you for planning your visit.</h3>
-          <p>We’re excited to welcome you to Renewed Life.</p>
+          <p>We’re grateful you reached out, and we’re looking forward to welcoming you to Renewed Life.</p>
           <a
             href={whatsappHref}
             className="button button-ghost"

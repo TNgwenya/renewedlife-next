@@ -122,7 +122,7 @@ export default function ContactForm({ email, endpoint }: Props) {
         </label>
 
         <p className="form-helper form-span-full">
-          Your message will be sent directly to {email}.
+          Your message will be sent directly to {email}, and someone from the church will follow up with care.
         </p>
 
         {error ? (
@@ -140,7 +140,7 @@ export default function ContactForm({ email, endpoint }: Props) {
         <div className="submission-note" aria-live="polite">
           <p className="card-label">Message sent</p>
           <h3>Thank you for reaching out.</h3>
-          <p>The team at Renewed Life will follow up as soon as possible.</p>
+          <p>Thank you for getting in touch. The team at Renewed Life will respond as soon as possible.</p>
         </div>
       ) : null}
     </>

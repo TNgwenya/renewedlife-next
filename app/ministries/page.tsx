@@ -24,7 +24,7 @@ export default function MinistriesPage() {
       <PageHero
         eyebrow="Ministries"
         title="There is a place for you here"
-        description="Our ministries are designed to help people grow in faith, build meaningful relationships, and serve with purpose in every season of life."
+        description="Our ministries help people pray together, build strong relationships, and keep growing as disciples of Jesus in every season of life."
         asideTitle="Next step"
         asideBody="Find the ministry that best matches your season and connect with the team."
       >
@@ -46,7 +46,7 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Ministry directory"
         title="Spaces to grow, belong, and serve"
-        intro="Every ministry should make disciples, build community, and help people take practical next steps."
+        intro="Each ministry offers a practical place to belong, be strengthened, and take your next step in church life."
       >
         <div className="card-grid card-grid-3">
           {ministries.map((ministry) => (
@@ -71,7 +71,7 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Ministry life"
         title="What connection looks like"
-        intro="Healthy ministry life should feel relational, purposeful, and spiritually alive."
+        intro="Ministry life at Renewed Life is relational, prayerful, and shaped by genuine community."
         dark
       >
         <div className="gallery-grid">
@@ -97,27 +97,24 @@ export default function MinistriesPage() {
       </Section>
 
       <Section
-        eyebrow="How ministries should work"
-        title="Clear pathways for leaders and members"
-        intro="A strong ministry system should not only inspire people. It should also make joining, serving, and growing simple."
+        eyebrow="Getting connected"
+        title="How to find your place"
+        intro="If you are exploring church life or ready to serve, we want the next step to feel simple and personal."
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
-            <p className="card-label">For church leaders</p>
-            <h3>Build ministries with structure</h3>
+            <p className="card-label">If you are exploring</p>
+            <h3>Start where you can build real connection</h3>
             <p>
-              Give every ministry clear leadership, rhythm, purpose, photos,
-              communication, and a simple next-step path for new people to join.
+              If you are new, start with the ministry that best matches your season of life and begin building relationships there.
             </p>
           </article>
 
           <article className="info-card">
-            <p className="card-label">For visitors and members</p>
-            <h3>Make joining feel easy</h3>
+            <p className="card-label">If you are ready to serve</p>
+            <h3>Let us help you take the next step</h3>
             <p>
-              Help people identify the ministry that matches their season of life,
-              then guide them into community, discipleship, and consistent
-              involvement.
+              Tell us where you feel drawn to serve, and we will help you connect with the right ministry leaders and rhythms.
             </p>
           </article>
         </div>

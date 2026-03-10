@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import SermonCard from '../../components/SermonCard';
@@ -11,7 +12,6 @@ import {
   sermonLibrary,
   sermonTypes,
   socialLinks,
-  videoClips,
 } from '../../lib/siteContent';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -25,15 +25,16 @@ export default function SermonsPage() {
   const featured = sermonHighlights[0];
   const featuredDetails =
     sermonLibrary.find((sermon) => sermon.title === featured?.title) ?? sermonLibrary[0];
+  const facebookLink = socialLinks.find((link) => link.label === 'Facebook');
 
   return (
     <>
       <PageHero
         eyebrow="Sermons"
         title="Watch, listen, and grow in the Word"
-        description="Explore recent messages, sermon series, Bible study teachings, and livestream replays from Renewed Life International."
+        description="Listen to recent messages, Bible study teachings, and sermon replays that reflect the preaching ministry of Renewed Life International."
         asideTitle="Primary platform"
-        asideBody="YouTube is the clearest destination for livestreams, replays, and sermon archives."
+        asideBody="YouTube is the main home for livestreams, replays, and the growing sermon archive."
       >
         <div className="hero-actions">
           <a
@@ -45,7 +46,7 @@ export default function SermonsPage() {
             Watch on YouTube
           </a>
           <a
-            href={socialLinks[0]?.href}
+            href={facebookLink?.href || socialLinks[0]?.href}
             className="button button-ghost"
             target="_blank"
             rel="noreferrer"
@@ -114,32 +115,56 @@ export default function SermonsPage() {
       ) : null}
 
       <Section
-        eyebrow="Latest sermons"
-        title="Recent messages"
-        subtitle="A curated selection of the latest preaching and teaching to help people quickly find a message to watch."
+        eyebrow="Where to watch"
+        title="Stay connected to the teaching ministry"
+        subtitle="Watch full messages, follow new uploads, and stay connected to the teaching shaping the life of the church."
         dark
       >
         <div className="card-grid card-grid-3">
-          {sermonLibrary.slice(0, 6).map((sermon) => (
-            <SermonCard
-              key={`${sermon.title}-${sermon.date}`}
-              title={sermon.title}
-              speaker={sermon.speaker}
-              date={sermon.date}
-              series={sermon.series}
-              type={sermon.type}
-              summary={sermon.summary}
-              href={sermon.href}
-              thumbnail={sermon.thumbnail}
-            />
-          ))}
+          <article className="info-card">
+            <p className="card-label">Primary archive</p>
+            <h3>YouTube channel</h3>
+            <p>
+              Watch sermon replays, Bible study teaching, and livestream archives in one place.
+            </p>
+            <a href={churchInfo.youtubeHref} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+              Open YouTube
+            </a>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Updates and sharing</p>
+            <h3>Facebook page</h3>
+            <p>
+              Follow the church on Facebook for service reminders, clips, and ministry updates.
+            </p>
+            <a
+              href={facebookLink?.href || socialLinks[0]?.href}
+              className="button button-secondary button-sm"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Facebook
+            </a>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Live in the room</p>
+            <h3>Join us on Sunday</h3>
+            <p>
+              Experience the Word, worship, and prayer in person every Sunday at {churchInfo.venue}.
+            </p>
+            <Link href="/plan-your-visit" className="button button-secondary button-sm">
+              Plan your visit
+            </Link>
+          </article>
         </div>
       </Section>
 
       <Section
         eyebrow="Browse by type"
         title="Find the kind of message you need"
-        subtitle="Help visitors and members scan the archive more quickly."
+        subtitle="Browse by service type so you can find Sunday preaching, Bible study teaching, and special messages more easily."
       >
         <div className="tag-row">
           {sermonTypes.map((type) => (
@@ -151,25 +176,9 @@ export default function SermonsPage() {
       </Section>
 
       <Section
-        eyebrow="Media strategy"
-        title="Keep the sermon archive clean and trustworthy"
-        subtitle="Every sermon should keep a clear title, speaker, date, series, type, summary, and working video link."
-      >
-        <div className="card-grid card-grid-3">
-          {videoClips.map((clip) => (
-            <article className="info-card" key={clip.title}>
-              <p className="card-label">{clip.useCase}</p>
-              <h3>{clip.title}</h3>
-              <p>{clip.summary}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
         eyebrow="Full library"
-        title="Sermon archive"
-        subtitle="A growing library of Sunday services, Bible studies, and special messages."
+        title="Sermon library"
+        subtitle="Browse the available Sunday services, Bible studies, and special messages."
         dark
       >
         <div className="card-grid card-grid-3">

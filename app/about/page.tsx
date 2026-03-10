@@ -30,9 +30,9 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Renewed Life"
         title="A church where people believe, belong, and become"
-        description="Renewed Life International exists to help people encounter Jesus, grow in the Word, walk in the Spirit, and become part of a healthy spiritual family."
+        description="Renewed Life International exists to help people encounter Jesus, be grounded in Scripture, and become part of a healthy church family."
         asideTitle="Who we are"
-        asideBody="A Christ-centered, Spirit-filled church in Dube, Soweto."
+        asideBody="A Bible-rooted church family serving Dube, Soweto."
       >
         <div className="hero-actions">
           <a
@@ -64,19 +64,19 @@ export default function AboutPage() {
       <Section
         eyebrow="Mission and vision"
         title="Why we exist and where we are going"
-        intro="Everything we do is shaped by a clear mission, a compelling vision, and a strong sense of spiritual identity."
+        intro="Our mission explains what we are committed to now. Our vision describes the kind of church we believe God is forming us into."
         dark
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
             <p className="card-label">Our mission</p>
-            <h3>What we are committed to now</h3>
+            <h3>What we are giving ourselves to</h3>
             <p>{missionStatement}</p>
           </article>
 
           <article className="info-card">
             <p className="card-label">Our vision</p>
-            <h3>What we are building toward</h3>
+            <h3>What we believe God is shaping in us</h3>
             <p>{visionStatement}</p>
           </article>
         </div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
 
       <Section
         eyebrow="What we believe"
-        title="Biblical, Christ-centered, Spirit-filled"
+        title="What we believe from Scripture"
         intro="Our beliefs are rooted in Scripture and expressed in a practical, faith-filled way."
         dark
       >
@@ -117,7 +117,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Leadership"
         title="Pastoral and ministry leadership"
-        intro="Our leadership exists to serve, shepherd, teach, pray, and help people grow in Christ."
+        intro="Our leadership exists to serve the church, shepherd people well, and keep Jesus and His Word at the center of church life."
       >
         <div className="card-grid card-grid-3">
           {leadershipHighlights.map((item) => (

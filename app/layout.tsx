@@ -54,10 +54,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo/logo-primary.png',
+        url: '/opengraph-image',
         width: 1200,
-        height: 1200,
-        alt: `${churchInfo.legalName} logo`,
+        height: 630,
+        alt: `${churchInfo.legalName} social sharing image`,
       },
     ],
   },
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: 'Renewed Life International',
     description:
       'A warm, Spirit-filled church in Dube, Soweto where people believe, belong, and become.',
-    images: ['/logo/logo-primary.png'],
+    images: ['/twitter-image'],
   },
 };
 
@@ -75,17 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable}`}>
         <div className="site-shell">
-          <div className="topbar">
-            <div className="container topbar-inner">
-              <p>
-                <strong>Sunday Service:</strong> {churchInfo.serviceTimes[0].time} at {churchInfo.venue}
-              </p>
-              <a href={churchInfo.whatsappHref} target="_blank" rel="noreferrer">
-                WhatsApp Us
-              </a>
-            </div>
-          </div>
-
           <header className="site-header">
             <div className="container header-inner">
               <Link href="/" className="brand" aria-label="Renewed Life home">
@@ -112,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </nav>
 
               <div className="header-actions">
-                <Link href="/sermons" className="button button-secondary desktop-only">
+                <Link href="/sermons" className="text-link desktop-only header-link-action">
                   Watch Sermons
                 </Link>
                 <Link href="/plan-your-visit" className="button button-primary">
@@ -150,27 +139,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
 
               <div>
-                <h4>Join us</h4>
-                <ul className="footer-list">
-                  {churchInfo.weeklyRhythm.slice(0, 3).map((service) => (
-                    <li key={`${service.day}-${service.label}`}>
-                      <strong>{service.label}</strong>
-                      <br />
-                      <span>
-                        {service.day} · {service.time}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
                 <h4>Visit</h4>
                 <ul className="footer-list">
                   <li>{churchInfo.venue}</li>
                   <li>{churchInfo.addressLine1}</li>
                   <li>{churchInfo.addressLine2}</li>
                   <li>{churchInfo.addressLine3}</li>
+                  <li>
+                    <strong>{churchInfo.serviceTimes[0].label}</strong>
+                    <br />
+                    <span>{churchInfo.serviceTimes[0].time}</span>
+                  </li>
                   <li>
                     <a href={churchInfo.mapHref} target="_blank" rel="noreferrer">
                       Get Directions
@@ -180,7 +159,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
 
               <div>
-                <h4>Connect</h4>
+                <h4>Contact</h4>
                 <ul className="footer-list">
                   <li>
                     <a href={churchInfo.emailHref}>{churchInfo.email}</a>
@@ -192,6 +171,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <a href={churchInfo.whatsappHref} target="_blank" rel="noreferrer">
                       WhatsApp Us
                     </a>
+                  </li>
+                  <li>
+                    <Link href="/sermons">Watch Sermons</Link>
                   </li>
                 </ul>
 
@@ -209,7 +191,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             <div className="container footer-bottom">
-              <p>© 2026 {churchInfo.legalName}. All rights reserved.</p>
+              <p>© 2026 {churchInfo.legalName}. Worship with us in Dube, Soweto.</p>
             </div>
           </footer>
         </div>
