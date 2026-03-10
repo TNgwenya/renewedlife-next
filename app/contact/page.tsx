@@ -1,133 +1,172 @@
+import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
 import ContactForm from '../../components/ContactForm';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
-import { churchInfo, contactActions, formspreeEndpoint, socialLinks } from '../../lib/siteContent';
+import { buildPageMetadata } from '../../lib/seo';
+import {
+  churchInfo,
+  contactActions,
+  formspreeEndpoint,
+  socialLinks,
+} from '../../lib/siteContent';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Contact',
+  description:
+    'Contact Renewed Life International for prayer, pastoral support, service information, or any questions about visiting.',
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (
-    <main>
+    <>
       <PageHero
         eyebrow="Contact"
         title="We would love to hear from you"
-        description="Whether you have a question, need prayer, want more information, or want to let us know you are coming, our team is ready to help."
-        asideTitle="Best next step"
-        asideBody={`If you are visiting for the first time, head to Plan Your Visit for service times, directions to ${churchInfo.venue}, and what to expect.`}
-      />
+        description="Reach out with questions, prayer requests, pastoral support needs, or anything else you would like help with."
+        asideTitle="Best quick option"
+        asideBody="WhatsApp is the fastest way to reach the church team."
+      >
+        <div className="hero-actions">
+          <a
+            href={churchInfo.whatsappHref}
+            className="button"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Chat on WhatsApp
+          </a>
+          <a href={churchInfo.phoneHref} className="button button-ghost">
+            Call the church
+          </a>
+        </div>
+      </PageHero>
 
       <Section
-        eyebrow="Reach out"
-        title="Simple ways to connect with the church"
-        subtitle="Choose the contact path that works best for you and someone from the church will gladly follow up."
+        eyebrow="Direct contact"
+        title="Choose the easiest way to reach us"
+        subtitle="Use the option that works best for you."
       >
-        <div className="feature-grid">
+        <div className="card-grid card-grid-3">
           {contactActions.map((action) => (
             <a
               key={action.title}
               href={action.href}
-              className="panel interactive-card"
+              className="info-card info-card-link"
               target={action.href.startsWith('http') ? '_blank' : undefined}
               rel={action.href.startsWith('http') ? 'noreferrer' : undefined}
             >
               <p className="card-label">{action.title}</p>
               <h3>{action.value}</h3>
-              <p>Open this contact option</p>
-            </a>
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Visit & office details" title="Find us with confidence" dark>
-        <div className="two-col">
-          <div className="panel">
-            <h3>Address</h3>
-            <p>{churchInfo.venue}</p>
-            <p>{churchInfo.addressLine1}</p>
-            <p>{churchInfo.addressLine2}</p>
-            <p>{churchInfo.addressLine3}</p>
-          </div>
-          <div className="panel">
-            <h3>Weekly rhythm</h3>
-            {churchInfo.weeklyRhythm.slice(0, 4).map((service) => (
-              <p key={service.label}>{service.label} · {service.day} · {service.time}</p>
-            ))}
-          </div>
-          <div className="panel">
-            <h3>Prayer & support</h3>
-            <p>
-              If you need prayer, guidance, or a pastoral conversation, contact the church and we will help you take the next step.
-            </p>
-            <a href={churchInfo.whatsappPrayerHref} className="text-link" target="_blank" rel="noreferrer">Request prayer / pastoral support on WhatsApp</a>
-          </div>
-          <div className="panel">
-            <h3>Directions</h3>
-            <p>
-              Use Google Maps for the quickest route to church and share the location easily with family or friends coming with you.
-            </p>
-            <a href={churchInfo.mapHref} className="text-link" target="_blank" rel="noreferrer">Open directions in Google Maps</a>
-          </div>
-        </div>
-        <div className="map-embed-shell panel">
-          <iframe
-            src={churchInfo.mapEmbedSrc}
-            title="Renewed Life location map"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-            className="map-embed-frame"
-          />
-        </div>
-      </Section>
-
-      <Section eyebrow="Follow online" title="Stay connected during the week" compact>
-        <div className="feature-grid">
-          {socialLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="panel interactive-card"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <p className="card-label">Social</p>
-              <h3>{link.label}</h3>
-              <p>Connect with Renewed Life online</p>
+              <p>Use this contact option to connect directly with Renewed Life.</p>
+              <span className="text-link">Open this contact option →</span>
             </a>
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="Contact form"
-        title="Send a message to the church"
-        subtitle="Use the form below to prepare a structured email to the church inbox for questions, prayer requests, and general enquiries."
+        eyebrow="Visit"
+        title="Find us easily"
+        subtitle="Use the details below to visit Renewed Life International in Dube, Soweto."
         dark
       >
-        <div className="form-shell">
-          <div className="panel form-panel">
-            <p className="card-label">Church inbox</p>
-            <h3>Contact {churchInfo.shortName}</h3>
+        <div className="card-grid card-grid-2">
+          <article className="info-card">
+            <p className="card-label">Address</p>
+            <h3>{churchInfo.venue}</h3>
             <p>
-              Messages are sent directly to {churchInfo.email}, giving the church team a clean inbox submission to follow up from.
+              {churchInfo.addressLine1}
+              <br />
+              {churchInfo.addressLine2}
+              <br />
+              {churchInfo.addressLine3}
             </p>
-            <ContactForm
-              email={churchInfo.email}
-              formEndpoint={formspreeEndpoint}
-              whatsappBaseHref={churchInfo.whatsappBaseHref}
-            />
-          </div>
+            <a
+              href={churchInfo.mapHref}
+              target="_blank"
+              rel="noreferrer"
+              className="text-link"
+            >
+              Open directions in Google Maps →
+            </a>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Weekly rhythm</p>
+            <h3>When we gather</h3>
+            <ul className="stack-list">
+              {churchInfo.weeklyRhythm.slice(0, 4).map((service) => (
+                <li key={`${service.day}-${service.label}`}>
+                  <strong>{service.label}</strong>
+                  <br />
+                  <span>
+                    {service.day} · {service.time}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
         </div>
       </Section>
 
+      <Section
+        eyebrow="Prayer & support"
+        title="Need prayer or pastoral guidance?"
+        subtitle="If you need prayer, encouragement, or a pastoral conversation, reach out and someone from the team will assist you."
+      >
+        <div className="card-grid card-grid-2">
+          <article className="info-card">
+            <h3>Prayer support</h3>
+            <p>
+              Share your need with us and we will stand with you in faith and
+              prayer.
+            </p>
+            <a
+              href={churchInfo.whatsappPrayerHref}
+              className="button"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Request prayer on WhatsApp
+            </a>
+          </article>
+
+          <article className="info-card">
+            <h3>Church social channels</h3>
+            <ul className="stack-list">
+              {socialLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} target="_blank" rel="noreferrer">
+                    <strong>{link.label}</strong>
+                  </a>
+                  <br />
+                  <span>Connect with Renewed Life online</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Church inbox"
+        title={`Send a message to ${churchInfo.shortName}`}
+        subtitle={`Messages are routed directly to ${churchInfo.email} so the church team can follow up cleanly.`}
+      >
+        <ContactForm endpoint={formspreeEndpoint} email={churchInfo.email} />
+      </Section>
+
       <CtaBand
-        eyebrow="First-time guest"
-        title="Planning to visit this Sunday?"
-        description="Use the dedicated visitor page for service details, reassurance, directions, and a simple visitor interest form."
-        primaryLabel="Go to Plan Your Visit"
+        eyebrow="First-time guest?"
+        title="Planning to join us this Sunday?"
+        description="Get service times, directions, and a simple guide to what your first visit will feel like."
+        primaryLabel="Plan your visit"
         primaryHref="/plan-your-visit"
-        secondaryLabel="Watch sermons"
-        secondaryHref="/sermons"
+        secondaryLabel="WhatsApp us"
+        secondaryHref={churchInfo.whatsappHref}
       />
-    </main>
+    </>
   );
 }

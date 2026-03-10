@@ -1,117 +1,181 @@
+import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
-import { churchInfo, eftGivingDetails, givingCategories, givingWays } from '../../lib/siteContent';
+import { buildPageMetadata } from '../../lib/seo';
+import {
+  churchInfo,
+  givingCategories,
+  givingFaqs,
+  givingWays,
+} from '../../lib/siteContent';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Give',
+  description:
+    'Support the ministry of Renewed Life International with clear giving guidance, categories, and direct support options.',
+  path: '/give',
+});
 
 export default function GivePage() {
   return (
-    <main>
+    <>
       <PageHero
         eyebrow="Give"
-        title="Generosity is worship, partnership, and mission"
-        description="We give because God has been faithful to us. Generosity helps support ministry, care for people, and advance the work of the Gospel through the local church."
-        asideTitle="Giving information"
-        asideBody="Giving is live in a simple phase-one format: EFT is available now, with direct support from the church office while online and QR-based options are still being finalized."
-      />
+        title="Give with faith, clarity, and trust"
+        description="Every act of generosity helps strengthen worship, discipleship, ministry, outreach, and practical care through the life of the church."
+        asideTitle="Need help giving?"
+        asideBody="If you need assistance, contact the church and we will guide you."
+      >
+        <div className="hero-actions">
+          <a
+            href={churchInfo.givingPrimaryHref || churchInfo.emailHref}
+            className="button"
+            target={churchInfo.givingPrimaryHref ? '_blank' : undefined}
+            rel={churchInfo.givingPrimaryHref ? 'noreferrer' : undefined}
+          >
+            {churchInfo.givingPrimaryLabel || 'Request giving details'}
+          </a>
+          <a
+            href={churchInfo.whatsappGivingHref}
+            className="button button-ghost"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ask about giving
+          </a>
+        </div>
+      </PageHero>
 
       <Section
         eyebrow="Why we give"
-        title="A biblical and joyful response to God’s goodness"
-        subtitle="Giving is not pressure-driven. It is a prayerful act of worship, stewardship, and participation in what God is doing through the church."
+        title="Kingdom partnership through generosity"
+        intro="Giving is part of worship. It is one of the ways we honour God, strengthen the church, and help ministry reach people meaningfully."
       >
-        <div className="two-col">
-          <div className="panel elevated-panel">
-            <h3>Kingdom partnership</h3>
+        <div className="card-grid card-grid-2">
+          <article className="info-card">
+            <p className="card-label">Kingdom impact</p>
+            <h3>Your giving supports ministry</h3>
             <p>
-              Every act of generosity helps strengthen worship, teaching, outreach, discipleship, and practical care.
+              Every act of generosity helps strengthen worship, teaching,
+              outreach, discipleship, administration, and practical care.
             </p>
-          </div>
-          <div className="panel elevated-panel">
-            <h3>Trust and clarity</h3>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Trust and clarity</p>
+            <h3>Giving should feel simple and secure</h3>
             <p>
-              We are keeping giving simple and trustworthy: one active EFT option now, with clear next-step support for anyone who needs help completing a transfer.
+              We want the giving experience to stay clean, trustworthy, and easy
+              to understand, with clear support for anyone who needs help.
             </p>
-          </div>
+          </article>
         </div>
       </Section>
 
-      <Section eyebrow="Giving methods" title="Simple ways to support the vision" dark>
-        <div className="three-col">
+      <Section
+        eyebrow="Ways to give"
+        title="Choose the method that works best for you"
+        intro="Keep the giving experience simple. Lead with one primary online option, then support other practical methods clearly."
+        dark
+      >
+        <div className="card-grid card-grid-3">
           {givingWays.map((way) => (
-            <article key={way.title} className="panel">
+            <article className="info-card" key={way.title}>
               <p className="card-label">{way.support}</p>
               <h3>{way.title}</h3>
               <p>{way.description}</p>
-              <span className="status-pill">{way.actionLabel}</span>
-              <a href={churchInfo.emailHref} className="text-link">Contact the church for giving help</a>
+              <a
+                href={way.actionHref}
+                className="text-link"
+                target={way.actionHref.startsWith('http') ? '_blank' : undefined}
+                rel={way.actionHref.startsWith('http') ? 'noreferrer' : undefined}
+              >
+                {way.actionLabel} →
+              </a>
             </article>
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="EFT details"
-        title="Bank transfer details for giving"
-        subtitle="Use these confirmed EFT details for phase-one giving. If you need branch code guidance, confirmation, or help with your transfer, contact the church office directly."
+        eyebrow="Giving categories"
+        title="Keep categories simple and consistent"
+        intro="Simple giving categories help people know exactly where their gift is intended to go."
       >
-        <div className="two-col">
-          <article className="panel elevated-panel">
-            <p className="card-label">Active method</p>
-            <h3>Give via FNB EFT</h3>
-            <div className="meta-list">
-              {eftGivingDetails.map((detail) => (
-                <span key={detail.label}><strong>{detail.label}:</strong> {detail.value}</span>
-              ))}
-            </div>
-            <p>
-              If you need any extra transfer guidance, reference confirmation, or proof-of-payment assistance, contact the church and the team will help you.
-            </p>
-            <div className="inline-actions">
-              <a href={churchInfo.emailHref} className="button">Email for giving support</a>
-              <a href={churchInfo.whatsappHref} className="text-link" target="_blank" rel="noreferrer">Message on WhatsApp</a>
-            </div>
-          </article>
-          <article className="panel elevated-panel">
-            <h3>Giving categories</h3>
-            <div className="tag-row tag-row-light">
-              {givingCategories.map((category) => (
-                <span key={category} className="tag-pill tag-pill-light">{category}</span>
-              ))}
-            </div>
-            <p>
-              Keep the giving categories simple and consistent so members know exactly where to give.
-            </p>
-            <p>
-              Online giving and QR-based giving can be layered in next without needing to redesign this page.
-            </p>
-          </article>
+        <div className="tag-row">
+          {givingCategories.map((category) => (
+            <span className="tag-pill" key={category}>
+              {category}
+            </span>
+          ))}
         </div>
       </Section>
 
-      <Section eyebrow="Giving support" title="Need giving details or assistance?">
-        <div className="feature-grid">
-          {[
-            `Email ${churchInfo.email} for transfer support`,
-            `Call ${churchInfo.phoneDisplay} for direct assistance`,
-            'Ask for any additional EFT transfer guidance you need',
-            'Ask when online giving or SnapScan / Zapper will be activated',
-          ].map((item) => (
-            <article key={item} className="panel compact-panel">
-              <p>{item}</p>
+      <Section
+        eyebrow="Helpful guidance"
+        title="Questions people often have"
+        intro="A trustworthy giving page answers the common questions clearly and quickly."
+        dark
+      >
+        <div className="card-grid card-grid-2">
+          {givingFaqs.map((item) => (
+            <article className="info-card" key={item.question}>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
             </article>
           ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Need direct help?"
+        title="We can guide you personally"
+        intro="If you would like giving details, EFT instructions, or help using the online method, contact us directly."
+      >
+        <div className="card-grid card-grid-2">
+          <article className="info-card">
+            <h3>Contact the church office</h3>
+            <ul className="stack-list">
+              <li>
+                <a href={churchInfo.emailHref}>{churchInfo.email}</a>
+              </li>
+              <li>
+                <a href={churchInfo.phoneHref}>{churchInfo.phoneDisplay}</a>
+              </li>
+              <li>
+                <a
+                  href={churchInfo.whatsappGivingHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp giving support
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article className="info-card">
+            <h3>What to ask for</h3>
+            <ul className="stack-list">
+              <li>Secure online giving link</li>
+              <li>EFT banking details and reference guidance</li>
+              <li>Support for mobile giving options</li>
+              <li>Clarification on giving categories</li>
+            </ul>
+          </article>
         </div>
       </Section>
 
       <CtaBand
-        eyebrow="Questions?"
-        title="Need help before giving?"
-        description="If you need help with EFT giving, transfer confirmation, or a giving-related question, contact the church directly and the team will assist you."
-        primaryLabel="Contact the church"
-        primaryHref="/contact"
-        secondaryLabel="Plan Your Visit"
-        secondaryHref="/plan-your-visit"
+        eyebrow="Need another next step?"
+        title="Join us in person as well"
+        description="Generosity is one part of church life. Come worship, grow, and become part of the family with us."
+        primaryLabel="Plan your visit"
+        primaryHref="/plan-your-visit"
+        secondaryLabel="Contact us"
+        secondaryHref="/contact"
       />
-    </main>
+    </>
   );
 }

@@ -4,8 +4,7 @@ import { useState } from 'react';
 
 type Props = {
   email: string;
-  formEndpoint: string;
-  whatsappBaseHref: string;
+  endpoint: string;
 };
 
 type FormState = {
@@ -24,215 +23,126 @@ const initialState: FormState = {
   message: '',
 };
 
-type FormErrors = Partial<Record<keyof FormState, string>>;
-
-function validateForm(formState: FormState): FormErrors {
-  const errors: FormErrors = {};
-
-  if (!formState.name.trim()) {
-    errors.name = 'Please share your name.';
-  }
-
-  if (!formState.email.trim()) {
-    errors.email = 'Please share your email address.';
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
-    errors.email = 'Enter a valid email address.';
-  }
-
-  if (!formState.subject.trim()) {
-    errors.subject = 'Please add a subject.';
-  }
-
-  if (!formState.message.trim()) {
-    errors.message = 'Please include a short message.';
-  }
-
-  return errors;
-}
-
-export default function ContactForm({ email, formEndpoint, whatsappBaseHref }: Props) {
-  const [formState, setFormState] = useState<FormState>(initialState);
+export default function ContactForm({ email, endpoint }: Props) {
+  const [formState, setFormState] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-  const [submittedName, setSubmittedName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  function buildWhatsappHref(message: string) {
-    return `${whatsappBaseHref}?text=${encodeURIComponent(message)}`;
-  }
-
-  function updateField<Key extends keyof FormState>(field: Key, value: FormState[Key]) {
+  function updateField<K extends keyof FormState>(field: K, value: FormState[K]) {
     setFormState((current) => ({ ...current, [field]: value }));
-    setErrors((current) => ({ ...current, [field]: undefined }));
-    setSubmitted(false);
-    setSubmitError('');
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-
-    const nextErrors = validateForm(formState);
-
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      setSubmitted(false);
-      return;
-    }
-
-    setErrors({});
-    setSubmitError('');
-    setIsSubmitting(true);
+    setLoading(true);
+    setError('');
 
     try {
-      const submittedForm = { ...formState };
-      const response = await fetch(formEndpoint, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: new FormData(event.currentTarget),
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          subject:
+            formState.subject || `Website enquiry from ${formState.name || 'Guest'}`,
+          message: formState.message,
+          _subject:
+            formState.subject || `Website enquiry from ${formState.name || 'Guest'}`,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Unable to submit the form right now.');
+        throw new Error('Form submission failed');
       }
 
       setSubmitted(true);
-      setSubmittedName(submittedForm.name || 'a guest');
       setFormState(initialState);
     } catch {
-      setSubmitError('We could not send your message just now. Please try again or contact the church directly by email or WhatsApp.');
+      setError(
+        'Your message could not be sent right now. Please try again, email us directly, or use WhatsApp.'
+      );
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
-  }
-
-  const whatsappFollowupHref = buildWhatsappHref(
-    `Hi Renewed Life, I have just submitted the website contact form. My name is ${submittedName || 'a guest'}.`
-  );
-
-  if (submitted) {
-    return (
-      <div className="submission-note" aria-live="polite">
-        <p className="card-label">Message sent</p>
-        <h3>Thank you for reaching out.</h3>
-        <p>
-          Your message has been sent to the church inbox. Someone from Renewed Life will follow up as soon as possible.
-        </p>
-        <div className="submission-actions">
-          <a className="button button-secondary" href={whatsappFollowupHref} target="_blank" rel="noreferrer">
-            Notify us on WhatsApp
-          </a>
-          <a className="button button-ghost" href={`mailto:${email}`}>
-            Email us directly
-          </a>
-        </div>
-      </div>
-    );
   }
 
   return (
     <>
-      <form className="visit-form" onSubmit={handleSubmit} noValidate>
-        <input type="hidden" name="formType" value="Website Contact Form" />
-        <input type="hidden" name="_subject" value={`Website contact enquiry from Renewed Life`} />
-        <div className="form-grid form-grid-two">
-          <label className={errors.name ? 'field-invalid' : undefined}>
-            Name
-            <input
-              type="text"
-              name="name"
-              placeholder="Your full name"
-              value={formState.name}
-              onChange={(event) => updateField('name', event.target.value)}
-              autoComplete="name"
-              aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? 'contact-name-error' : undefined}
-              required
-            />
-            {errors.name ? <span id="contact-name-error" className="field-error">{errors.name}</span> : null}
-          </label>
-          <label className={errors.email ? 'field-invalid' : undefined}>
-            Email
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formState.email}
-              onChange={(event) => updateField('email', event.target.value)}
-              autoComplete="email"
-              aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? 'contact-email-error' : undefined}
-              required
-            />
-            {errors.email ? <span id="contact-email-error" className="field-error">{errors.email}</span> : null}
-          </label>
-        </div>
-
-        <div className="form-grid form-grid-two">
-          <label>
-            Phone
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Your phone number"
-              value={formState.phone}
-              onChange={(event) => updateField('phone', event.target.value)}
-              autoComplete="tel"
-            />
-          </label>
-          <label className={errors.subject ? 'field-invalid' : undefined}>
-            Subject
-            <input
-              type="text"
-              name="subject"
-              placeholder="How can we help?"
-              value={formState.subject}
-              onChange={(event) => updateField('subject', event.target.value)}
-              aria-invalid={Boolean(errors.subject)}
-              aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
-              required
-            />
-            {errors.subject ? <span id="contact-subject-error" className="field-error">{errors.subject}</span> : null}
-          </label>
-        </div>
-
-        <label className={errors.message ? 'field-invalid' : undefined}>
-          Message
-          <textarea
-            name="message"
-            rows={5}
-            placeholder="Share your question, prayer request, or message."
-            value={formState.message}
-            onChange={(event) => updateField('message', event.target.value)}
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? 'contact-message-error' : undefined}
+      <form className="form-grid" onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            value={formState.name}
+            onChange={(event) => updateField('name', event.target.value)}
             required
           />
-          {errors.message ? <span id="contact-message-error" className="field-error">{errors.message}</span> : null}
         </label>
 
-        <div className="form-helper-block">
-          <p className="form-helper">
-            This form sends directly to the church inbox. If you prefer, you can still contact the church by email or WhatsApp.
-          </p>
-          <div className="form-inline-links">
-            <a className="text-link" href={`mailto:${email}`}>
-              Email the church directly
-            </a>
-            <a className="text-link" href={buildWhatsappHref('Hi Renewed Life, I would like to get in touch through the website contact page.')} target="_blank" rel="noreferrer">
-              Reach us on WhatsApp
-            </a>
+        <label>
+          Email
+          <input
+            type="email"
+            value={formState.email}
+            onChange={(event) => updateField('email', event.target.value)}
+            required
+          />
+        </label>
+
+        <label>
+          Phone
+          <input
+            value={formState.phone}
+            onChange={(event) => updateField('phone', event.target.value)}
+          />
+        </label>
+
+        <label>
+          Subject
+          <input
+            value={formState.subject}
+            onChange={(event) => updateField('subject', event.target.value)}
+            required
+          />
+        </label>
+
+        <label className="form-span-full">
+          Message
+          <textarea
+            rows={6}
+            value={formState.message}
+            onChange={(event) => updateField('message', event.target.value)}
+            required
+          />
+        </label>
+
+        <p className="form-helper form-span-full">
+          Your message will be sent directly to {email}.
+        </p>
+
+        {error ? (
+          <div className="submission-note submission-note-error form-span-full" role="alert">
+            <p>{error}</p>
           </div>
-        </div>
+        ) : null}
 
-        {submitError ? <p className="form-status form-status-error" role="alert">{submitError}</p> : null}
-
-        <button type="submit" className="button" disabled={isSubmitting}>
-          {isSubmitting ? 'Sending...' : 'Send message'}
+        <button type="submit" className="button" disabled={loading}>
+          {loading ? 'Sending...' : 'Send message'}
         </button>
       </form>
+
+      {submitted ? (
+        <div className="submission-note" aria-live="polite">
+          <p className="card-label">Message sent</p>
+          <h3>Thank you for reaching out.</h3>
+          <p>The team at Renewed Life will follow up as soon as possible.</p>
+        </div>
+      ) : null}
     </>
   );
 }

@@ -33,3 +33,16 @@ Main work remaining:
 - additional leadership, venue, and community photos
 - mobile / tablet / accessibility QA
 - deployment and launch verification
+
+## Launch checklist
+
+- [ ] Final giving method confirmed and linked
+- [ ] Exact Google Maps pin verified
+- [ ] Sermon links verified individually
+- [ ] Real leadership and community photos finalized
+- [ ] Mobile and tablet spacing reviewed
+- [ ] Accessibility pass completed
+- [ ] Forms tested live
+- [ ] Google Analytics connected
+- [ ] Metadata and social sharing images verified
+- [ ] Production deployment verified

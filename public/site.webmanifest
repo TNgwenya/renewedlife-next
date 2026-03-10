@@ -1,0 +1,9 @@
+{
+  "name": "Renewed Life International",
+  "short_name": "Renewed Life",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#8a5a2b",
+  "description": "A church where people believe, belong, and become."
+}

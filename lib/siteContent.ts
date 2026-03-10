@@ -32,6 +32,10 @@ export const churchInfo = {
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%E2%80%99ve%20just%20planned%20my%20visit%20and%20I%E2%80%99m%20looking%20forward%20to%20joining%20you.',
   whatsappPrayerHref:
     'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%20would%20like%20prayer%20%2F%20pastoral%20support.',
+  givingPrimaryHref: '',
+  givingPrimaryLabel: 'Request giving details',
+  whatsappGivingHref:
+    'https://wa.me/27614364130?text=Hi%20Renewed%20Life%2C%20I%20would%20like%20help%20with%20giving%20details.',
   livestreamHref: youtubeHref,
   youtubeHref,
   serviceTimes: [
@@ -132,6 +136,27 @@ export const coreValues = [
 
 export const churchStory =
   "Renewed Life International was birthed in response to God’s call in late 2018 and officially launched on 6 January 2019. What began in the pastors’ lounge with the founding family, simple faith, and very limited resources has grown into a Christ-centered church committed to transformed lives through the Word of God, the power of the Holy Spirit, and genuine Christian fellowship.";
+
+export const churchStoryMoments = [
+  {
+    label: '2018',
+    title: 'A call from God',
+    description:
+      'Renewed Life International was birthed in response to God’s call, with a burden to build a Christ-centered church family grounded in the Word and the Spirit.',
+  },
+  {
+    label: '2019',
+    title: 'Official launch',
+    description:
+      'The church officially launched on 6 January 2019 and began gathering people into worship, discipleship, prayer, and community.',
+  },
+  {
+    label: 'Today',
+    title: 'Growing with purpose',
+    description:
+      'Renewed Life continues to grow as a spiritual home where people encounter God, find family, and become who God has called them to be.',
+  },
+];
 
 export const missionStatement =
   "Our mission is to reach the unchurched with the gospel of Jesus Christ, make disciples, and equip believers for works of service and their God-ordained purpose, so that the Body of Christ may be built up into maturity and the fullness of Christ.";
@@ -271,21 +296,25 @@ export const worshipGallery = [
     src: '/images/worship/cong-2.JPG',
     alt: 'Wide congregation worship moment at Renewed Life International.',
     title: 'Worship that fills the room',
+    summary: 'A broad worship moment that communicates spiritual hunger, corporate praise, and the atmosphere of gathered church life.',
   },
   {
     src: '/images/worship/cong-3.jpg',
     alt: 'Congregation engaged during worship at Renewed Life International.',
     title: 'A live, Spirit-filled atmosphere',
+    summary: 'A picture of worship that helps people imagine warmth, expectancy, and active participation in the room.',
   },
   {
     src: '/images/homepage/cong-front-1.jpg',
     alt: 'Front-facing congregation worship moment at Renewed Life.',
     title: 'Real moments from church life',
+    summary: 'An honest church-life image that shows people gathered in faith, family, and attentive worship.',
   },
   {
     src: '/images/worship/cong-front-2.jpg',
     alt: 'Gathered worship and praise at Renewed Life International.',
     title: 'Gathered in worship and prayer',
+    summary: 'A strong supporting image that reflects the prayerful and worship-filled culture of the church.',
   },
 ];
 
@@ -338,26 +367,31 @@ export const outreachGallery = [
     src: '/images/open-air-evangelism.JPG',
     alt: 'Open-air evangelism moment connected to Renewed Life ministry.',
     title: 'Evangelism in the community',
+    summary: 'A visible expression of the church taking the gospel into the community with courage and conviction.',
   },
   {
     src: '/images/open-air-preaching.JPG',
     alt: 'Open-air preaching moment from outreach ministry.',
     title: 'Preaching Christ beyond Sunday',
+    summary: 'This image captures the public witness of preaching and proclaiming Christ outside the church building.',
   },
   {
     src: '/images/open-air-witnessing.JPG',
     alt: 'Witnessing and community outreach moment.',
     title: 'Witnessing with boldness and compassion',
+    summary: 'A snapshot of relational outreach, showing faith expressed through presence, conversation, and care.',
   },
   {
     src: '/images/open-air-healing.JPG',
     alt: 'Prayer and healing ministry moment during outreach.',
     title: 'Prayer and care in action',
+    summary: 'A ministry image that reflects prayer, compassion, and practical spiritual support for people in need.',
   },
   {
     src: '/images/open-air1.jpg',
     alt: 'Open-air outreach gathering linked to Renewed Life ministry.',
     title: 'Visible impact beyond the church walls',
+    summary: 'An outreach image that helps communicate that church life extends into the streets, community, and mission field.',
   },
 ];
 
@@ -467,26 +501,55 @@ export const beliefs = [
 
 export const givingWays = [
   {
-    title: 'Give via EFT',
-    description: 'EFT is the active giving method for now, giving members and partners a direct and trusted way to support the ministry.',
-    support: 'Live now',
-    actionLabel: 'Bank transfer available',
+    title: 'Online giving',
+    support: 'Recommended primary method',
+    description:
+      'Use one secure website-first giving option for the cleanest and most trusted experience.',
+    actionLabel: 'Open giving option',
+    actionHref: churchInfo.givingPrimaryHref || churchInfo.emailHref,
   },
   {
-    title: 'Give online',
-    description: 'A simple online giving option can be added next once the church confirms its preferred secure payment platform.',
-    support: 'Coming soon',
-    actionLabel: 'Online giving option coming soon',
+    title: 'Bank transfer / EFT',
+    support: 'Helpful backup option',
+    description:
+      'For those who prefer direct transfer, provide banking details and clear payment references on request.',
+    actionLabel: 'Request EFT details',
+    actionHref: churchInfo.emailHref,
   },
   {
-    title: 'Give via SnapScan / Zapper',
-    description: 'QR-based giving can be added later as a convenience option for members who prefer quick mobile payments.',
-    support: 'Future convenience option',
-    actionLabel: 'SnapScan / Zapper coming soon',
+    title: 'Mobile help',
+    support: 'Fast support',
+    description:
+      'Anyone who needs assistance with giving can reach out directly for guidance and support.',
+    actionLabel: 'WhatsApp support',
+    actionHref: churchInfo.whatsappGivingHref,
   },
 ];
 
 export const givingCategories = ['Tithe', 'Offering', 'Special Seed / Building Fund'];
+
+export const givingFaqs = [
+  {
+    question: 'What is the main giving option on the website?',
+    answer:
+      'The ideal setup is one clear primary online giving method, supported by simple help for anyone who needs assistance.',
+  },
+  {
+    question: 'Can I ask for EFT or banking details?',
+    answer:
+      'Yes. Members and visitors should be able to request EFT details and clear reference instructions directly from the church.',
+  },
+  {
+    question: 'What should I do if I need help giving?',
+    answer:
+      'Use the church email, phone number, or WhatsApp support option so someone can assist you quickly and clearly.',
+  },
+  {
+    question: 'How should giving categories be shown?',
+    answer:
+      'Keep them simple and consistent so people know exactly where to direct their giving without confusion.',
+  },
+];
 
 export const eftGivingDetails = [
   {

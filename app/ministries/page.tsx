@@ -1,56 +1,92 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
-import { ministries, ministryGallery, outreachGallery } from '../../lib/siteContent';
+import { buildPageMetadata } from '../../lib/seo';
+import {
+  churchInfo,
+  ministries,
+  ministryGallery,
+  outreachGallery,
+} from '../../lib/siteContent';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Ministries',
+  description:
+    'Explore the ministries of Renewed Life International and find a place to grow, belong, and serve.',
+  path: '/ministries',
+});
 
 export default function MinistriesPage() {
   return (
-    <main>
+    <>
       <PageHero
         eyebrow="Ministries"
-        title="Find your place to grow, serve, and build meaningful relationships"
-        description="Ministry at Renewed Life is about more than attending a service. It is about discipleship, community, care, and serving with purpose in every stage of life."
-        asideTitle="How to use this page"
-        asideBody="Each ministry area below shows who it serves, how often it gathers, and the clearest next step for getting involved."
-      />
+        title="There is a place for you here"
+        description="Our ministries are designed to help people grow in faith, build meaningful relationships, and serve with purpose in every season of life."
+        asideTitle="Next step"
+        asideBody="Find the ministry that best matches your season and connect with the team."
+      >
+        <div className="hero-actions">
+          <a
+            href={churchInfo.whatsappHref}
+            className="button"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ask about ministries
+          </a>
+          <a href="/contact" className="button button-ghost">
+            Contact the church
+          </a>
+        </div>
+      </PageHero>
 
       <Section
-        eyebrow="Ministry overview"
-        title="A place for every stage of life"
-        subtitle="These ministry pathways are designed to help people belong deeply, grow spiritually, and serve joyfully."
+        eyebrow="Ministry directory"
+        title="Spaces to grow, belong, and serve"
+        intro="Every ministry should make disciples, build community, and help people take practical next steps."
       >
-        <div className="three-col">
+        <div className="card-grid card-grid-3">
           {ministries.map((ministry) => (
-            <article className="panel" key={ministry.title}>
+            <article className="info-card" key={ministry.title}>
               <p className="card-label">{ministry.audience}</p>
               <h3>{ministry.title}</h3>
               <p>{ministry.description}</p>
-              <p><strong>Meeting rhythm:</strong> {ministry.rhythm}</p>
-              <p><strong>Next step:</strong> {ministry.cta}</p>
+
+              <div className="meta-list">
+                <div>
+                  <strong>Meeting rhythm:</strong> {ministry.rhythm}
+                </div>
+                <div>
+                  <strong>Next step:</strong> {ministry.cta}
+                </div>
+              </div>
             </article>
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="Ministry in pictures"
-        title="Real moments from ministry life"
-        subtitle="Use real ministry imagery so each pathway feels active, relational, and grounded in actual church life."
+        eyebrow="Ministry life"
+        title="What connection looks like"
+        intro="Healthy ministry life should feel relational, purposeful, and spiritually alive."
+        dark
       >
-        <div className="gallery-grid gallery-grid-two">
+        <div className="gallery-grid">
           {ministryGallery.map((image) => (
-            <article key={image.src} className="media-card panel media-card-inline ministry-media-card">
-              <div className="media-frame ministry-frame">
+            <article className="gallery-card" key={image.title}>
+              <div className="gallery-image-wrap">
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  fill
-                  className="media-cover"
-                  sizes="(max-width: 900px) 100vw, 50vw"
+                  width={900}
+                  height={700}
+                  className="gallery-image"
                 />
               </div>
-              <div>
+              <div className="gallery-copy">
                 <p className="card-label">Ministry life</p>
                 <h3>{image.title}</h3>
                 <p>{image.summary}</p>
@@ -60,48 +96,69 @@ export default function MinistriesPage() {
         </div>
       </Section>
 
-      <Section eyebrow="What comes next" title="Ready to connect with a ministry?" dark>
-        <div className="two-col">
-          <article className="panel elevated-panel">
-            <h3>For church leaders</h3>
+      <Section
+        eyebrow="How ministries should work"
+        title="Clear pathways for leaders and members"
+        intro="A strong ministry system should not only inspire people. It should also make joining, serving, and growing simple."
+      >
+        <div className="card-grid card-grid-2">
+          <article className="info-card">
+            <p className="card-label">For church leaders</p>
+            <h3>Build ministries with structure</h3>
             <p>
-              This structure gives each ministry room to grow with clear leader details, meeting rhythms, photos, and simple next-step pathways.
+              Give every ministry clear leadership, rhythm, purpose, photos,
+              communication, and a simple next-step path for new people to join.
             </p>
           </article>
-          <article className="panel elevated-panel">
-            <h3>For visitors and members</h3>
+
+          <article className="info-card">
+            <p className="card-label">For visitors and members</p>
+            <h3>Make joining feel easy</h3>
             <p>
-              Start with the ministry that best matches your season of life and let us help you take the next step into community, discipleship, and service.
+              Help people identify the ministry that matches their season of life,
+              then guide them into community, discipleship, and consistent
+              involvement.
             </p>
           </article>
         </div>
-        <div className="gallery-grid gallery-grid-two">
+      </Section>
+
+      <Section
+        eyebrow="Beyond the walls"
+        title="Service and outreach"
+        intro="Church life should overflow into care, presence, and impact in the wider community."
+        dark
+      >
+        <div className="gallery-grid">
           {outreachGallery.slice(3, 5).map((image) => (
-            <article key={image.src} className="media-card panel">
-              <div className="media-frame gallery-frame">
+            <article className="gallery-card" key={image.title}>
+              <div className="gallery-image-wrap">
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  fill
-                  className="media-cover"
-                  sizes="(max-width: 900px) 100vw, 50vw"
+                  width={900}
+                  height={700}
+                  className="gallery-image"
                 />
               </div>
-              <p className="photo-note">{image.title}</p>
+              <div className="gallery-copy">
+                <h3>{image.title}</h3>
+                <p>{image.summary}</p>
+              </div>
             </article>
           ))}
         </div>
       </Section>
 
       <CtaBand
-        eyebrow="Join the family"
-        title="Not sure where to begin?"
-        description="Reach out and we will help you find the right next step for you or your family at Renewed Life."
-        primaryLabel="Contact us"
-        primaryHref="/contact"
-        secondaryLabel="Plan Your Visit"
+        eyebrow="Ready to connect?"
+        title="Let us help you find your place"
+        description="Tell us what season of life you are in, and we will gladly guide you toward the right ministry and next step."
+        primaryLabel="Message us on WhatsApp"
+        primaryHref={churchInfo.whatsappHref}
+        secondaryLabel="Plan your visit"
         secondaryHref="/plan-your-visit"
       />
-    </main>
+    </>
   );
 }

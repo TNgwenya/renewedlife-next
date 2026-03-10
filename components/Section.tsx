@@ -1,24 +1,40 @@
+type SectionProps = {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  subtitle?: string;
+  children: React.ReactNode;
+  muted?: boolean;
+  dark?: boolean;
+  compact?: boolean;
+};
+
 export default function Section({
   eyebrow,
   title,
+  intro,
   subtitle,
   children,
+  muted = false,
   dark = false,
   compact = false,
-}: {
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  children: React.ReactNode;
-  dark?: boolean;
-  compact?: boolean;
-}) {
+}: SectionProps) {
+  const resolvedIntro = intro ?? subtitle;
+  const className = [
+    'section',
+    muted ? 'section-muted' : '',
+    dark ? 'section-dark' : '',
+    compact ? 'section-compact' : '',
+  ].filter(Boolean).join(' ');
+
   return (
-    <section className={dark ? `section section-dark${compact ? ' section-compact' : ''}` : `section${compact ? ' section-compact' : ''}`}>
+    <section className={className}>
       <div className="container">
-        {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-        <h2 className="section-title">{title}</h2>
-        {subtitle ? <p className="section-copy">{subtitle}</p> : null}
+        <div className="section-heading">
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+          <h2 className="section-title">{title}</h2>
+          {resolvedIntro ? <p className="section-copy">{resolvedIntro}</p> : null}
+        </div>
         {children}
       </div>
     </section>

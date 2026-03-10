@@ -1,7 +1,16 @@
+import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
+import { buildPageMetadata } from '../../lib/seo';
 import { churchInfo, upcomingEvents } from '../../lib/siteContent';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Events',
+  description:
+    'See upcoming events at Renewed Life International, including worship gatherings, prayer nights, and special conferences.',
+  path: '/events',
+});
 
 export default function EventsPage() {
   return (
