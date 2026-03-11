@@ -122,16 +122,22 @@ export const upcomingEvents = [
 
 export const homepageActions = [
   {
-    title: "Plan your visit",
+    title: "Plan your first Sunday",
     description: "Get service times, directions, and a simple guide to your first Sunday at Mampuru Hall.",
     href: "/plan-your-visit",
-    actionLabel: 'Plan my visit',
+    actionLabel: 'Plan my first Sunday',
   },
   {
-    title: "Watch a message",
+    title: "Watch a recent message",
     description: "Watch a recent sermon and get a feel for the preaching, worship, and spiritual direction of the church.",
     href: "/sermons",
     actionLabel: 'Watch a sermon',
+  },
+  {
+    title: "Visit with your family",
+    description: "See practical reassurance for parents, children, and first-time family visits before Sunday arrives.",
+    href: "/families",
+    actionLabel: 'See the family guide',
   },
   {
     title: "Find your next step",
@@ -199,6 +205,9 @@ export const ministries = [
     audience: "Women of all ages",
     rhythm: "Fortnightly and during special gatherings",
     cta: "Join the Women’s Ministry",
+    whatHappens: "Prayer, biblical encouragement, honest conversation, and practical strengthening for everyday life.",
+    nextStepDescription: "Message the church team and ask about the next Women’s Ministry gathering or conference opportunity.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Women\'s Ministry.')}`,
   },
   {
     title: "Men’s Ministry",
@@ -206,6 +215,9 @@ export const ministries = [
     audience: "Men of all ages",
     rhythm: "Monthly Men’s Breakfast and special gatherings",
     cta: "Join the Men’s Ministry",
+    whatHappens: "Men gather for discipleship, encouragement, practical teaching, and conversations about leadership and responsibility.",
+    nextStepDescription: "Ask about the next Men’s Breakfast or upcoming gathering and we will help you connect.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Men\'s Ministry.')}`,
   },
   {
     title: "Youth Renewed",
@@ -213,6 +225,9 @@ export const ministries = [
     audience: "Teenagers and young adults",
     rhythm: "Monthly Youth Connect and youth-focused gatherings",
     cta: "Join Youth Renewed",
+    whatHappens: "Young people gather for worship, conversation, friendship, discipleship, and practical encouragement for real life.",
+    nextStepDescription: "Reach out for the next Youth Connect date and the best way to join in.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about Youth Renewed.')}`,
   },
   {
     title: "Children’s Ministry",
@@ -220,6 +235,9 @@ export const ministries = [
     audience: "Children",
     rhythm: "During Sunday services and special children’s programs",
     cta: "Bring your child to Children’s Ministry",
+    whatHappens: "Children are welcomed with age-appropriate biblical care, simple guidance, prayer, and a joyful church environment.",
+    nextStepDescription: "Before visiting, message the team for the latest children’s arrangements and arrival guidance for your family.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Children\'s Ministry and current Sunday arrangements.')}`,
   },
   {
     title: "Senior Citizens’ Ministry",
@@ -227,6 +245,9 @@ export const ministries = [
     audience: "Senior adults",
     rhythm: "Scheduled fellowship gatherings and special ministry moments",
     cta: "Connect with the Senior Citizens’ Ministry",
+    whatHappens: "Senior members are encouraged through fellowship, prayer, pastoral care, and spaces where their wisdom and presence are valued.",
+    nextStepDescription: "Contact the church to hear about the next fellowship opportunity or pastoral support point of contact.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Senior Citizens\' Ministry.')}`,
   },
   {
     title: "Evangelistic and Outreach Ministry",
@@ -234,6 +255,9 @@ export const ministries = [
     audience: "The local community and outreach teams",
     rhythm: "Outreach events and scheduled evangelism activities",
     cta: "Serve in Outreach",
+    whatHappens: "Teams pray, serve, share the gospel, and show practical care in the community beyond the church building.",
+    nextStepDescription: "Ask when the next outreach opportunity is happening and how you can prepare to serve.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Outreach Ministry.')}`,
   },
   {
     title: "Music Ministry",
@@ -241,6 +265,9 @@ export const ministries = [
     audience: "Singers, musicians, and the congregation through worship",
     rhythm: "Weekly services, rehearsals, and special events",
     cta: "Join the Worship Team",
+    whatHappens: "The team prepares for services, rehearses faithfully, and serves the congregation through worship and musical excellence.",
+    nextStepDescription: "Tell us about your gifting and we will explain the next conversation or rehearsal step.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Music Ministry.')}`,
   },
   {
     title: "Ushering Ministry",
@@ -248,6 +275,9 @@ export const ministries = [
     audience: "The whole church, especially visitors",
     rhythm: "Weekly service coordination and special events",
     cta: "Serve with the Ushering Team",
+    whatHappens: "Ushers welcome people, help with seating and flow, and make practical hospitality visible from the first moment of arrival.",
+    nextStepDescription: "Ask how to shadow the team or begin the process of serving on a Sunday.",
+    contactHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about the Ushering Ministry.')}`,
   },
 ];
 
@@ -301,6 +331,24 @@ export const sermonHighlights = sermonLibrary.slice(0, 3).map((sermon, index) =>
   href: sermon.href,
   thumbnail: sermon.thumbnail,
 }));
+
+export const sermonStartHere = [
+  {
+    title: 'A Good God and His Notorious Boys',
+    label: 'Start here first',
+    reason: 'A strong introduction to the grace of God and the pastoral tone of preaching at Renewed Life.',
+  },
+  {
+    title: 'Woman Your Faith Is Great',
+    label: 'For encouragement',
+    reason: 'A helpful place to begin if you need faith, hope, and reassurance that Jesus meets people in real need.',
+  },
+  {
+    title: 'Bible Study',
+    label: 'To go deeper',
+    reason: 'Start here if you want to hear the church’s midweek teaching rhythm and how Scripture is opened up practically.',
+  },
+];
 
 export const sermonTypes = ['Sunday Service', 'Bible Study', 'Conference', 'Special Service'];
 
@@ -490,6 +538,21 @@ export const visitExpectations = [
   "Heartfelt worship, prayer, and Bible-based preaching",
   "A relaxed, family-friendly environment where you can come as you are",
   "Space to connect after the service and learn your next step",
+];
+
+export const familyHighlights = [
+  {
+    title: 'Families are warmly welcome',
+    description: 'Parents do not need to have everything figured out before arriving. The team is there to help you get settled and feel at ease.',
+  },
+  {
+    title: 'Children are guided with care',
+    description: 'We use safe, calm, and age-aware language about children’s ministry. If you need the latest Sunday details, we encourage you to ask before visiting.',
+  },
+  {
+    title: 'You can ask questions ahead of time',
+    description: 'If your child has specific needs or you want to understand the current children’s arrangements, WhatsApp the church and we will help directly.',
+  },
 ];
 
 export const beliefs = [

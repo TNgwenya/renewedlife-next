@@ -3,7 +3,7 @@ import { churchInfo, navLinks } from '../lib/siteContent';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = churchInfo.websiteHref.replace(/\/$/, '');
-  const routes = ['/', ...navLinks.map((link) => link.href)].filter(
+  const routes = ['/', '/families', ...navLinks.map((link) => link.href)].filter(
     (href, index, items) => items.indexOf(href) === index
   );
 

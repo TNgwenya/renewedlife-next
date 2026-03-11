@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
@@ -13,8 +14,14 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'Plan Your Visit',
   description:
-    'Plan your first visit to Renewed Life International with service times, directions, what to expect, and a simple visitor form.',
+    'Plan your first Sunday at Renewed Life International in Dube, Soweto with service times, directions, family reassurance, and practical visitor guidance.',
   path: '/plan-your-visit',
+  keywords: [
+    'plan a church visit in Soweto',
+    'first time church visit Dube',
+    'family friendly church Soweto',
+    'Renewed Life International visit',
+  ],
 });
 
 const firstVisitSteps = [
@@ -37,10 +44,10 @@ export default function PlanYourVisitPage() {
     <>
       <PageHero
         eyebrow="Plan Your Visit"
-        title="Your first visit should feel easy"
-        description="Get service times, directions, what to expect, and a simple way to let us know you’re coming. If church feels new to you, you will not be out of place here."
+        title="Plan your first Sunday with confidence"
+        description="Get service times, directions, what to expect, and a simple way to let us know you are coming. If church feels unfamiliar, you will not be out of place here."
         asideTitle="This Sunday"
-        asideBody={`${churchInfo.serviceTimes[0]?.label} · ${churchInfo.serviceTimes[0]?.time}`}
+        asideBody={`${churchInfo.serviceTimes[0]?.label} · ${churchInfo.serviceTimes[0]?.time} at ${churchInfo.venue}, Dube`}
       >
         <div className="hero-actions">
           <a
@@ -49,7 +56,7 @@ export default function PlanYourVisitPage() {
             target="_blank"
             rel="noreferrer"
           >
-            Message us on WhatsApp
+            Plan my visit on WhatsApp
           </a>
           <a
             href={churchInfo.mapHref}
@@ -65,7 +72,7 @@ export default function PlanYourVisitPage() {
       <Section
         eyebrow="Visit essentials"
         title="Everything you need before Sunday"
-        subtitle="Here are the most important details for planning your first visit to Renewed Life."
+        subtitle="Here are the most important details for planning a calm, clear first visit to Renewed Life."
       >
         <div className="card-grid card-grid-3">
           <article className="info-card">
@@ -106,8 +113,8 @@ export default function PlanYourVisitPage() {
             <p className="card-label">Need help first?</p>
             <h3>We are happy to help</h3>
             <p>
-              If you have questions before you arrive, reach out by phone, email,
-              or WhatsApp and we will gladly assist you.
+              If you have questions before you arrive, reach out by phone, email, or WhatsApp
+              and we will gladly help you know where to go and what to expect.
             </p>
             <div className="stack-actions">
               <a href={churchInfo.phoneHref} className="text-link">
@@ -148,16 +155,19 @@ export default function PlanYourVisitPage() {
               <div>
                 <h4>What should I wear?</h4>
                 <p>
-                  Come as you are. You do not need to dress a certain way to be
-                  welcomed. We want you to feel comfortable and ready to receive.
+                  Come as you are. You do not need to dress a certain way to be welcomed.
+                  Wear what is modest, comfortable, and appropriate for church, and come ready to receive.
                 </p>
               </div>
               <div>
                 <h4>What about children and families?</h4>
                 <p>
-                  Families are warmly welcome. We want parents and children to
-                  feel safe, seen, and guided clearly on arrival.
+                  Families are warmly welcome. We want parents and children to feel safe,
+                  seen, and guided clearly on arrival, with help from the team if you are unsure where to go.
                 </p>
+                <Link href="/families" className="text-link">
+                  Read the families guide
+                </Link>
               </div>
               <div>
                 <h4>What if church feels unfamiliar to me?</h4>
@@ -187,6 +197,41 @@ export default function PlanYourVisitPage() {
       </Section>
 
       <Section
+        eyebrow="Need extra reassurance?"
+        title="A simple guide for nervous first-time guests"
+        subtitle="If you are feeling unsure, these are the small practical details that usually help the most."
+      >
+        <div className="card-grid card-grid-3">
+          <article className="info-card">
+            <p className="card-label">Arrival</p>
+            <h3>Come 10 to 15 minutes early</h3>
+            <p>
+              Arriving a little early gives you time to park, settle in, greet the team, and ask any practical questions before the service begins.
+            </p>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Support</p>
+            <h3>You do not need to figure it out alone</h3>
+            <p>
+              If you need help finding your seat, understanding the flow of the service, or knowing what to do next, someone will gladly assist you.
+            </p>
+          </article>
+
+          <article className="info-card">
+            <p className="card-label">Families</p>
+            <h3>Parents and children are welcome</h3>
+            <p>
+              You are welcome to come as a family. If you arrive with children, the team can help you get oriented and feel settled quickly.
+            </p>
+            <Link href="/families" className="text-link">
+              See family information
+            </Link>
+          </article>
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Guest response"
         title="Let us know you are coming"
         subtitle={`Fill in a few details and your visitor enquiry will go directly to ${churchInfo.email}.`}
@@ -200,12 +245,12 @@ export default function PlanYourVisitPage() {
 
       <CtaBand
         eyebrow="Still deciding?"
-        title="We would love to welcome you"
-        description="Come and join us this Sunday for worship, the Word, prayer, and a warm welcome from the church family."
-        primaryLabel="Plan your visit on WhatsApp"
+        title="We would love to welcome you personally"
+        description="Come and join us this Sunday for worship, the Word, prayer, and a warm welcome from the church family. If you want a personal point of contact before you arrive, message us first."
+        primaryLabel="Plan my visit on WhatsApp"
         primaryHref={churchInfo.whatsappVisitFollowupHref}
-        secondaryLabel="Contact us"
-        secondaryHref="/contact"
+        secondaryLabel="See family information"
+        secondaryHref="/families"
       />
     </>
   );

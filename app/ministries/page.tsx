@@ -14,8 +14,13 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'Ministries',
   description:
-    'Explore the ministries of Renewed Life International and find a place to grow, belong, and serve.',
+    'Explore the ministries of Renewed Life International in Dube, Soweto and find a clear place to grow, belong, and serve.',
   path: '/ministries',
+  keywords: [
+    'church ministries Soweto',
+    'children youth women men ministry Dube',
+    'Renewed Life ministries',
+  ],
 });
 
 export default function MinistriesPage() {
@@ -24,9 +29,9 @@ export default function MinistriesPage() {
       <PageHero
         eyebrow="Ministries"
         title="There is a place for you here"
-        description="Our ministries help people pray together, build strong relationships, and keep growing as disciples of Jesus in every season of life."
+        description="Our ministries help people pray together, build strong relationships, and keep growing as disciples of Jesus in every season of life, with clear next steps for getting involved."
         asideTitle="Next step"
-        asideBody="Find the ministry that best matches your season and connect with the team."
+        asideBody="Find the ministry that best matches your season, learn what to expect, and connect with the team."
       >
         <div className="hero-actions">
           <a
@@ -46,7 +51,7 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Ministry directory"
         title="Spaces to grow, belong, and serve"
-        intro="Each ministry offers a practical place to belong, be strengthened, and take your next step in church life."
+        intro="Each ministry below explains who it serves, what happens, when it meets, and the clearest next step for getting connected."
       >
         <div className="card-grid card-grid-3">
           {ministries.map((ministry) => (
@@ -57,12 +62,24 @@ export default function MinistriesPage() {
 
               <div className="meta-list">
                 <div>
-                  <strong>Meeting rhythm:</strong> {ministry.rhythm}
+                  <strong>Who it is for:</strong> {ministry.audience}
+                </div>
+                <div>
+                  <strong>What happens:</strong> {ministry.whatHappens}
+                </div>
+                <div>
+                  <strong>When to join:</strong> {ministry.rhythm}
                 </div>
                 <div>
                   <strong>Next step:</strong> {ministry.cta}
                 </div>
               </div>
+
+              <p>{ministry.nextStepDescription}</p>
+
+              <a href={ministry.contactHref} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+                {ministry.cta}
+              </a>
             </article>
           ))}
         </div>
@@ -99,14 +116,14 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Getting connected"
         title="How to find your place"
-        intro="If you are exploring church life or ready to serve, we want the next step to feel simple and personal."
+        intro="If you are exploring church life or ready to serve, we want the next step to feel simple, relational, and personal."
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
             <p className="card-label">If you are exploring</p>
             <h3>Start where you can build real connection</h3>
             <p>
-              If you are new, start with the ministry that best matches your season of life and begin building relationships there.
+              If you are new, start with the ministry that best matches your season of life, then let the team help you connect to the right gathering or leader.
             </p>
           </article>
 
@@ -114,7 +131,7 @@ export default function MinistriesPage() {
             <p className="card-label">If you are ready to serve</p>
             <h3>Let us help you take the next step</h3>
             <p>
-              Tell us where you feel drawn to serve, and we will help you connect with the right ministry leaders and rhythms.
+              Tell us where you feel drawn to serve, and we will help you connect with the right ministry leaders, expectations, and rhythms.
             </p>
           </article>
         </div>

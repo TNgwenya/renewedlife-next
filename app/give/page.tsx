@@ -13,8 +13,13 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'Give',
   description:
-    'Give to Renewed Life International through clear EFT details, trusted support, and simple giving guidance.',
+    'Give to Renewed Life International through clear EFT details, trusted support, and simple giving guidance for the church family.',
   path: '/give',
+  keywords: [
+    'give to church Soweto',
+    'Renewed Life International giving',
+    'church EFT giving South Africa',
+  ],
 });
 
 export default function GivePage() {

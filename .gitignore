@@ -5,6 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+renewedlife-copilot-prompt.md
+renewedlife-agent-checklist.md
 
 # Keep original oversized local media out of git once compressed web versions exist
 public/images/pastor/*.mov

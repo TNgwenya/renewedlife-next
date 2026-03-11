@@ -14,8 +14,13 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'Contact',
   description:
-    'Contact Renewed Life International for prayer, pastoral support, service information, or any questions about visiting.',
+    'Contact Renewed Life International in Dube, Soweto for prayer, pastoral support, service information, or help planning your visit.',
   path: '/contact',
+  keywords: [
+    'contact church Soweto',
+    'prayer support Renewed Life',
+    'Renewed Life International contact',
+  ],
 });
 
 export default function ContactPage() {

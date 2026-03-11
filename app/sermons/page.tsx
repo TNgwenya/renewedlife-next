@@ -10,6 +10,7 @@ import {
   churchInfo,
   sermonHighlights,
   sermonLibrary,
+  sermonStartHere,
   sermonTypes,
   socialLinks,
 } from '../../lib/siteContent';
@@ -17,14 +18,26 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'Sermons',
   description:
-    'Watch sermons, Bible study teachings, and message replays from Renewed Life International.',
+    'Watch sermons, Bible study teachings, and message replays from Renewed Life International in Dube, Soweto.',
   path: '/sermons',
+  keywords: [
+    'sermons Soweto church',
+    'Bible teaching Dube',
+    'Renewed Life International sermons',
+  ],
 });
 
 export default function SermonsPage() {
   const featured = sermonHighlights[0];
   const featuredDetails =
     sermonLibrary.find((sermon) => sermon.title === featured?.title) ?? sermonLibrary[0];
+  const startHereMessages = sermonStartHere
+    .map((entry) => {
+      const sermon = sermonLibrary.find((item) => item.title === entry.title);
+
+      return sermon ? { ...entry, sermon } : null;
+    })
+    .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
   const facebookLink = socialLinks.find((link) => link.label === 'Facebook');
 
   return (
@@ -115,6 +128,33 @@ export default function SermonsPage() {
       ) : null}
 
       <Section
+        eyebrow="New to Renewed Life?"
+        title="A simple place to start listening"
+        subtitle="If you are discovering the church for the first time, these messages offer a good introduction to the tone, themes, and teaching ministry of Renewed Life."
+      >
+        <div className="card-grid card-grid-3">
+          {startHereMessages.map((entry) => (
+            <article className="info-card" key={entry.title}>
+              <p className="card-label">{entry.label}</p>
+              <h3>{entry.sermon.title}</h3>
+              <p>{entry.reason}</p>
+              <div className="meta-list">
+                <div>
+                  <strong>Type:</strong> {entry.sermon.type}
+                </div>
+                <div>
+                  <strong>Series:</strong> {entry.sermon.series}
+                </div>
+              </div>
+              <a href={entry.sermon.href} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+                Start with this message
+              </a>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Where to watch"
         title="Stay connected to the teaching ministry"
         subtitle="Watch full messages, follow new uploads, and stay connected to the teaching shaping the life of the church."
@@ -178,7 +218,7 @@ export default function SermonsPage() {
       <Section
         eyebrow="Full library"
         title="Sermon library"
-        subtitle="Browse the available Sunday services, Bible studies, and special messages."
+        subtitle="Browse Sunday services, Bible studies, and special messages with clear metadata and direct watch links."
         dark
       >
         <div className="card-grid card-grid-3">

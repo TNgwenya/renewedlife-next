@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   description:
-    'A warm, Spirit-filled church in Dube, Soweto where people believe, belong, and become. Join us Sundays and Wednesdays.',
+    'A Spirit-filled, Bible-based church in Dube, Soweto where you can meet Jesus, grow in the Word, and find spiritual family. Join us Sundays and Wednesdays.',
   keywords: [
     'church in Soweto',
     'church in Dube',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Renewed Life International',
     description:
-      'A church where people believe, belong, and become. Join us in Dube, Soweto.',
+      'A Spirit-filled, Bible-based church in Dube, Soweto with heartfelt worship, prayer, biblical preaching, and a warm welcome for families.',
     url: churchInfo.websiteHref,
     siteName: 'Renewed Life International',
     locale: 'en_ZA',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Renewed Life International',
     description:
-      'A warm, Spirit-filled church in Dube, Soweto where people believe, belong, and become.',
+      'A Spirit-filled, Bible-based church in Dube, Soweto where you can meet Jesus and find spiritual family.',
     images: ['/twitter-image'],
   },
 };
@@ -135,12 +135,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <span className="brand-tagline">{churchInfo.tagline}</span>
                   </div>
                 </Link>
-                <p className="footer-copy">{churchInfo.brandIdea}</p>
+                <p className="footer-copy">
+                  A warm local church in Dube, Soweto where people worship Jesus, grow in
+                  Scripture, and are welcomed into genuine spiritual family.
+                </p>
+                <div className="stack-actions">
+                  <Link href="/plan-your-visit" className="text-link">
+                    Plan your first Sunday
+                  </Link>
+                  <Link href="/contact" className="text-link">
+                    Ask for help or prayer
+                  </Link>
+                </div>
               </div>
 
               <div>
                 <h4>Visit</h4>
                 <ul className="footer-list">
+                  <li>
+                    <Link href="/plan-your-visit">What to expect on Sunday</Link>
+                  </li>
                   <li>{churchInfo.venue}</li>
                   <li>{churchInfo.addressLine1}</li>
                   <li>{churchInfo.addressLine2}</li>
@@ -159,7 +173,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
 
               <div>
-                <h4>Contact</h4>
+                <h4>Next steps</h4>
+                <ul className="footer-list">
+                  <li>
+                    <Link href="/about">About Renewed Life</Link>
+                  </li>
+                  <li>
+                    <Link href="/families">Families</Link>
+                  </li>
+                  <li>
+                    <Link href="/ministries">Explore ministries</Link>
+                  </li>
+                  <li>
+                    <Link href="/sermons">Watch sermons</Link>
+                  </li>
+                  <li>
+                    <Link href="/give">Giving information</Link>
+                  </li>
+                </ul>
+
+                <h4 className="footer-subhead">Contact</h4>
                 <ul className="footer-list">
                   <li>
                     <a href={churchInfo.emailHref}>{churchInfo.email}</a>
@@ -171,9 +204,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <a href={churchInfo.whatsappHref} target="_blank" rel="noreferrer">
                       WhatsApp Us
                     </a>
-                  </li>
-                  <li>
-                    <Link href="/sermons">Watch Sermons</Link>
                   </li>
                 </ul>
 

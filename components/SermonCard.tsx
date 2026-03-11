@@ -40,12 +40,14 @@ export default function SermonCard({
       <h3>{title}</h3>
       <p className="sermon-summary">{summary}</p>
       <div className="sermon-card-footer">
-        <div className="meta-list">
+        <div className="meta-list sermon-card-meta">
           <span><strong>Speaker:</strong> {speaker}</span>
           <span><strong>Date:</strong> {date}</span>
           <span><strong>Series:</strong> {series}</span>
         </div>
-        <a href={href} className="text-link" target="_blank" rel="noreferrer">Watch on YouTube</a>
+        <a href={href} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+          Watch this message
+        </a>
       </div>
     </article>
   );

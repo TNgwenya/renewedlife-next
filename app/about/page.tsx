@@ -20,8 +20,13 @@ import {
 export const metadata: Metadata = buildPageMetadata({
   title: 'About',
   description:
-    'Learn about Renewed Life International, our story, beliefs, mission, and church family in Dube, Soweto.',
+    'Learn about Renewed Life International, our story, beliefs, mission, and pastoral leadership in Dube, Soweto, Johannesburg.',
   path: '/about',
+  keywords: [
+    'about Renewed Life International',
+    'church in Dube Soweto',
+    'pastors in Soweto church',
+  ],
 });
 
 export default function AboutPage() {

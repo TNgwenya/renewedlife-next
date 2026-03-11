@@ -4,6 +4,7 @@ import Section from '../components/Section';
 import {
   churchInfo,
   churchStoryMoments,
+  communityHighlights,
   coreValues,
   homepageActions,
   ministries,
@@ -11,7 +12,7 @@ import {
 } from '../lib/siteContent';
 
 export default function HomePage() {
-  const homepagePrimaryActions = homepageActions.slice(0, 3);
+  const homepagePrimaryActions = homepageActions.slice(0, 4);
   const featuredMinistries = ministries.slice(0, 4);
 
   return (
@@ -19,27 +20,33 @@ export default function HomePage() {
       <section className="hero hero-home">
         <div className="container hero-grid">
           <div className="hero-copy-block">
-            <p className="eyebrow">Welcome to Renewed Life International</p>
-            <h1>A church where you can believe, belong, and become.</h1>
+            <p className="eyebrow">Renewed Life International | Dube, Soweto</p>
+            <h1>A Spirit-filled, Bible-based church where you can meet Jesus and find spiritual family.</h1>
             <p className="hero-text">
-              We are a welcoming church in Dube, Soweto where people worship Jesus, learn the Word,
-              pray together, and become part of a real spiritual family.
+              Join us in Dube, Soweto for heartfelt worship, prayer, biblical preaching, and a warm
+              welcome for you and your family. If this will be your first Sunday, we will help you
+              feel at ease from the moment you arrive.
             </p>
 
             <div className="hero-cta-row">
               <Link href="/plan-your-visit" className="button button-primary">
-                Plan Your Visit
+                Plan My First Sunday
               </Link>
               <Link href="/sermons" className="text-link hero-secondary-link">
-                Watch a Message
+                Watch a recent message
               </Link>
             </div>
+
+            <p className="section-note">
+              New to church or visiting with children? Start with our practical first-visit guide,
+              then message the team if you want personal help before you come.
+            </p>
           </div>
 
           <div className="hero-panel">
             <div className="panel-card hero-visit-card">
               <p className="eyebrow">This Sunday</p>
-              <h2>Start with the essentials.</h2>
+              <h2>Everything you need to walk in with confidence.</h2>
 
               <div className="hero-visit-details">
                 <div>
@@ -51,19 +58,19 @@ export default function HomePage() {
                   <strong>{churchInfo.venue}, Dube</strong>
                 </div>
                 <div>
-                  <span className="meta-label">Midweek</span>
-                  <strong>{churchInfo.serviceTimes[1].time}</strong>
+                  <span className="meta-label">Arrive</span>
+                  <strong>10 to 15 minutes early</strong>
                 </div>
               </div>
 
               <ul className="feature-list">
                 <li>Friendly welcome team</li>
                 <li>Spirit-filled worship and biblical preaching</li>
-                <li>Simple next steps to get connected</li>
+                <li>Clear help for first-time guests and families</li>
               </ul>
 
               <Link href="/plan-your-visit" className="button button-secondary hero-card-button">
-                What to expect
+                See first-visit details
               </Link>
             </div>
           </div>
@@ -72,11 +79,11 @@ export default function HomePage() {
 
       <Section
         eyebrow="Your next step"
-        title="Everything you need to get connected"
-        intro="Whether you are visiting for the first time, looking for spiritual growth, or ready to become part of the church family, start here."
+        title="Start here if you are new to Renewed Life"
+        intro="Whether you want to plan your first Sunday, watch a message before visiting, or find your place in church life, these are the clearest next steps."
         compact
       >
-        <div className="card-grid three-up">
+        <div className="card-grid four-up">
           {homepagePrimaryActions.map((action) => (
             <article className="info-card" key={action.href}>
               <h3>{action.title}</h3>
@@ -98,10 +105,38 @@ export default function HomePage() {
       </Section>
 
       <Section
-        eyebrow="Why Renewed Life"
-        title="More than a service - a spiritual home"
-        intro="We are building a church family where people are known, discipled, prayed for, and strengthened to follow Jesus faithfully."
+        eyebrow="What visitors notice"
+        title="Warmth, clarity, and room to take your next step"
+        intro="We want the experience of Renewed Life to feel welcoming, grounded in Scripture, and clear enough for first-time guests to know what comes next."
         muted
+      >
+        <div className="card-grid three-up">
+          {communityHighlights.map((highlight) => (
+            <article className="info-card" key={highlight.title}>
+              <p className="card-label">Visitor reassurance</p>
+              <h3>{highlight.title}</h3>
+              <p>{highlight.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="inline-actions">
+          <Link href="/plan-your-visit" className="button button-secondary">
+            What to expect on Sunday
+          </Link>
+          <Link href="/families" className="button button-ghost">
+            Visiting with children?
+          </Link>
+          <Link href="/contact" className="text-link">
+            Ask a question before you come
+          </Link>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Why Renewed Life"
+        title="More than a service, a church family growing in Christ"
+        intro="These core convictions shape how we welcome people, disciple believers, and build a healthy church in Dube, Soweto."
       >
         <div className="card-grid three-up">
           {coreValues.map((value) => (
@@ -145,7 +180,7 @@ export default function HomePage() {
       <Section
         eyebrow="Ministries"
         title="There is a place for you here"
-        intro="From children to seniors, there are real places to build friendships, grow in Christ, and serve meaningfully in church life."
+        intro="From children to seniors, there are practical places to build friendships, grow in Christ, and take your next step in the life of the church."
         muted
       >
         <div className="card-grid card-grid-2">
@@ -160,15 +195,15 @@ export default function HomePage() {
 
         <div className="section-actions">
           <Link href="/ministries" className="button button-secondary">
-            View All Ministries
+            Explore ministries
           </Link>
         </div>
       </Section>
 
       <Section
         eyebrow="Recent teaching"
-        title="Watch and grow in the Word"
-        intro="Catch up on recent sermons and hear the biblical themes, pastoral burden, and teaching emphasis shaping our church."
+        title="Watch a message before you visit"
+        intro="If you want to hear the tone and teaching of the church before coming in person, start with a recent sermon and get a feel for the ministry of the Word at Renewed Life."
       >
         <div className="card-grid three-up">
           {sermonHighlights.slice(0, 3).map((sermon) => (
@@ -177,7 +212,7 @@ export default function HomePage() {
               <h3>{sermon.title}</h3>
               <p>{sermon.summary}</p>
               <Link href="/sermons" className="button button-secondary button-sm">
-                Watch sermons
+                Browse sermons
               </Link>
             </article>
           ))}
@@ -186,11 +221,11 @@ export default function HomePage() {
 
       <CtaBand
         eyebrow="Plan your visit"
-        title="Join us this Sunday"
-        description="We would love to welcome you and your family to Renewed Life International. Plan your visit, get directions, or contact us directly."
-        primaryLabel="Plan Your Visit"
+        title="Join us this Sunday with confidence"
+        description="We would love to welcome you and your family to Renewed Life International. Plan your first Sunday, get directions, and know what to expect before you arrive."
+        primaryLabel="Plan My First Sunday"
         primaryHref="/plan-your-visit"
-        secondaryLabel="Contact Us"
+        secondaryLabel="Contact us"
         secondaryHref="/contact"
       />
     </main>

@@ -5,18 +5,21 @@ type SeoInput = {
   title: string;
   description: string;
   path?: string;
+  keywords?: string[];
 };
 
 export function buildPageMetadata({
   title,
   description,
   path = '/',
+  keywords,
 }: SeoInput): Metadata {
   const url = `${churchInfo.websiteHref.replace(/\/$/, '')}${path}`;
 
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: path,
     },

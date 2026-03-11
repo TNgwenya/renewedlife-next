@@ -8,8 +8,13 @@ import { churchInfo, upcomingEvents } from '../../lib/siteContent';
 export const metadata: Metadata = buildPageMetadata({
   title: 'Events',
   description:
-    'See upcoming events at Renewed Life International, including worship gatherings, prayer nights, and special conferences.',
+    'See upcoming events at Renewed Life International in Dube, Soweto, including worship gatherings, prayer nights, and special conferences.',
   path: '/events',
+  keywords: [
+    'church events Soweto',
+    'Renewed Life International events',
+    'prayer nights Dube church',
+  ],
 });
 
 export default function EventsPage() {
