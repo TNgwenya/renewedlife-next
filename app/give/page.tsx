@@ -79,7 +79,7 @@ export default function GivePage() {
         eyebrow="Current giving method"
         title="Give by bank transfer / EFT"
         intro="Renewed Life currently receives giving through bank transfer. It is a clear and dependable way to support the ministry."
-        dark
+        warm
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
@@ -133,6 +133,7 @@ export default function GivePage() {
         eyebrow="Need direct help?"
         title="We can guide you personally"
         intro="If you would like help with giving details, reference guidance, or confirmation before you send, contact us directly."
+        muted
       >
         <div className="card-grid card-grid-2">
           {givingWays.map((way) => (

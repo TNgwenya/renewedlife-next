@@ -70,7 +70,7 @@ export default function AboutPage() {
         eyebrow="Mission and vision"
         title="Why we exist and where we are going"
         intro="Our mission explains what we are committed to now. Our vision describes the kind of church we believe God is forming us into."
-        dark
+        warm
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
@@ -107,7 +107,7 @@ export default function AboutPage() {
         eyebrow="What we believe"
         title="What we believe from Scripture"
         intro="Our beliefs are rooted in Scripture and expressed in a practical, faith-filled way."
-        dark
+        muted
       >
         <div className="card-grid card-grid-2">
           {beliefs.map((belief) => (
@@ -152,7 +152,7 @@ export default function AboutPage() {
         eyebrow="Church life"
         title="Worship, family, and outreach"
         intro="Renewed Life is not only a Sunday gathering. It is a living church family growing in worship, discipleship, and service."
-        dark
+        warm
       >
         <div className="gallery-grid">
           {worshipGallery.slice(2, 4).map((image) => (

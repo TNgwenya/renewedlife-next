@@ -75,7 +75,7 @@ export default function ContactPage() {
         eyebrow="Visit"
         title="Find us easily"
         subtitle="Use the details below to visit Renewed Life International in Dube, Soweto."
-        dark
+        warm
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">

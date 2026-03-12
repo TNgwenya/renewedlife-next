@@ -89,7 +89,7 @@ export default function MinistriesPage() {
         eyebrow="Ministry life"
         title="What connection looks like"
         intro="Ministry life at Renewed Life is relational, prayerful, and shaped by genuine community."
-        dark
+        warm
       >
         <div className="gallery-grid">
           {ministryGallery.map((image) => (
@@ -117,6 +117,7 @@ export default function MinistriesPage() {
         eyebrow="Getting connected"
         title="How to find your place"
         intro="If you are exploring church life or ready to serve, we want the next step to feel simple, relational, and personal."
+        muted
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
@@ -141,7 +142,7 @@ export default function MinistriesPage() {
         eyebrow="Beyond the walls"
         title="Service and outreach"
         intro="Church life should overflow into care, presence, and impact in the wider community."
-        dark
+        warm
       >
         <div className="gallery-grid">
           {outreachGallery.slice(3, 5).map((image) => (

@@ -121,7 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <footer className="site-footer">
             <div className="container footer-grid">
-              <div className="footer-brand-block">
+              <div className="footer-brand-block footer-panel">
                 <Link href="/" className="brand footer-brand">
                   <Image
                     src="/logo/logo-primary.png"
@@ -139,17 +139,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   A warm local church in Dube, Soweto where people worship Jesus, grow in
                   Scripture, and are welcomed into genuine spiritual family.
                 </p>
-                <div className="stack-actions">
-                  <Link href="/plan-your-visit" className="text-link">
+                <div className="footer-action-row">
+                  <Link href="/plan-your-visit" className="button button-primary button-sm footer-button">
                     Plan your first Sunday
                   </Link>
-                  <Link href="/contact" className="text-link">
-                    Ask for help or prayer
+                  <Link href="/contact" className="button button-secondary button-sm footer-button">
+                    Prayer request
                   </Link>
                 </div>
               </div>
 
-              <div>
+              <div className="footer-panel">
                 <h4>Visit</h4>
                 <ul className="footer-list">
                   <li>
@@ -172,7 +172,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
 
-              <div>
+              <div className="footer-panel">
                 <h4>Next steps</h4>
                 <ul className="footer-list">
                   <li>
@@ -191,8 +191,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <Link href="/give">Giving information</Link>
                   </li>
                 </ul>
+              </div>
 
-                <h4 className="footer-subhead">Contact</h4>
+              <div className="footer-panel">
+                <h4>Contact</h4>
                 <ul className="footer-list">
                   <li>
                     <a href={churchInfo.emailHref}>{churchInfo.email}</a>

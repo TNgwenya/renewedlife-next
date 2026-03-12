@@ -6,6 +6,7 @@ type SectionProps = {
   children: React.ReactNode;
   muted?: boolean;
   dark?: boolean;
+  warm?: boolean;
   compact?: boolean;
 };
 
@@ -17,6 +18,7 @@ export default function Section({
   children,
   muted = false,
   dark = false,
+  warm = false,
   compact = false,
 }: SectionProps) {
   const resolvedIntro = intro ?? subtitle;
@@ -24,6 +26,7 @@ export default function Section({
     'section',
     muted ? 'section-muted' : '',
     dark ? 'section-dark' : '',
+    warm ? 'section-warm' : '',
     compact ? 'section-compact' : '',
   ].filter(Boolean).join(' ');
 

@@ -60,7 +60,7 @@ export default function EventsPage() {
         eyebrow="Why events matter"
         title="More than a date on the calendar"
         subtitle="Special gatherings help the church pray together, build strong relationships, and make space for focused teaching, worship, and ministry."
-        dark
+        warm
       >
         <div className="three-col">
           {[

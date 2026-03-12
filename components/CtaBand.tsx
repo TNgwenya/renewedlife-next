@@ -29,7 +29,7 @@ export default function CtaBand({
             <p className="section-copy">{description}</p>
           </div>
           <div className="cta-band-actions">
-            <Link href={primaryHref} className="button">
+            <Link href={primaryHref} className="button button-primary">
               {primaryLabel}
             </Link>
             {secondaryLabel && secondaryHref ? (

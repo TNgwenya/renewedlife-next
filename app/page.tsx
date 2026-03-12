@@ -1,19 +1,52 @@
 import Link from 'next/link';
 import CtaBand from '../components/CtaBand';
+import ServiceHighlightCard from '../components/ServiceHighlightCard';
 import Section from '../components/Section';
 import {
   churchInfo,
   churchStoryMoments,
   communityHighlights,
-  coreValues,
   homepageActions,
   ministries,
+  serviceHighlightClips,
   sermonHighlights,
+  videoClips,
 } from '../lib/siteContent';
 
 export default function HomePage() {
   const homepagePrimaryActions = homepageActions.slice(0, 4);
   const featuredMinistries = ministries.slice(0, 4);
+  const homepageVideo =
+    videoClips.find((clip) => clip.useCase === 'Homepage flagship video') ?? videoClips[0];
+  const homepageCoreValues = [
+    {
+      title: 'Believe',
+      description:
+        'We lead people to trust Jesus, stand on Scripture, and live by the power of the Holy Spirit.',
+      scriptures: [
+        'Trust in the Lord with all your heart. Proverbs 3:5',
+        'Your word is a lamp to my feet and a light to my path. Psalm 119:105',
+      ],
+    },
+    {
+      title: 'Belong',
+      description:
+        'Church is family. We are building a spiritual home where every generation can be welcomed, known, and strengthened.',
+      scriptures: [
+        'So we, though many, are one body in Christ, and individually members one of another. Romans 12:5',
+        'How good and pleasant it is when brothers dwell in unity. Psalm 133:1',
+      ],
+    },
+    {
+      title: 'Become',
+      description:
+        'We want believers to grow into maturity, discover their God-given purpose, and live with courage and conviction.',
+      scriptures: [
+        'Until we all attain... to mature manhood, to the measure of the stature of the fullness of Christ. Ephesians 4:13',
+        'We are his workmanship, created in Christ Jesus for good works. Ephesians 2:10',
+      ],
+    },
+  ];
 
   return (
     <main>
@@ -22,17 +55,12 @@ export default function HomePage() {
           <div className="hero-copy-block">
             <p className="eyebrow">Renewed Life International | Dube, Soweto</p>
             <h1>A Spirit-filled, Bible-based church where you can meet Jesus and find spiritual family.</h1>
-            <p className="hero-text">
-              Join us in Dube, Soweto for heartfelt worship, prayer, biblical preaching, and a warm
-              welcome for you and your family. If this will be your first Sunday, we will help you
-              feel at ease from the moment you arrive.
-            </p>
 
             <div className="hero-cta-row">
               <Link href="/plan-your-visit" className="button button-primary">
                 Plan My First Sunday
               </Link>
-              <Link href="/sermons" className="text-link hero-secondary-link">
+              <Link href="/sermons" className="button button-secondary hero-secondary-link">
                 Watch a recent message
               </Link>
             </div>
@@ -45,32 +73,33 @@ export default function HomePage() {
 
           <div className="hero-panel">
             <div className="panel-card hero-visit-card">
-              <p className="eyebrow">This Sunday</p>
-              <h2>Everything you need to walk in with confidence.</h2>
+              <p className="eyebrow">Welcome</p>
+              <h2>
+                Looking for a spiritual home? You&apos;ve found a warm church family where you can
+                truly believe, belong, and become.
+              </h2>
 
-              <div className="hero-visit-details">
-                <div>
-                  <span className="meta-label">Service</span>
-                  <strong>{churchInfo.serviceTimes[0].time}</strong>
+              {homepageVideo ? (
+                <div className="hero-video-block">
+                  <div className="media-frame video-showcase-frame hero-video-frame">
+                    <video
+                      className="video-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                      poster={homepageVideo.poster}
+                      aria-label={homepageVideo.title}
+                    >
+                      <source src={homepageVideo.src} type={homepageVideo.type} />
+                    </video>
+                  </div>
                 </div>
-                <div>
-                  <span className="meta-label">Location</span>
-                  <strong>{churchInfo.venue}, Dube</strong>
-                </div>
-                <div>
-                  <span className="meta-label">Arrive</span>
-                  <strong>10 to 15 minutes early</strong>
-                </div>
-              </div>
+              ) : null}
 
-              <ul className="feature-list">
-                <li>Friendly welcome team</li>
-                <li>Spirit-filled worship and biblical preaching</li>
-                <li>Clear help for first-time guests and families</li>
-              </ul>
-
-              <Link href="/plan-your-visit" className="button button-secondary hero-card-button">
-                See first-visit details
+              <Link href="/plan-your-visit" className="button button-primary hero-card-button">
+                Plan Your Visit
               </Link>
             </div>
           </div>
@@ -85,10 +114,10 @@ export default function HomePage() {
       >
         <div className="card-grid four-up">
           {homepagePrimaryActions.map((action) => (
-            <article className="info-card" key={action.href}>
+            <article className="info-card homepage-actions-card" key={action.href}>
               <h3>{action.title}</h3>
               <p>{action.description}</p>
-              <Link href={action.href} className="button button-secondary button-sm">
+              <Link href={action.href} className="button button-secondary button-sm homepage-actions-button">
                 {action.actionLabel}
               </Link>
             </article>
@@ -113,7 +142,6 @@ export default function HomePage() {
         <div className="card-grid three-up">
           {communityHighlights.map((highlight) => (
             <article className="info-card" key={highlight.title}>
-              <p className="card-label">Visitor reassurance</p>
               <h3>{highlight.title}</h3>
               <p>{highlight.description}</p>
             </article>
@@ -134,15 +162,41 @@ export default function HomePage() {
       </Section>
 
       <Section
+        eyebrow="Service highlights"
+        title="A quick look at what Sunday feels like"
+        intro="These short service captures give a clearer sense of the worship, people, and atmosphere of a Sunday gathering at Renewed Life."
+      >
+        <div className="gallery-grid gallery-grid-three">
+          {serviceHighlightClips.map((clip) => (
+            <ServiceHighlightCard clip={clip} key={clip.src} />
+          ))}
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Why Renewed Life"
         title="More than a service, a church family growing in Christ"
         intro="These core convictions shape how we welcome people, disciple believers, and build a healthy church in Dube, Soweto."
       >
         <div className="card-grid three-up">
-          {coreValues.map((value) => (
-            <article className="value-card" key={value.title}>
-              <span className="value-pill">{value.title}</span>
-              <p>{value.description}</p>
+          {homepageCoreValues.map((value) => (
+            <article className="value-card value-card-flip" key={value.title} tabIndex={0}>
+              <div className="value-card-flip-inner">
+                <div className="value-card-face value-card-front">
+                  <span className="value-pill">{value.title}</span>
+                  <h3>{value.title}</h3>
+                  <p>{value.description}</p>
+                </div>
+
+                <div className="value-card-face value-card-back">
+                  <h3>{value.title}</h3>
+                  <ul className="value-scripture-list">
+                    {value.scriptures.map((scripture) => (
+                      <li key={scripture}>{scripture}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </article>
           ))}
         </div>
@@ -152,10 +206,10 @@ export default function HomePage() {
         eyebrow="Our story"
         title="Built with faith, growing with purpose"
         intro="Renewed Life began with a clear call from God and continues to grow as a church committed to the Word, the Spirit, and genuine Christian community."
+        warm
       >
         <div className="split story-layout">
           <article className="info-card wide-panel story-anchor-card">
-            <p className="card-label">Church credibility</p>
             <h3>A local church with a clear foundation</h3>
             <p>
               What began with simple faith and a clear call from God has grown into a church family rooted in the Word, the Spirit, prayer, and genuine Christian fellowship.
@@ -207,11 +261,11 @@ export default function HomePage() {
       >
         <div className="card-grid three-up">
           {sermonHighlights.slice(0, 3).map((sermon) => (
-            <article className="sermon-card" key={sermon.title}>
+            <article className="sermon-card homepage-sermon-card" key={sermon.title}>
               <p className="mini-label">{sermon.type}</p>
               <h3>{sermon.title}</h3>
               <p>{sermon.summary}</p>
-              <Link href="/sermons" className="button button-secondary button-sm">
+              <Link href="/sermons" className="button button-secondary button-sm homepage-sermon-button">
                 Browse sermons
               </Link>
             </article>

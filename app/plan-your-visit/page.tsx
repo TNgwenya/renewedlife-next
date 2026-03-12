@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
@@ -89,15 +90,19 @@ export default function PlanYourVisitPage() {
             </ul>
           </article>
 
-          <article className="info-card">
+          <article className="info-card visit-location-card">
             <p className="card-label">Location</p>
             <h3>{churchInfo.venue}</h3>
+            
             <p>
               {churchInfo.addressLine1}
               <br />
               {churchInfo.addressLine2}
               <br />
               {churchInfo.addressLine3}
+            </p>
+            <p className="photo-note">
+              A quick venue view to help first-time guests arrive with more confidence.
             </p>
             <a
               href={churchInfo.mapHref}
@@ -137,7 +142,7 @@ export default function PlanYourVisitPage() {
         eyebrow="What to expect"
         title="A welcoming, Christ-centered experience"
         subtitle="We want you and your family to feel comfortable, prepared, and spiritually encouraged from the moment you arrive."
-        dark
+        warm
       >
         <div className="card-grid card-grid-2">
           <article className="info-card">
@@ -235,6 +240,7 @@ export default function PlanYourVisitPage() {
         eyebrow="Guest response"
         title="Let us know you are coming"
         subtitle={`Fill in a few details and your visitor enquiry will go directly to ${churchInfo.email}.`}
+        muted
       >
         <VisitorInterestForm
           endpoint={formspreeEndpoint}

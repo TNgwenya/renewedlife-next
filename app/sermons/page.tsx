@@ -13,6 +13,7 @@ import {
   sermonStartHere,
   sermonTypes,
   socialLinks,
+  videoClips,
 } from '../../lib/siteContent';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -39,6 +40,8 @@ export default function SermonsPage() {
     })
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
   const facebookLink = socialLinks.find((link) => link.label === 'Facebook');
+  const featuredClip =
+    videoClips.find((clip) => clip.useCase === 'Long-form sermon media') ?? videoClips[0];
 
   return (
     <>
@@ -76,16 +79,31 @@ export default function SermonsPage() {
           subtitle={featured.summary}
         >
           <div className="featured-sermon">
-            {featured.thumbnail ? (
-              <div className="featured-sermon-image">
+            <div className="featured-sermon-image featured-sermon-media">
+              {featuredClip ? (
+                <>
+                  <div className="media-frame video-showcase-frame featured-sermon-video-frame">
+                    <video
+                      className="video-cover"
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={featuredClip.poster}
+                    >
+                      <source src={featuredClip.src} type={featuredClip.type} />
+                    </video>
+                  </div>
+                  <p className="photo-note">{featuredClip.summary}</p>
+                </>
+              ) : featured.thumbnail ? (
                 <Image
                   src={featured.thumbnail}
                   alt={featured.title}
                   width={1200}
                   height={800}
                 />
-              </div>
-            ) : null}
+              ) : null}
+            </div>
 
             <div className="featured-sermon-copy">
               <p className="card-label">{featured.type}</p>
@@ -158,7 +176,7 @@ export default function SermonsPage() {
         eyebrow="Where to watch"
         title="Stay connected to the teaching ministry"
         subtitle="Watch full messages, follow new uploads, and stay connected to the teaching shaping the life of the church."
-        dark
+        warm
       >
         <div className="card-grid card-grid-3">
           <article className="info-card">

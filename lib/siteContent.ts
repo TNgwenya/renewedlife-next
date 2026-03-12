@@ -290,7 +290,7 @@ export const sermonLibrary = [
     type: 'Sunday Service',
     summary: 'A message on the goodness of God and the grace He shows even through flawed and unexpected people.',
     href: 'https://www.youtube.com/watch?v=YpCqxgKHbSU',
-    thumbnail: '/images/worship/worship-01.jpg',
+    thumbnail: '/images/worship.jpeg',
   },
   {
     title: 'Woman Your Faith Is Great',
@@ -300,7 +300,7 @@ export const sermonLibrary = [
     type: 'Sunday Service',
     summary: 'A sermon on bold and persevering faith, showing how trust in Jesus draws out His compassion and power.',
     href: 'https://www.youtube.com/watch?v=WLXo5J24cyE',
-    thumbnail: '/images/worship/worship-02.jpg',
+    thumbnail: '/images/worship-2.jpeg',
   },
   {
     title: 'Bible Study',
@@ -310,7 +310,7 @@ export const sermonLibrary = [
     type: 'Bible Study',
     summary: 'Midweek teaching designed to help the church go deeper in Scripture, prayer, and day-by-day discipleship.',
     href: youtubeHref,
-    thumbnail: '/images/worship/worship-03.jpg',
+    thumbnail: '/images/homepage/cong-front-1.jpg',
   },
   {
     title: 'Recent Teaching Replay',
@@ -320,7 +320,7 @@ export const sermonLibrary = [
     type: 'Special Service',
     summary: 'A recent service replay for those who want to revisit a message, share it with someone, or catch up after missing a gathering.',
     href: youtubeHref,
-    thumbnail: '/images/worship/worship-04.jpg',
+    thumbnail: '/images/pastor/pastor-1.jpg',
   },
 ];
 
@@ -369,41 +369,41 @@ export const communityHighlights = [
 
 export const worshipGallery = [
   {
-    src: '/images/worship/cong-2.JPG',
-    alt: 'Wide congregation worship moment at Renewed Life International.',
+    src: '/images/worship.jpeg',
+    alt: 'Congregation in worship at Renewed Life International.',
     title: 'Worship that fills the room',
-    summary: 'A broad worship moment that communicates spiritual hunger, corporate praise, and the atmosphere of gathered church life.',
+    summary: 'A strong worship image that immediately communicates reverence, expectancy, and gathered praise.',
   },
   {
-    src: '/images/worship/cong-3.jpg',
-    alt: 'Congregation engaged during worship at Renewed Life International.',
+    src: '/images/worship-2.jpeg',
+    alt: 'Church family engaged during worship at Renewed Life International.',
     title: 'A live, Spirit-filled atmosphere',
-    summary: 'A picture of worship that helps people imagine warmth, expectancy, and active participation in the room.',
+    summary: 'A worship moment that feels alive, participatory, and spiritually grounded without losing warmth.',
+  },
+  {
+    src: '/images/lifted-hands-1.jpg',
+    alt: 'Lifted hands during worship at Renewed Life International.',
+    title: 'Real moments of response',
+    summary: 'An expressive image that helps visitors imagine heartfelt worship and visible spiritual engagement.',
   },
   {
     src: '/images/homepage/cong-front-1.jpg',
-    alt: 'Front-facing congregation worship moment at Renewed Life.',
-    title: 'Real moments from church life',
-    summary: 'An honest church-life image that shows people gathered in faith, family, and attentive worship.',
-  },
-  {
-    src: '/images/worship/cong-front-2.jpg',
-    alt: 'Gathered worship and praise at Renewed Life International.',
+    alt: 'Front-facing congregation moment at Renewed Life.',
     title: 'Gathered in worship and prayer',
-    summary: 'A strong supporting image that reflects the prayerful and worship-filled culture of the church.',
+    summary: 'A front-facing congregation image that reflects welcome, attentiveness, and the culture of gathered worship.',
   },
 ];
 
 export const flagshipPhotos = [
   {
-    src: '/images/worship/cong-2.JPG',
-    alt: 'Wide congregation worship scene at Renewed Life International.',
+    src: '/images/homepage/cong-1.jpg',
+    alt: 'Congregation gathered during worship at Renewed Life International.',
     title: 'This church is alive',
     summary: 'A flagship congregation-wide worship moment that immediately communicates energy, reverence, and spiritual life.',
   },
   {
-    src: '/images/homepage/cong-1.jpg',
-    alt: 'Congregation gathered during worship at Renewed Life.',
+    src: '/images/worship.jpeg',
+    alt: 'Worship at Renewed Life International during a live service.',
     title: 'People are welcome here',
     summary: 'A warm room shot that helps first-time visitors imagine themselves in the space.',
   },
@@ -417,8 +417,8 @@ export const flagshipPhotos = [
 
 export const visitorGallery = [
   {
-    src: '/images/homepage/cong-front-1.jpg',
-    alt: 'Front congregation view during worship at Renewed Life.',
+    src: '/images/garage-venue.jpeg',
+    alt: 'Venue exterior or arrival view connected to Renewed Life International.',
     title: 'A welcoming Sunday gathering',
   },
   {
@@ -427,13 +427,13 @@ export const visitorGallery = [
     title: 'A room filled with faith and family',
   },
   {
-    src: '/images/sunday-school.jpg',
-    alt: 'Children’s ministry or Sunday school moment at Renewed Life.',
+    src: '/images/sunday-school-1.jpg',
+    alt: 'Children’s ministry moment at Renewed Life International.',
     title: 'A place for families and children',
   },
   {
-    src: '/images/worship/cong-front-2.jpg',
-    alt: 'Worship scene from the front of the room at Renewed Life.',
+    src: '/images/worship-2.jpeg',
+    alt: 'Worship scene from a Renewed Life service.',
     title: 'Moments of worship and prayer',
   },
 ];
@@ -485,26 +485,50 @@ export const ministryGallery = [
     summary: 'A strong supporting image for women’s ministry and event promotion.',
   },
   {
-    src: '/images/sunday-school.jpg',
+    src: '/images/sunday-school-1.jpg',
     alt: 'Children’s ministry or Sunday school photo.',
     title: 'Children’s Ministry',
     summary: 'A reassuring image that helps families imagine a safe, joyful children’s environment.',
   },
   {
-    src: '/images/worship/cong-3.jpg',
+    src: '/images/worship-2.jpeg',
     alt: 'Congregation engaged in worship at Renewed Life International.',
     title: 'Music and worship ministry',
     summary: 'Useful for worship, youth, and Sunday atmosphere sections.',
   },
 ];
 
+export const serviceHighlightClips = [
+  {
+    src: '/images/service-highlights-3.MP4',
+    type: 'video/mp4',
+    title: 'A Sunday filled with life',
+    summary: 'A service capture highlight that helps visitors see the atmosphere, worship, and gathered life of the room.',
+    poster: '/images/homepage/cong-1.jpg',
+  },
+  {
+    src: '/images/service-highlights-2.MOV',
+    type: 'video/quicktime',
+    title: 'A room alive with worship',
+    summary: 'A second service capture moment showing the warmth, participation, and energy of a Sunday gathering.',
+    poster: '/images/worship-2.jpeg',
+  },
+  {
+    src: '/images/service-highlight-1.MOV',
+    type: 'video/quicktime',
+    title: 'People gathering in faith',
+    summary: 'A third service capture clip that adds another real snapshot of worship, people, and the feel of the service.',
+    poster: '/images/worship.jpeg',
+  },
+];
+
 export const videoClips = [
   {
-    src: '/images/homepage/cong-praise-2.MOV',
-    type: 'video/quicktime',
-    title: 'Homepage worship moment',
-    summary: 'A short congregation praise clip that works well as a living first impression on the homepage.',
-    poster: '/images/worship/cong-2.JPG',
+    src: '/images/Welcome-to -renewed.MP4',
+    type: 'video/mp4',
+    title: 'Welcome to Renewed Life',
+    summary: 'A welcome clip that introduces the warmth and atmosphere of Renewed Life from the first frame.',
+    poster: '/images/homepage/cong-1.jpg',
     useCase: 'Homepage flagship video',
   },
   {
@@ -512,7 +536,7 @@ export const videoClips = [
     type: 'video/quicktime',
     title: 'Worship atmosphere clip',
     summary: 'A short worship clip that can support sermons, media, and social promotion sections.',
-    poster: '/images/worship/cong-front-2.jpg',
+    poster: '/images/worship-2.jpeg',
     useCase: 'Sermons or media preview',
   },
   {

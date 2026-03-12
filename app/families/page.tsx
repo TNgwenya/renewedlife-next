@@ -66,7 +66,7 @@ export default function FamiliesPage() {
         eyebrow="Sunday guidance"
         title="How to make your first family visit easier"
         subtitle="A few small steps can make the morning feel much simpler, especially if your children are visiting a new church environment."
-        dark
+        warm
       >
         <div className="card-grid card-grid-3">
           <article className="info-card">
