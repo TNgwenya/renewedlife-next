@@ -646,6 +646,11 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   gap: 1rem;
 }
 
+.story-anchor-image-frame {
+  min-height: 390px;
+  margin-top: 0.2rem;
+}
+
 .homepage-actions-card {
   display: flex;
   flex-direction: column;

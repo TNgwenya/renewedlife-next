@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import CtaBand from '../components/CtaBand';
 import ServiceHighlightCard from '../components/ServiceHighlightCard';
@@ -217,6 +218,15 @@ export default function HomePage() {
             <Link href="/about" className="text-link">
               Read our story →
             </Link>
+            <div className="media-frame story-anchor-image-frame">
+              <Image
+                src="/images/garage-venue.jpeg"
+                alt="Garage venue image connected to the early story of Renewed Life International."
+                fill
+                className="media-cover"
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
           </article>
 
           <div className="stack-grid story-moment-stack">
