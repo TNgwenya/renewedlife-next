@@ -7,7 +7,7 @@ import { buildPageMetadata } from '../../lib/seo';
 import {
   churchInfo,
   ministries,
-  ministryGallery,
+  ministryLifeGallery,
   outreachGallery,
 } from '../../lib/siteContent';
 
@@ -51,33 +51,31 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Ministry directory"
         title="Spaces to grow, belong, and serve"
-        intro="Each ministry below explains who it serves, what happens, when it meets, and the clearest next step for getting connected."
+        intro="Each ministry below gives a clearer picture of who it serves, what the rhythm looks like, and the simplest next step for getting connected."
       >
-        <div className="card-grid card-grid-3">
+        <div className="card-grid card-grid-2 ministries-directory-grid">
           {ministries.map((ministry) => (
-            <article className="info-card" key={ministry.title}>
-              <p className="card-label">{ministry.audience}</p>
+            <article className="info-card ministries-directory-card" key={ministry.title}>
+              <div className="ministries-directory-head">
+                <p className="card-label">{ministry.audience}</p>
+                <span className="status-pill ministries-directory-pill">{ministry.rhythm}</span>
+              </div>
+
               <h3>{ministry.title}</h3>
               <p>{ministry.description}</p>
 
-              <div className="meta-list">
-                <div>
-                  <strong>Who it is for:</strong> {ministry.audience}
-                </div>
-                <div>
-                  <strong>What happens:</strong> {ministry.whatHappens}
-                </div>
-                <div>
-                  <strong>When to join:</strong> {ministry.rhythm}
-                </div>
-                <div>
-                  <strong>Next step:</strong> {ministry.cta}
-                </div>
+              <div className="ministries-directory-meta">
+                <article className="ministries-directory-panel">
+                  <p className="card-label">What happens</p>
+                  <p>{ministry.whatHappens}</p>
+                </article>
+                <article className="ministries-directory-panel">
+                  <p className="card-label">Next step</p>
+                  <p>{ministry.nextStepDescription}</p>
+                </article>
               </div>
 
-              <p>{ministry.nextStepDescription}</p>
-
-              <a href={ministry.contactHref} className="button button-secondary button-sm" target="_blank" rel="noreferrer">
+              <a href={ministry.contactHref} className="button button-secondary button-sm ministries-directory-button" target="_blank" rel="noreferrer">
                 {ministry.cta}
               </a>
             </article>
@@ -87,12 +85,12 @@ export default function MinistriesPage() {
 
       <Section
         eyebrow="Ministry life"
-        title="What connection looks like"
-        intro="Ministry life at Renewed Life is relational, prayerful, and shaped by genuine community."
+        title="What ministry life feels like"
+        intro="Ministry life at Renewed Life is relational, prayerful, and built around helping people move from attendance into real belonging."
         warm
       >
-        <div className="gallery-grid">
-          {ministryGallery.map((image) => (
+        <div className="gallery-grid ministries-life-grid">
+          {ministryLifeGallery.map((image) => (
             <article className="gallery-card" key={image.title}>
               <div className="gallery-image-wrap">
                 <Image
@@ -104,7 +102,7 @@ export default function MinistriesPage() {
                 />
               </div>
               <div className="gallery-copy">
-                <p className="card-label">Ministry life</p>
+                <p className="card-label">{image.label}</p>
                 <h3>{image.title}</h3>
                 <p>{image.summary}</p>
               </div>
@@ -141,11 +139,11 @@ export default function MinistriesPage() {
       <Section
         eyebrow="Beyond the walls"
         title="Service and outreach"
-        intro="Church life should overflow into care, presence, and impact in the wider community."
+        intro="Church life should overflow into care, presence, witness, and visible impact in the wider community."
         warm
       >
-        <div className="gallery-grid">
-          {outreachGallery.slice(3, 5).map((image) => (
+        <div className="gallery-grid ministries-outreach-grid">
+          {outreachGallery.map((image) => (
             <article className="gallery-card" key={image.title}>
               <div className="gallery-image-wrap">
                 <Image
@@ -157,6 +155,7 @@ export default function MinistriesPage() {
                 />
               </div>
               <div className="gallery-copy">
+                <p className="card-label">Beyond the walls</p>
                 <h3>{image.title}</h3>
                 <p>{image.summary}</p>
               </div>

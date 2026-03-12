@@ -214,14 +214,28 @@ export default function AboutPage() {
         intro={homecellsDetails.intro}
       >
         <div className="info-card about-homecells-summary">
-          <p className="card-label">Homecells</p>
-          <h3>Grow in community beyond Sunday</h3>
-          <ul className="check-list">
+          <div className="about-homecells-summary-head">
+            <div>
+              <p className="card-label">Homecells</p>
+              <h3>{homecellsDetails.leadTitle}</h3>
+            </div>
+            <div className="status-pill about-homecells-pill">{homecellsDetails.scheduleLabel}</div>
+          </div>
+
+          <p className="about-homecells-lead">{homecellsDetails.leadBody}</p>
+
+          <div className="card-grid card-grid-3 about-homecells-points">
             {homecellsDetails.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
+              <article className="panel compact-panel about-homecells-point" key={highlight}>
+                <p>{highlight}</p>
+              </article>
             ))}
-          </ul>
-          <p>{homecellsDetails.schedule}</p>
+          </div>
+
+          <div className="about-homecells-footer">
+            <p>{homecellsDetails.schedule}</p>
+            <p>{homecellsDetails.note}</p>
+          </div>
         </div>
 
         <div className="card-grid card-grid-3 about-homecell-grid">

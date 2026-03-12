@@ -1,38 +1,10 @@
 import type { Metadata } from 'next';
 import CtaBand from '../../components/CtaBand';
+import EventsCalendar from '../../components/EventsCalendar';
 import PageHero from '../../components/PageHero';
 import Section from '../../components/Section';
 import { buildPageMetadata } from '../../lib/seo';
 import { churchInfo, upcomingEvents } from '../../lib/siteContent';
-
-const calendarWeekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-type CalendarEvent = {
-  day: number;
-  title: string;
-  badge?: string;
-};
-
-function buildCalendarMonth(year: number, monthIndex: number, events: CalendarEvent[]) {
-  const firstDay = new Date(year, monthIndex, 1).getDay();
-  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-  const eventMap = new Map(events.map((event) => [event.day, event]));
-  const cells: Array<{ day?: number; event?: CalendarEvent }> = [];
-
-  for (let index = 0; index < firstDay; index += 1) {
-    cells.push({});
-  }
-
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    cells.push({ day, event: eventMap.get(day) });
-  }
-
-  while (cells.length % 7 !== 0) {
-    cells.push({});
-  }
-
-  return cells;
-}
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Events',
@@ -47,18 +19,6 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function EventsPage() {
-  const marchEvents = buildCalendarMonth(2026, 2, [
-    { day: 14, title: 'Youth Connect', badge: 'Youth' },
-    { day: 20, title: 'Night Prayer', badge: 'Prayer' },
-  ]);
-  const aprilEvents = buildCalendarMonth(2026, 3, [
-    { day: 1, title: 'Passover Conference opens', badge: 'Conference' },
-    { day: 2, title: 'Passover Conference', badge: 'Conference' },
-    { day: 3, title: 'Passover Conference', badge: 'Conference' },
-    { day: 4, title: 'Passover Conference', badge: 'Conference' },
-    { day: 5, title: 'Passover Conference closes', badge: 'Conference' },
-  ]);
-
   return (
     <main>
       <PageHero
@@ -76,76 +36,10 @@ export default function EventsPage() {
       <Section
         eyebrow="Calendar"
         title="See the next gatherings on the calendar"
-        subtitle="A quick calendar view makes it easier to spot key dates and plan ahead, similar to the clear event rhythm used on Meta Church-style pages."
+        subtitle="Browse the featured gatherings month by month, with the calendar and agenda updating automatically from the live event list below."
         muted
       >
-        <div className="events-calendar-grid">
-          <article className="panel events-calendar-card">
-            <div className="events-calendar-head">
-              <p className="card-label">Month view</p>
-              <h3>March 2026</h3>
-            </div>
-            <div className="events-calendar-weekdays">
-              {calendarWeekdays.map((weekday) => (
-                <span key={weekday}>{weekday}</span>
-              ))}
-            </div>
-            <div className="events-calendar-days">
-              {marchEvents.map((cell, index) => (
-                <div
-                  className={`events-calendar-day${cell.event ? ' events-calendar-day-active' : ''}${!cell.day ? ' events-calendar-day-empty' : ''}`}
-                  key={`march-${cell.day ?? 'empty'}-${index}`}
-                >
-                  {cell.day ? <span className="events-calendar-date">{cell.day}</span> : null}
-                  {cell.event ? (
-                    <>
-                      <strong>{cell.event.badge}</strong>
-                      <small>{cell.event.title}</small>
-                    </>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <article className="panel events-calendar-card">
-            <div className="events-calendar-head">
-              <p className="card-label">Month view</p>
-              <h3>April 2026</h3>
-            </div>
-            <div className="events-calendar-weekdays">
-              {calendarWeekdays.map((weekday) => (
-                <span key={weekday}>{weekday}</span>
-              ))}
-            </div>
-            <div className="events-calendar-days">
-              {aprilEvents.map((cell, index) => (
-                <div
-                  className={`events-calendar-day${cell.event ? ' events-calendar-day-active' : ''}${!cell.day ? ' events-calendar-day-empty' : ''}`}
-                  key={`april-${cell.day ?? 'empty'}-${index}`}
-                >
-                  {cell.day ? <span className="events-calendar-date">{cell.day}</span> : null}
-                  {cell.event ? (
-                    <>
-                      <strong>{cell.event.badge}</strong>
-                      <small>{cell.event.title}</small>
-                    </>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </article>
-        </div>
-
-        <div className="three-col events-calendar-agenda">
-          {upcomingEvents.map((event) => (
-            <article key={`${event.title}-calendar`} className="panel compact-panel">
-              <p className="card-label">{event.date}</p>
-              <h3>{event.title}</h3>
-              <p>{event.time} · {event.venue}</p>
-            </article>
-          ))}
-        </div>
+        <EventsCalendar events={upcomingEvents} />
       </Section>
 
       <Section

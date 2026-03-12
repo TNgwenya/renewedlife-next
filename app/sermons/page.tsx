@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CtaBand from '../../components/CtaBand';
 import PageHero from '../../components/PageHero';
+import SermonLibraryCarousel from '../../components/SermonLibraryCarousel';
 import SermonCard from '../../components/SermonCard';
 import Section from '../../components/Section';
 import { buildPageMetadata } from '../../lib/seo';
@@ -239,22 +240,7 @@ export default function SermonsPage() {
         subtitle="Browse Sunday services, Bible studies, and special messages with clear metadata and direct watch links."
         dark
       >
-        <div className="card-grid card-grid-3">
-          {sermonLibrary.map((sermon) => (
-            <SermonCard
-              key={`${sermon.title}-${sermon.date}-archive`}
-              title={sermon.title}
-              speaker={sermon.speaker}
-              date={sermon.date}
-              series={sermon.series}
-              type={sermon.type}
-              summary={sermon.summary}
-              href={sermon.href}
-              thumbnail={sermon.thumbnail}
-              compact
-            />
-          ))}
-        </div>
+        <SermonLibraryCarousel sermons={sermonLibrary} />
       </Section>
 
       <CtaBand

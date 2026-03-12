@@ -510,6 +510,51 @@ export const ministryGallery = [
   },
 ];
 
+export const ministryLifeGallery = [
+  {
+    src: '/images/womens-conf-1.jpg',
+    alt: 'Women gathered together during a Renewed Life ministry moment.',
+    title: 'Spaces where people are strengthened',
+    summary: 'Ministry life creates room for prayer, encouragement, and spiritual growth that feels personal and relational.',
+    label: 'Community',
+  },
+  {
+    src: '/images/women-conf-2.jpg',
+    alt: 'Renewed Life members engaging during a ministry gathering.',
+    title: 'Friendships that carry faith forward',
+    summary: 'People are not meant to grow alone. These gatherings help friendships deepen around Christ, prayer, and shared life.',
+    label: 'Discipleship',
+  },
+  {
+    src: '/images/sunday-school-1.jpg',
+    alt: 'Children participating in church life at Renewed Life.',
+    title: 'Care for every generation',
+    summary: 'From children to seniors, ministry life at Renewed Life is designed to include, strengthen, and serve every stage of life.',
+    label: 'Family',
+  },
+  {
+    src: '/images/homepage/cong-front-1.jpg',
+    alt: 'Front-facing congregation moment at Renewed Life International.',
+    title: 'Gathered around the Word',
+    summary: 'Church ministries keep people anchored in Scripture and connected to the life of the church beyond one weekly service.',
+    label: 'Word',
+  },
+  {
+    src: '/images/worship/cong-3.jpg',
+    alt: 'Congregation worshipping together at Renewed Life.',
+    title: 'Worship with living faith',
+    summary: 'Worship, service, and ministry all flow from a church family that wants to stay close to Jesus and alive to His presence.',
+    label: 'Worship',
+  },
+  {
+    src: '/images/worship/cong-front-2.jpg',
+    alt: 'Congregation gathered in a Renewed Life worship service.',
+    title: 'A church family in motion',
+    summary: 'Ministry life makes it easier to move from attending to belonging, serving, and building real spiritual roots.',
+    label: 'Belonging',
+  },
+];
+
 export const churchLifeGallery = [
   {
     src: '/images/homepage/cong-1.jpg',
@@ -804,12 +849,17 @@ export const homecellsDetails = {
   title: 'Homecells',
   intro:
     'Homecells are where church life becomes more personal. They give people a midweek space for prayer, Scripture, encouragement, and genuine connection in a welcoming home setting.',
+  leadTitle: 'Grow in community beyond Sunday',
+  leadBody:
+    'Homecells help people move from attending a service to becoming known, supported, and spiritually strengthened in the life of the church.',
   highlights: [
     'A place to ask questions, share burdens, and grow in faith with others.',
     'A practical way to build friendships and stay connected beyond Sunday.',
     'Centered on the Word, prayer, mutual care, and steady discipleship.',
   ],
   schedule: 'Homecells meet every Tuesday from 18h00 to 19h15.',
+  scheduleLabel: 'Weekly rhythm',
+  note: 'Whether you are new to church life or looking for deeper connection, homecells offer a smaller, warmer place to grow with others.',
   locationCards: [
     {
       title: 'Mofolo',

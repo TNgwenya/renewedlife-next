@@ -941,6 +941,95 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   margin-top: auto;
 }
 
+.sermon-library-carousel {
+  display: grid;
+  gap: 1rem;
+}
+
+.sermon-library-carousel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sermon-library-carousel-status {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sermon-library-carousel-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.sermon-library-carousel-button {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.sermon-library-carousel-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.sermon-library-carousel-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sermon-library-carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2rem) / 3);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
+}
+
+.sermon-library-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.sermon-library-carousel-slide {
+  scroll-snap-align: start;
+}
+
+.sermon-library-carousel-slide .sermon-card {
+  height: 100%;
+}
+
+.sermon-library-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.sermon-library-carousel-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.sermon-library-carousel-dot.is-active {
+  background: var(--gold-soft);
+  transform: scale(1.08);
+}
+
 .sermon-card-compact .sermon-thumb-frame {
   min-height: 180px;
 }
@@ -1052,6 +1141,51 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   margin-bottom: 1.4rem;
 }
 
+.about-homecells-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.about-homecells-summary-head h3 {
+  margin: 0.15rem 0 0;
+}
+
+.about-homecells-pill {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.about-homecells-lead {
+  max-width: 52ch;
+  color: var(--muted-strong);
+}
+
+.about-homecells-points {
+  margin-top: 1.1rem;
+  margin-bottom: 1.15rem;
+}
+
+.about-homecells-point {
+  min-height: 100%;
+}
+
+.about-homecells-point p {
+  margin: 0;
+}
+
+.about-homecells-footer {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 56rem;
+}
+
+.about-homecells-footer p {
+  margin: 0;
+}
+
 .about-homecell-grid {
   gap: 1rem;
 }
@@ -1078,8 +1212,9 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
 
 .events-calendar-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) minmax(19rem, 0.9fr);
   gap: 1.25rem;
+  align-items: start;
 }
 
 .events-calendar-card {
@@ -1087,9 +1222,85 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   gap: 1rem;
 }
 
+.events-calendar-toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.events-calendar-nav {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.events-calendar-button {
+  min-width: 7.25rem;
+}
+
+.ministries-directory-grid {
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+.ministries-directory-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+}
+
+.ministries-directory-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.ministries-directory-pill {
+  margin: 0;
+  text-align: center;
+}
+
+.ministries-directory-meta {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(111, 69, 30, 0.05);
+  border: 1px solid rgba(111, 69, 30, 0.08);
+}
+
+.ministries-directory-panel {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ministries-directory-panel p {
+  margin: 0;
+}
+
+.ministries-directory-button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.ministries-life-grid,
+.ministries-outreach-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .events-calendar-head {
   display: grid;
   gap: 0.35rem;
+}
+
+.events-calendar-caption {
+  margin: 0;
+  color: var(--muted-strong);
+  max-width: 32rem;
 }
 
 .events-calendar-head h3 {
@@ -1123,6 +1334,30 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   gap: 0.25rem;
 }
 
+.events-calendar-event-stack {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.events-calendar-event-chip {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(165, 111, 57, 0.12);
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.events-calendar-event-more {
+  color: var(--muted-strong);
+}
+
 .events-calendar-day strong,
 .events-calendar-day small {
   display: block;
@@ -1148,6 +1383,10 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   background: linear-gradient(180deg, rgba(255, 248, 233, 0.98), rgba(247, 239, 227, 0.95));
 }
 
+.events-calendar-day-today {
+  box-shadow: inset 0 0 0 1px rgba(111, 69, 30, 0.2);
+}
+
 .events-calendar-day-empty {
   background: transparent;
   border-style: dashed;
@@ -1155,7 +1394,45 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
 }
 
 .events-calendar-agenda {
-  margin-top: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.events-calendar-agenda-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.events-calendar-agenda-item {
+  display: grid;
+  gap: 0.95rem;
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(111, 69, 30, 0.08);
+  background: rgba(111, 69, 30, 0.04);
+}
+
+.events-calendar-agenda-copy {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.events-calendar-agenda-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.events-calendar-agenda-topline p,
+.events-calendar-agenda-copy h4,
+.events-calendar-agenda-copy p {
+  margin: 0;
+}
+
+.events-calendar-empty-state {
+  margin: 0;
+  color: var(--muted-strong);
 }
 
 .gallery-grid-three {
@@ -1839,15 +2116,77 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   .about-beliefs-grid,
   .about-leadership-grid,
   .events-calendar-grid,
+  .ministries-life-grid,
+  .ministries-outreach-grid,
   .gallery-grid,
   .featured-sermon,
   .form-grid {
     grid-template-columns: 1fr;
   }
 
+  .ministries-directory-meta {
+    padding: 0.9rem;
+  }
+
+  .events-calendar-toolbar {
+    flex-direction: column;
+  }
+
+  .events-calendar-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sermon-library-carousel-track {
+    grid-auto-columns: calc((100% - 1rem) / 2);
+  }
+
   .visit-expect-frame,
   .visit-kids-frame {
     aspect-ratio: 16 / 11;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-homecells-summary-head,
+  .ministries-directory-head {
+    flex-direction: column;
+  }
+
+  .events-calendar-weekdays span {
+    font-size: 0.72rem;
+  }
+
+  .events-calendar-day {
+    min-height: 74px;
+    padding: 0.45rem;
+  }
+
+  .events-calendar-event-chip {
+    padding-inline: 0.42rem;
+    font-size: 0.65rem;
+  }
+
+  .sermon-library-carousel-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sermon-library-carousel-controls {
+    width: 100%;
+  }
+
+  .sermon-library-carousel-button {
+    flex: 1;
+  }
+
+  .sermon-library-carousel-track {
+    grid-auto-columns: 100%;
+  }
+
+  .about-homecells-pill,
+  .ministries-directory-pill {
+    white-space: normal;
   }
 }
 
