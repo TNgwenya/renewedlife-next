@@ -7,6 +7,7 @@ import {
   churchInfo,
   churchStoryMoments,
   communityHighlights,
+  coreValues,
   homepageActions,
   ministries,
   serviceHighlightClips,
@@ -19,35 +20,6 @@ export default function HomePage() {
   const featuredMinistries = ministries.slice(0, 4);
   const homepageVideo =
     videoClips.find((clip) => clip.useCase === 'Homepage flagship video') ?? videoClips[0];
-  const homepageCoreValues = [
-    {
-      title: 'Believe',
-      description:
-        'We lead people to trust Jesus, stand on Scripture, and live by the power of the Holy Spirit.',
-      scriptures: [
-        'Trust in the Lord with all your heart. Proverbs 3:5',
-        'Your word is a lamp to my feet and a light to my path. Psalm 119:105',
-      ],
-    },
-    {
-      title: 'Belong',
-      description:
-        'Church is family. We are building a spiritual home where every generation can be welcomed, known, and strengthened.',
-      scriptures: [
-        'So we, though many, are one body in Christ, and individually members one of another. Romans 12:5',
-        'How good and pleasant it is when brothers dwell in unity. Psalm 133:1',
-      ],
-    },
-    {
-      title: 'Become',
-      description:
-        'We want believers to grow into maturity, discover their God-given purpose, and live with courage and conviction.',
-      scriptures: [
-        'Until we all attain... to mature manhood, to the measure of the stature of the fullness of Christ. Ephesians 4:13',
-        'We are his workmanship, created in Christ Jesus for good works. Ephesians 2:10',
-      ],
-    },
-  ];
 
   return (
     <main>
@@ -180,7 +152,7 @@ export default function HomePage() {
         intro="These core convictions shape how we welcome people, disciple believers, and build a healthy church in Dube, Soweto."
       >
         <div className="card-grid three-up">
-          {homepageCoreValues.map((value) => (
+          {coreValues.map((value) => (
             <article className="value-card value-card-flip" key={value.title} tabIndex={0}>
               <div className="value-card-flip-inner">
                 <div className="value-card-face value-card-front">

@@ -7,13 +7,13 @@ import { buildPageMetadata } from '../../lib/seo';
 import {
   beliefs,
   churchInfo,
+  churchLifeGallery,
   churchStory,
   churchStoryMoments,
   coreValues,
+  homecellsDetails,
   leadershipHighlights,
   missionStatement,
-  outreachGallery,
-  worshipGallery,
   visionStatement,
 } from '../../lib/siteContent';
 
@@ -90,14 +90,27 @@ export default function AboutPage() {
       <Section
         eyebrow="Our values"
         title="The culture of Renewed Life"
-        intro="These values shape how we gather, lead, disciple, serve, and build community."
+        intro="These values shape how we gather, lead, disciple, serve, and build community. Hover or focus each card to see the Scripture behind it."
       >
         <div className="card-grid card-grid-3">
           {coreValues.map((value) => (
-            <article className="info-card" key={value.title}>
-              <p className="card-label">Core value</p>
-              <h3>{value.title}</h3>
-              <p>{value.description}</p>
+            <article className="value-card value-card-flip" key={value.title} tabIndex={0}>
+              <div className="value-card-flip-inner">
+                <div className="value-card-face value-card-front">
+                  <p className="card-label">Core value</p>
+                  <h3>{value.title}</h3>
+                  <p>{value.description}</p>
+                </div>
+
+                <div className="value-card-face value-card-back">
+                  <h3>{value.title}</h3>
+                  <ul className="value-scripture-list">
+                    {value.scriptures.map((scripture) => (
+                      <li key={scripture}>{scripture}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </article>
           ))}
         </div>
@@ -106,14 +119,28 @@ export default function AboutPage() {
       <Section
         eyebrow="What we believe"
         title="What we believe from Scripture"
-        intro="Our beliefs are rooted in Scripture and expressed in a practical, faith-filled way."
+        intro="Our beliefs are rooted in Scripture and expressed in a practical, faith-filled way. Hover or focus a card and the supporting verse will appear."
         muted
       >
-        <div className="card-grid card-grid-2">
+        <div className="card-grid card-grid-2 about-beliefs-grid">
           {beliefs.map((belief) => (
-            <article className="info-card" key={belief.title}>
-              <h3>{belief.title}</h3>
-              <p>{belief.description}</p>
+            <article className="value-card value-card-flip about-belief-card" key={belief.title} tabIndex={0}>
+              <div className="value-card-flip-inner">
+                <div className="value-card-face value-card-front">
+                  <p className="card-label">Belief</p>
+                  <h3>{belief.title}</h3>
+                  <p>{belief.description}</p>
+                </div>
+
+                <div className="value-card-face value-card-back">
+                  <h3>{belief.title}</h3>
+                  <ul className="value-scripture-list">
+                    {belief.scriptures.map((scripture) => (
+                      <li key={scripture}>{scripture}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </article>
           ))}
         </div>
@@ -124,9 +151,9 @@ export default function AboutPage() {
         title="Pastoral and ministry leadership"
         intro="Our leadership exists to serve the church, shepherd people well, and keep Jesus and His Word at the center of church life."
       >
-        <div className="card-grid card-grid-3">
+        <div className="about-leadership-grid">
           {leadershipHighlights.map((item) => (
-            <article className="gallery-card" key={item.title}>
+            <article className="gallery-card about-leadership-card" key={item.title}>
               {item.imageSrc ? (
                 <div className="gallery-image-wrap">
                   <Image
@@ -139,9 +166,15 @@ export default function AboutPage() {
                 </div>
               ) : null}
               <div className="gallery-copy">
-                <p className="card-label">Pastoral leadership</p>
+                <p className="card-label">{item.role}</p>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
+                <p>{item.extendedDescription}</p>
+                <ul className="stack-list about-leadership-list">
+                  {item.focusPoints.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
@@ -151,11 +184,11 @@ export default function AboutPage() {
       <Section
         eyebrow="Church life"
         title="Worship, family, and outreach"
-        intro="Renewed Life is not only a Sunday gathering. It is a living church family growing in worship, discipleship, and service."
+        intro="Renewed Life is not only a Sunday gathering. It is a living church family growing in worship, discipleship, service, and shared life through the week."
         warm
       >
         <div className="gallery-grid">
-          {worshipGallery.slice(2, 4).map((image) => (
+          {churchLifeGallery.map((image) => (
             <article className="gallery-card" key={image.title}>
               <div className="gallery-image-wrap">
                 <Image
@@ -172,24 +205,56 @@ export default function AboutPage() {
               </div>
             </article>
           ))}
+        </div>
+      </Section>
 
-          {outreachGallery.slice(0, 3).map((image) => (
-            <article className="gallery-card" key={image.title}>
-              <div className="gallery-image-wrap">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={900}
-                  height={700}
-                  className="gallery-image"
-                />
-              </div>
-              <div className="gallery-copy">
-                <h3>{image.title}</h3>
-                <p>{image.summary}</p>
+      <Section
+        eyebrow="Small groups"
+        title={homecellsDetails.title}
+        intro={homecellsDetails.intro}
+      >
+        <div className="info-card about-homecells-summary">
+          <p className="card-label">Homecells</p>
+          <h3>Grow in community beyond Sunday</h3>
+          <ul className="check-list">
+            {homecellsDetails.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
+          <p>{homecellsDetails.schedule}</p>
+        </div>
+
+        <div className="card-grid card-grid-3 about-homecell-grid">
+          {homecellsDetails.locationCards.map((card) => (
+            <article className="value-card value-card-flip about-homecell-card" key={card.title} tabIndex={0}>
+              <div className="value-card-flip-inner">
+                <div className="value-card-face value-card-front">
+                  <p className="card-label">{card.label}</p>
+                  <h3>{card.title}</h3>
+                </div>
+
+                <div className="value-card-face value-card-back">
+                  <p className="card-label">{card.leaderLabel}</p>
+                  <h3>{card.leaderTitle}</h3>
+                  <p>{card.leaderDescription}</p>
+                </div>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="hero-actions visit-expect-actions">
+          <a
+            href={homecellsDetails.ctaHref}
+            className="button button-secondary"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {homecellsDetails.ctaLabel}
+          </a>
+          <a href="/ministries" className="button button-ghost">
+            Explore ministries
+          </a>
         </div>
       </Section>
 

@@ -157,14 +157,26 @@ export const coreValues = [
   {
     title: "Believe",
     description: "We lead people to trust Jesus, stand on Scripture, and live by the power of the Holy Spirit.",
+    scriptures: [
+      'Trust in the Lord with all your heart. Proverbs 3:5',
+      'Your word is a lamp to my feet and a light to my path. Psalm 119:105',
+    ],
   },
   {
     title: "Belong",
     description: "Church is family. We are building a spiritual home where every generation can be welcomed, known, and strengthened.",
+    scriptures: [
+      'So we, though many, are one body in Christ, and individually members one of another. Romans 12:5',
+      'How good and pleasant it is when brothers dwell in unity. Psalm 133:1',
+    ],
   },
   {
     title: "Become",
     description: "We want believers to grow into maturity, discover their God-given purpose, and live with courage and conviction.",
+    scriptures: [
+      'Until we all attain... to mature manhood, to the measure of the stature of the fullness of Christ. Ephesians 4:13',
+      'We are his workmanship, created in Christ Jesus for good works. Ephesians 2:10',
+    ],
   },
 ];
 
@@ -498,6 +510,45 @@ export const ministryGallery = [
   },
 ];
 
+export const churchLifeGallery = [
+  {
+    src: '/images/homepage/cong-1.jpg',
+    alt: 'Congregation gathered together during a Renewed Life service.',
+    title: 'Sunday worship together',
+    summary: 'A room full of people lifting their hearts to God and gathering around His presence together.',
+  },
+  {
+    src: '/images/homepage/cong-front-1.jpg',
+    alt: 'Front-facing congregation moment during service at Renewed Life.',
+    title: 'Listening to the Word',
+    summary: 'Church life is shaped by clear preaching, attentive hearts, and a desire to grow in Scripture.',
+  },
+  {
+    src: '/images/lifted-hands-1.jpg',
+    alt: 'Lifted hands during worship at Renewed Life International.',
+    title: 'Moments of surrender',
+    summary: 'Our gatherings make room for heartfelt worship, prayer, and real response to God.',
+  },
+  {
+    src: '/images/sunday-school-1.jpg',
+    alt: 'Children gathered in a church ministry environment at Renewed Life.',
+    title: 'Families growing in faith',
+    summary: 'Children and parents are part of the life of the church, not separate from its care and vision.',
+  },
+  {
+    src: '/images/womens-conf-1.jpg',
+    alt: 'Women gathered in ministry at Renewed Life International.',
+    title: 'Women strengthened together',
+    summary: 'Church life includes spaces for women to be encouraged, discipled, and built up in community.',
+  },
+  {
+    src: '/images/open-air-evangelism.JPG',
+    alt: 'Renewed Life members engaged in evangelism in the community.',
+    title: 'Faith beyond the building',
+    summary: 'We want church life to spill into the community through witness, prayer, and practical love.',
+  },
+];
+
 export const serviceHighlightClips = [
   {
     src: '/images/service-highlights-3.MP4',
@@ -583,34 +634,58 @@ export const beliefs = [
   {
     title: "The Bible",
     description: "We believe the Bible is the inspired, authoritative, and life-giving Word of God.",
+    scriptures: [
+      'All Scripture is breathed out by God and profitable. 2 Timothy 3:16',
+    ],
   },
   {
     title: "God",
     description: "We believe in one true God, eternally existing as Father, Son, and Holy Spirit.",
+    scriptures: [
+      'The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all. 2 Corinthians 13:14',
+    ],
   },
   {
     title: "Jesus Christ",
     description: "We believe Jesus Christ is the Son of God, fully God and fully man, who died and rose again for our salvation.",
+    scriptures: [
+      'Christ died for our sins... he was buried... he was raised on the third day. 1 Corinthians 15:3-4',
+    ],
   },
   {
     title: "The Holy Spirit",
     description: "We believe the Holy Spirit empowers believers, transforms lives, and leads the church in truth and power.",
+    scriptures: [
+      'You will receive power when the Holy Spirit has come upon you. Acts 1:8',
+    ],
   },
   {
     title: "Salvation",
     description: "We believe salvation is by grace through faith in Jesus Christ alone.",
+    scriptures: [
+      'By grace you have been saved through faith. Ephesians 2:8-9',
+    ],
   },
   {
     title: "The Church",
     description: "We believe the church is the body of Christ, called to worship, discipleship, fellowship, service, and mission.",
+    scriptures: [
+      'Now you are the body of Christ and individually members of it. 1 Corinthians 12:27',
+    ],
   },
   {
     title: "Prayer",
     description: "We believe prayer is essential to the life of every believer and to the ministry of the church.",
+    scriptures: [
+      'Pray without ceasing. 1 Thessalonians 5:17',
+    ],
   },
   {
     title: "Resurrection and Eternal Life",
     description: "We believe in the resurrection of the dead, eternal life for those in Christ, and the final victory of God’s kingdom.",
+    scriptures: [
+      'I am the resurrection and the life. John 11:25',
+    ],
   },
 ];
 
@@ -705,15 +780,102 @@ export const socialLinks = [
 export const leadershipHighlights = [
   {
     title: "Pastor Thabang Ngwenya",
+    role: 'Lead Pastor',
     imageSrc: '/images/pastor/pastor-1.jpg',
     description:
       "Pastor Thabang Ngwenya serves as the lead pastor of Renewed Life International. His heart is to preach the Word faithfully, disciple people patiently, and see lives transformed by the power of Jesus Christ.",
+    extendedDescription:
+      'He carries a clear burden to see people grounded in Scripture, alive to the Holy Spirit, and equipped to live out their calling with maturity. His ministry is marked by biblical preaching, pastoral care, and a desire to build a healthy church that remains centered on Jesus.',
+    focusPoints: ['Biblical preaching', 'Discipleship and spiritual formation', 'Pastoral care and church health'],
   },
   {
     title: "Pastor Masetchaba “Zee” Ngwenya",
+    role: 'Pastor and ministry leader',
     imageSrc: '/images/pastor-zee.jpg',
     description:
       "Pastor Masetchaba “Zee” Ngwenya serves alongside Pastor Thabang with a deep love for people, worship, prayer, and spiritual growth. She has helped shape the warm and faith-filled culture that many people experience when they arrive at Renewed Life.",
+    extendedDescription:
+      'Her ministry carries warmth, strength, and sensitivity to people. She helps nurture an atmosphere where women, families, and first-time guests can feel welcomed, encouraged, and drawn closer to Christ through prayer, worship, and practical care.',
+    focusPoints: ['Prayer and worship', 'Pastoral encouragement', 'Welcoming and strengthening families'],
   },
 ];
+
+export const homecellsDetails = {
+  title: 'Homecells',
+  intro:
+    'Homecells are where church life becomes more personal. They give people a midweek space for prayer, Scripture, encouragement, and genuine connection in a welcoming home setting.',
+  highlights: [
+    'A place to ask questions, share burdens, and grow in faith with others.',
+    'A practical way to build friendships and stay connected beyond Sunday.',
+    'Centered on the Word, prayer, mutual care, and steady discipleship.',
+  ],
+  schedule: 'Homecells meet every Tuesday from 18h00 to 19h15.',
+  locationCards: [
+    {
+      title: 'Mofolo',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Ps Joseph',
+      leaderDescription: 'Contact: +27 84 409 5904',
+    },
+    {
+      title: 'Roodepoort',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Mamoruti Ngwenya',
+      leaderDescription: 'Contact: +27 73 743 8293',
+    },
+    {
+      title: 'Noordgesig',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Mrs Neliswa Lottering',
+      leaderDescription: 'Contact: +27 74 680 5461',
+    },
+    {
+      title: 'Jabulani',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Sis Amanda',
+      leaderDescription: 'Contact: +27 63 991 3072',
+    },
+    {
+      title: 'Dube',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Sis Yonela',
+      leaderDescription: 'Contact: +27 68 295 2405',
+    },
+    {
+      title: 'Orlando West',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Ms Nhlanhla',
+      leaderDescription: 'Contact: +27 73 490 6730',
+    },
+    {
+      title: 'Protea Glen',
+      label: 'Location',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Mr Ngwenya',
+      leaderDescription: 'Contact: +27 74 308 7540',
+    },
+    {
+      title: 'Orlando East',
+      label: 'Coming soon',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'Mam Zozo',
+      leaderDescription: 'Leader confirmed. Exact meeting details to be communicated.',
+    },
+    {
+      title: 'Meadowlands',
+      label: 'Coming soon',
+      leaderLabel: 'Leader details',
+      leaderTitle: 'To be communicated',
+      leaderDescription: 'Leader and meeting details will be shared once confirmed.',
+    },
+  ],
+  ctaLabel: 'Ask about a homecell',
+  ctaHref: `${churchInfo.whatsappBaseHref}?text=${encodeURIComponent('Hi Renewed Life, I would like more information about joining a homecell or small group.')}`,
+};
 

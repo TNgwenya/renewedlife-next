@@ -9,7 +9,6 @@ import { buildPageMetadata } from '../../lib/seo';
 import {
   churchInfo,
   formspreeEndpoint,
-  visitExpectations,
 } from '../../lib/siteContent';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -37,6 +36,39 @@ const firstVisitSteps = [
   {
     title: 'Take your next step',
     text: 'After the service, you can connect with someone from the team, ask questions, and find your next step in the church family.',
+  },
+];
+
+const visitFaqs = [
+  {
+    question: 'What should I wear?',
+    answer:
+      'Come as you are. You do not need special clothes to be welcomed at Renewed Life. Dress modestly, comfortably, and in a way that helps you feel at ease for church.',
+  },
+  {
+    question: 'What time should I arrive?',
+    answer:
+      'Arriving 10 to 15 minutes early is usually best. It gives you time to settle in, greet the team, and get comfortable before the service begins.',
+  },
+  {
+    question: 'What is the service like?',
+    answer:
+      'You can expect heartfelt worship, prayer, and Bible-based preaching that points people to Jesus and applies God’s Word to everyday life.',
+  },
+  {
+    question: 'What if I do not know anyone?',
+    answer:
+      'That is completely okay. Many people arrive not knowing anyone at first, and our desire is that you would be welcomed, helped, and treated like family from the moment you walk in.',
+  },
+  {
+    question: 'Will someone help me when I arrive?',
+    answer:
+      'Yes. Our welcome team can help you find your way, answer practical questions, and help you feel more relaxed if this is your first time visiting.',
+  },
+  {
+    question: 'Can I come even if I am still figuring out faith?',
+    answer:
+      'Absolutely. No matter where you are in life or faith, you are welcome here. We want every guest to encounter God, hear the truth of Scripture, and leave with hope and clarity.',
   },
 ];
 
@@ -69,6 +101,45 @@ export default function PlanYourVisitPage() {
           </a>
         </div>
       </PageHero>
+
+      <Section
+        eyebrow="What to expect"
+        title="A welcoming, Christ-centered experience"
+        subtitle="We want you and your family to feel welcomed, spiritually encouraged, and confident about what your first Sunday will be like."
+        warm
+      >
+        <div className="split visit-expect-section">
+          <article className="info-card visit-expect-copy">
+            <h3>From the moment you walk in, our desire is for you to encounter God in a real and life-changing way.</h3>
+            <p>
+              At Renewed Life, you will find people who care about where you have come from and who are willing to walk with you in the journey God is leading you on.
+            </p>
+            <p>
+              No matter where you are in life or faith, we want you to leave with renewed hope, clearer purpose, and the confidence that God is at work in your life. That is why our worship, prayer, and weekly preaching are centered on Scripture and grounded in practical truth for everyday living.
+            </p>
+            <div className="inline-actions visit-expect-actions">
+              <Link href="#guest-response" className="button button-secondary">
+                Let us know you are coming
+              </Link>
+              <Link href="#visit-faq" className="button button-ghost">
+                FAQs
+              </Link>
+            </div>
+          </article>
+
+          <article className="info-card visit-expect-media-card">
+            <div className="media-frame visit-expect-frame">
+              <Image
+                src="/images/visitor-welcome.JPG"
+                alt="A welcoming moment for visitors at Renewed Life International."
+                fill
+                className="media-cover"
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
+          </article>
+        </div>
+      </Section>
 
       <Section
         eyebrow="Visit essentials"
@@ -133,53 +204,9 @@ export default function PlanYourVisitPage() {
               >
                 Message on WhatsApp →
               </a>
-            </div>
-          </article>
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="What to expect"
-        title="A welcoming, Christ-centered experience"
-        subtitle="We want you and your family to feel comfortable, prepared, and spiritually encouraged from the moment you arrive."
-        warm
-      >
-        <div className="card-grid card-grid-2">
-          <article className="info-card">
-            <h3>What your first visit feels like</h3>
-            <ul className="check-list">
-              {visitExpectations.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="info-card">
-            <h3>Helpful answers</h3>
-            <div className="faq-stack">
-              <div>
-                <h4>What should I wear?</h4>
-                <p>
-                  Come as you are. You do not need to dress a certain way to be welcomed.
-                  Wear what is modest, comfortable, and appropriate for church, and come ready to receive.
-                </p>
-              </div>
-              <div>
-                <h4>What about children and families?</h4>
-                <p>
-                  Families are warmly welcome. We want parents and children to feel safe,
-                  seen, and guided clearly on arrival, with help from the team if you are unsure where to go.
-                </p>
-                <Link href="/families" className="text-link">
-                  Read the families guide
-                </Link>
-              </div>
-              <div>
-                <h4>What if church feels unfamiliar to me?</h4>
-                <p>
-                  You do not need to know the songs, the flow of the service, or what to do next before you arrive. We will help you feel at ease.
-                </p>
-              </div>
+              <Link href="#visit-faq" className="text-link">
+                FAQs →
+              </Link>
             </div>
           </article>
         </div>
@@ -202,52 +229,70 @@ export default function PlanYourVisitPage() {
       </Section>
 
       <Section
-        eyebrow="Need extra reassurance?"
-        title="A simple guide for nervous first-time guests"
-        subtitle="If you are feeling unsure, these are the small practical details that usually help the most."
+        eyebrow="What about kids?"
+        title="What about Children?"
       >
-        <div className="card-grid card-grid-3">
+        <div className="card-grid card-grid-2">
           <article className="info-card">
-            <p className="card-label">Arrival</p>
-            <h3>Come 10 to 15 minutes early</h3>
+            <h3>You can come as a family with confidence</h3>
             <p>
-              Arriving a little early gives you time to park, settle in, greet the team, and ask any practical questions before the service begins.
+              We know that visiting church with children can bring extra questions, and we want to make that easier for you. Our heart is that parents feel supported and children feel safe, welcomed, and cared for from the moment they arrive.
             </p>
-          </article>
-
-          <article className="info-card">
-            <p className="card-label">Support</p>
-            <h3>You do not need to figure it out alone</h3>
             <p>
-              If you need help finding your seat, understanding the flow of the service, or knowing what to do next, someone will gladly assist you.
-            </p>
-          </article>
-
-          <article className="info-card">
-            <p className="card-label">Families</p>
-            <h3>Parents and children are welcome</h3>
-            <p>
-              You are welcome to come as a family. If you arrive with children, the team can help you get oriented and feel settled quickly.
+              If you are unsure where to go, what the current children’s arrangements are, or how to settle in with your child, the team will gladly help you. You do not need to figure it out on your own.
             </p>
             <Link href="/families" className="text-link">
-              See family information
+              Read the families guide
             </Link>
+          </article>
+
+          <article className="info-card visit-kids-media-card">
+            <div className="media-frame visit-kids-frame">
+              <Image
+                src="/images/sunday-school-1.jpg"
+                alt="Children at Renewed Life International in a Sunday school setting."
+                fill
+                className="media-cover"
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
           </article>
         </div>
       </Section>
 
-      <Section
-        eyebrow="Guest response"
-        title="Let us know you are coming"
-        subtitle={`Fill in a few details and your visitor enquiry will go directly to ${churchInfo.email}.`}
-        muted
-      >
-        <VisitorInterestForm
-          endpoint={formspreeEndpoint}
-          email={churchInfo.email}
-          whatsappHref={churchInfo.whatsappVisitFollowupHref}
-        />
-      </Section>
+      <div id="visit-faq">
+        <Section
+          eyebrow="FAQ"
+          title="FAQs"
+          muted
+        >
+          <div className="faq-accordion">
+            {visitFaqs.map((faq) => (
+              <details className="faq-item" key={faq.question}>
+                <summary>{faq.question}</summary>
+                <div className="faq-answer">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      <div id="guest-response">
+        <Section
+          eyebrow="Guest response"
+          title="Let us know you are coming"
+          subtitle={`Fill in a few details and your visitor enquiry will go directly to ${churchInfo.email}.`}
+          muted
+        >
+          <VisitorInterestForm
+            endpoint={formspreeEndpoint}
+            email={churchInfo.email}
+            whatsappHref={churchInfo.whatsappVisitFollowupHref}
+          />
+        </Section>
+      </div>
 
       <CtaBand
         eyebrow="Still deciding?"

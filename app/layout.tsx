@@ -105,7 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   Watch Sermons
                 </Link>
                 <Link href="/plan-your-visit" className="button button-primary">
-                  Plan Your Visit
+                  I&apos;m New
                 </Link>
                 <MobileNav
                   navLinks={navLinks}

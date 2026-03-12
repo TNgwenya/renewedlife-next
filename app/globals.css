@@ -930,7 +930,8 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   }
 
   .value-card-back {
-    display: none;
+    display: flex;
+    margin-top: 0.85rem;
   }
 }
 
@@ -1003,6 +1004,158 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
 .gallery-grid {
   display: grid;
   gap: 1.25rem;
+}
+
+.about-beliefs-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.about-belief-card,
+.about-belief-card .value-card-flip-inner {
+  min-height: 200px;
+}
+
+.about-belief-card .value-card-face {
+  padding: 1rem;
+  gap: 0.55rem;
+}
+
+.about-leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.about-leadership-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-leadership-card .gallery-image-wrap {
+  aspect-ratio: 4 / 3;
+}
+
+.about-leadership-card .gallery-image {
+  height: 100%;
+}
+
+.about-leadership-list {
+  margin-top: 0.9rem;
+}
+
+.about-homecells-summary {
+  margin-bottom: 1.4rem;
+}
+
+.about-homecell-grid {
+  gap: 1rem;
+}
+
+.about-homecell-card,
+.about-homecell-card .value-card-flip-inner {
+  min-height: 165px;
+}
+
+.about-homecell-card .value-card-face {
+  padding: 1rem;
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+.about-homecell-card .value-card-front {
+  align-items: center;
+  text-align: center;
+}
+
+.about-homecell-card .value-card-back {
+  justify-content: center;
+}
+
+.events-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.events-calendar-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.events-calendar-head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.events-calendar-head h3 {
+  margin: 0;
+}
+
+.events-calendar-weekdays,
+.events-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.events-calendar-weekdays span {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--muted-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.events-calendar-day {
+  min-height: 88px;
+  padding: 0.55rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.85);
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+}
+
+.events-calendar-day strong,
+.events-calendar-day small {
+  display: block;
+}
+
+.events-calendar-day strong {
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+.events-calendar-day small {
+  line-height: 1.35;
+  color: var(--muted-strong);
+}
+
+.events-calendar-date {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.events-calendar-day-active {
+  border-color: rgba(200, 162, 77, 0.42);
+  background: linear-gradient(180deg, rgba(255, 248, 233, 0.98), rgba(247, 239, 227, 0.95));
+}
+
+.events-calendar-day-empty {
+  background: transparent;
+  border-style: dashed;
+  border-color: rgba(216, 200, 176, 0.7);
+}
+
+.events-calendar-agenda {
+  margin-top: 1.25rem;
 }
 
 .gallery-grid-three {
@@ -1503,6 +1656,79 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   gap: 1rem;
 }
 
+.visit-expect-section {
+  align-items: stretch;
+}
+
+.visit-expect-copy {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.visit-expect-actions {
+  margin-top: 0.35rem;
+}
+
+.visit-expect-media-card,
+.visit-kids-media-card {
+  padding: 0.9rem;
+}
+
+.visit-expect-frame,
+.visit-kids-frame {
+  min-height: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.faq-accordion {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.15rem 1.25rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--primary);
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-answer {
+  padding: 0 1.25rem 1.2rem;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1512,11 +1738,12 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
 .gallery-image-wrap {
   overflow: hidden;
   border-radius: 16px;
+  aspect-ratio: 4 / 3;
 }
 
 .gallery-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -1609,10 +1836,18 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
 @media (max-width: 900px) {
   .card-grid-2,
   .card-grid-3,
+  .about-beliefs-grid,
+  .about-leadership-grid,
+  .events-calendar-grid,
   .gallery-grid,
   .featured-sermon,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .visit-expect-frame,
+  .visit-kids-frame {
+    aspect-ratio: 16 / 11;
   }
 }
 
