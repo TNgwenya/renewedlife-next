@@ -2332,3 +2332,204 @@ h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; margin: 0; }
   max-width: 56ch;
   color: var(--muted);
 }
+
+@media (max-width: 640px) {
+  .site-header {
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 72px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 0.7rem;
+  }
+
+  .brand > div {
+    min-width: 0;
+  }
+
+  .brand-mark {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-title {
+    font-size: 0.98rem;
+    line-height: 1.12;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    gap: 0.65rem;
+  }
+
+  .header-actions .button {
+    min-height: 46px;
+    padding: 0.78rem 1rem;
+  }
+
+  .button,
+  .button-sm {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+    padding-inline: 1.05rem;
+  }
+
+  .hero-actions,
+  .hero-cta-row,
+  .page-hero-actions,
+  .page-hero-actions > .hero-actions,
+  .inline-actions,
+  .stack-actions,
+  .cta-band-actions,
+  .footer-action-row,
+  .submission-actions,
+  .section-actions {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .hero-actions > .button,
+  .hero-cta-row > .button,
+  .page-hero-actions > .button,
+  .page-hero-actions > .hero-actions > .button,
+  .inline-actions > .button,
+  .stack-actions > .button,
+  .cta-band-actions > .button,
+  .footer-action-row > .button,
+  .submission-actions > .button,
+  .section-actions > .button {
+    width: 100%;
+  }
+
+  .inline-actions > .text-link,
+  .stack-actions > .text-link,
+  .section-note .text-link,
+  .footer-list a,
+  .interactive-card h3 {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .text-link {
+    line-height: 1.5;
+  }
+
+  .page-copy,
+  .section-copy,
+  .section-note,
+  .info-card p,
+  .featured-sermon-copy p,
+  .footer-copy,
+  .faq-answer p {
+    text-wrap: pretty;
+  }
+
+  .mobile-nav-panel {
+    top: 4.8rem;
+  }
+
+  .mobile-nav-panel-inner {
+    padding: 1.15rem;
+  }
+
+  .mobile-nav-links a {
+    padding: 0.95rem 1rem;
+  }
+
+  .mobile-nav-actions {
+    gap: 0.8rem;
+  }
+
+  .sermon-library-carousel-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .sermon-library-carousel-button {
+    min-height: 44px;
+  }
+
+  .hero-video-frame,
+  .featured-sermon-video-frame {
+    min-height: 240px;
+  }
+
+  .footer-panel {
+    padding: 1.15rem;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    width: min(var(--max), calc(100% - 1rem));
+  }
+
+  h1,
+  .page-title {
+    font-size: clamp(2.05rem, 10vw, 2.85rem);
+    line-height: 1.02;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 7.8vw, 2.2rem);
+  }
+
+  .page-hero-shell,
+  .panel-card,
+  .info-card,
+  .panel,
+  .value-card,
+  .experience-card,
+  .pastor-note,
+  .cta-band,
+  .page-aside,
+  .featured-sermon,
+  .footer-panel,
+  .loading-card {
+    padding: 1rem;
+  }
+
+  .hero,
+  .page-hero,
+  .section {
+    scroll-margin-top: 5rem;
+  }
+
+  .hero-copy-block,
+  .page-hero-copy-block,
+  .cta-band-copy,
+  .featured-sermon-copy {
+    gap: 0.8rem;
+  }
+
+  .button,
+  .button-sm {
+    font-size: 0.94rem;
+    padding-inline: 0.95rem;
+  }
+
+  .hero-secondary-link,
+  .hero-card-button,
+  .header-actions .button {
+    min-height: 48px;
+  }
+
+  .mobile-nav-panel {
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+}
